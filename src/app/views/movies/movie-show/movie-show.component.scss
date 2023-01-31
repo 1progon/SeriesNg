@@ -1,0 +1,124 @@
+@use "variables" as *;
+
+.images {
+  & .image-block {
+    position: relative;
+
+    & a {
+      display: block;
+      height: 206px;
+      overflow: hidden;
+
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+
+  }
+}
+
+.anime-details {
+  & .anime__details__content {
+    & .anime__details__pic {
+      & .soon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $bg-color-lighter;
+        color: #fff;
+        padding: 5px;
+      }
+
+      & .editor-choice {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 45px solid $accent-color;
+        border-left: 45px solid transparent;
+
+        & i {
+          position: absolute;
+          right: 5px;
+          top: -40px;
+          color: white;
+        }
+      }
+
+      a {
+        display: block;
+        min-width: 216px;
+        width: fit-content;
+        min-height: 300px;
+
+      }
+
+    }
+
+  }
+
+  .anime__details__text {
+
+    .anime__details__widget {
+
+      ul {
+        li {
+          &.genres {
+            .genres-block {
+              display: flex;
+              flex-wrap: wrap;
+              flex: 1;
+              align-items: center;
+              a {
+                height: fit-content;
+                margin: 3px;
+              }
+            }
+
+
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+.actors,
+.anthologies,
+.collections {
+
+  overflow-x: auto;
+
+  & a {
+  }
+
+
+  & .actor,
+  & .anthology,
+  & .collection {
+    color: white;
+    width: 100px;
+    overflow-x: hidden;
+    font-size: 12px;
+    min-height: 130px;
+    background-color: $bg-color-lighter;
+
+    & img {
+      height: 130px;
+      object-fit: cover;
+    }
+  }
+
+  & .collection,
+  & .anthology {
+    width: 200px;
+  }
+}

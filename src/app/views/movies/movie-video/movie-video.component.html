@@ -1,0 +1,108 @@
+<app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+<div class="container-lg">
+
+  <div class="position-relative">
+
+    <div #moviesRef class="movie-episode position-relative">
+
+      <router-outlet></router-outlet>
+
+      <div class="mb-4">
+        <div class="section-title">
+          <h5>Перевод</h5>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a *ngFor="let video of otherMovieVideos"
+             (click)="scrollToPlayer(moviesRef)"
+             [class.active]="video.id == mainVideo.id"
+             [routerLink]="['/movies',
+               video.movie.slug,
+               'videos',
+               'v', video.id,
+               's',video.seasons[0].seasonNumber,
+               'e', video.seasons[0].episodes[0].seriesNumber]"
+             class="btn btn-outline-light">
+            {{video.translation.name}}
+
+            <!-- voice icon -->
+            <ng-container *ngIf="video.translation.type == translationTypes.Voice">
+              <svg class="position-relative"
+                   xmlns="http://www.w3.org/2000/svg"
+                   width="20"
+                   height="20" viewBox="0 0 24 24"
+                   style="fill: rgba(229, 54, 55, 1); bottom: 2px">
+                <path
+                  d="M8 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0-6c1.178 0 2 .822 2 2s-.822 2-2 2-2-.822-2-2 .822-2 2-2zm1 7H7c-2.757 0-5 2.243-5 5v1h2v-1c0-1.654 1.346-3 3-3h2c1.654 0 3 1.346 3 3v1h2v-1c0-2.757-2.243-5-5-5zm9.364-10.364L16.95 4.05C18.271 5.373 19 7.131 19 9s-.729 3.627-2.05 4.95l1.414 1.414C20.064 13.663 21 11.403 21 9s-.936-4.663-2.636-6.364z"></path>
+                <path
+                  d="M15.535 5.464 14.121 6.88C14.688 7.445 15 8.198 15 9s-.312 1.555-.879 2.12l1.414 1.416C16.479 11.592 17 10.337 17 9s-.521-2.592-1.465-3.536z"></path>
+              </svg>
+            </ng-container>
+            <!-- end voice icon -->
+
+            <!-- subtitles icon -->
+            <ng-container *ngIf="video.translation.type==translationTypes.Subtitles">
+              <svg class="position-relative"
+                   xmlns="http://www.w3.org/2000/svg"
+                   width="20"
+                   height="20" viewBox="0 0 24 24"
+                   style="fill: rgba(229, 54, 55, 1); bottom: 2px">
+                <path
+                  d="M6 10v4c0 1.103.897 2 2 2h3v-2H8v-4h3V8H8c-1.103 0-2 .897-2 2zm7 0v4c0 1.103.897 2 2 2h3v-2h-3v-4h3V8h-3c-1.103 0-2 .897-2 2z"></path>
+                <path
+                  d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM4 18V6h16l.002 12H4z"></path>
+              </svg>
+            </ng-container>
+          <!-- end subtitles icon -->
+
+          </a>
+        </div>
+      </div>
+
+
+      <div class="anime__details__episodes">
+        <div class="section-title">
+          <h5>Сезоны и серии</h5>
+        </div>
+        <div class="seasons d-flex flex-wrap">
+          <div class="season" *ngFor="let season of mainVideo.seasons">
+
+            <!-- seasons cycle -->
+            <a [routerLink]="['/movies',
+               mainVideo.movie.slug,
+               'videos',
+               'v', mainVideo.id,
+               's', season.seasonNumber,
+               'e', season.episodes[0].seriesNumber]"
+               [class.active]="service.activeSeason?.id == season.id">
+              Сезон {{season.seasonNumber}}
+            </a>
+            <!-- end seasons cycle -->
+
+
+          </div>
+
+
+        </div>
+
+        <!-- episodes cycle -->
+        <ng-container *ngFor="let episode of service.activeSeason?.episodes">
+          <a (click)="scrollToPlayer(moviesRef);"
+             [class.active]="service.activeEpisode?.id == episode.id"
+             [routerLink]="['/movies',
+               mainVideo.movie.slug,
+               'videos',
+               'v', mainVideo.id,
+               's', service.activeSeason?.seasonNumber,
+               'e', episode.seriesNumber]">
+            {{episode.seriesNumber}}
+          </a>
+        </ng-container>
+        <!-- end episodes cycle -->
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

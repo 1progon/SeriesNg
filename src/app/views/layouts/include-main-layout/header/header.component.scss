@@ -1,0 +1,116 @@
+@use "variables" as *;
+
+header {
+  background: $bg-color-darker;
+
+
+  .header__logo {
+
+    a {
+      display: inline-block;
+    }
+  }
+
+  .header__menu {
+    text-align: center;
+
+    ul {
+
+      li {
+        list-style: none;
+        display: inline-block;
+        position: relative;
+        margin-right: 16px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.active a {
+          background: #e53637;
+          color: #ffffff;
+        }
+
+        .dropdown {
+          position: absolute;
+          left: 0;
+          top: 82px;
+          width: 150px;
+          background: #ffffff;
+          text-align: left;
+          padding: 5px 0;
+          z-index: 9;
+          opacity: 0;
+          visibility: hidden;
+          -webkit-transition: all, 0.3s;
+          -o-transition: all, 0.3s;
+          transition: all, 0.3s;
+
+          li {
+            display: block;
+            margin-right: 0;
+
+            a {
+              font-size: 14px;
+              color: #111111;
+              font-weight: 500;
+              padding: 5px 20px;
+            }
+          }
+        }
+
+        &:hover a {
+          color: #ffffff;
+
+          .dropdown {
+            top: 62px;
+            opacity: 1;
+            visibility: visible;
+
+            li {
+              a {
+                background: transparent;
+              }
+            }
+          }
+        }
+
+        a {
+          font-size: 15px;
+          color: #b7b7b7;
+          display: block;
+          font-weight: 700;
+          -webkit-transition: all, 0.5s;
+          -o-transition: all, 0.5s;
+          transition: all, 0.5s;
+          padding: 20px;
+
+          span {
+            position: relative;
+            font-size: 17px;
+            top: 2px;
+          }
+        }
+      }
+    }
+  }
+
+
+  .header__right {
+    text-align: right;
+    padding: 20px 0 15px;
+
+    a {
+      display: inline-block;
+      font-size: 18px;
+      color: #ffffff;
+      margin-right: 30px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+
+}

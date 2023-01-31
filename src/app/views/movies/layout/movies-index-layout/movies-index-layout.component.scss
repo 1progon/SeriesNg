@@ -1,0 +1,20 @@
+a {
+  svg {
+    fill: #e53637 !important;
+  }
+}
+
+.search-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 15px;
+
+  input {
+    flex: 1 1;
+
+  }
+
+  button {
+  }
+}
