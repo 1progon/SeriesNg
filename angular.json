@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/scss/"
+              ]
+            },
             "outputPath": "dist/series-ng",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +32,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/kodik.txt"
             ],
             "styles": [
               "src/styles.scss"
