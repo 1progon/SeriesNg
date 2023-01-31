@@ -1,0 +1,134 @@
+
+.section-title {
+
+  h4, h5 {
+    color: #ffffff;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -6px;
+      height: 32px;
+      width: 4px;
+      background: #e53637;
+    }
+  }
+}
+
+
+.spad {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+.text-white {
+  h1, h2, h3, h4, h5, h6, p, span, li, a {
+    color: #fff;
+  }
+}
+
+/* buttons */
+
+.primary-btn {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 2px;
+
+  span {
+    font-size: 18px;
+    margin-left: 5px;
+    position: relative;
+    top: 3px;
+  }
+}
+
+
+.site-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background: #e53637;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+}
+
+
+.spacial-controls {
+  position: fixed;
+  width: 111px;
+  height: 91px;
+  top: 0;
+  right: 0;
+  z-index: 999;
+
+  .search-switch {
+    display: block;
+    height: 100%;
+    padding-top: 30px;
+    background: #323232;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+
+.search-model {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #000;
+  z-index: 99999;
+}
+
+
+.search-model-form {
+  padding: 0 15px;
+
+  input {
+    width: 500px;
+    font-size: 40px;
+    border: none;
+    border-bottom: 2px solid #333;
+    background: 0 0;
+    color: #999;
+  }
+}
+
+.search-close-switch {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 28px;
+  top: 30px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
