@@ -1,0 +1,31 @@
+<div class="product__pagination">
+  <!-- to back -->
+  <a class="me-2"
+     *ngIf="page == 1" disabled="disabled">Назад</a>
+  <a class="me-2"
+     *ngIf="page == 2" [routerLink]="route"
+     [queryParams]="{page: null}"
+     queryParamsHandling="merge">Назад</a>
+  <a class="me-2"
+     *ngIf="page > 2" [routerLink]="route"
+     queryParamsHandling="merge"
+     [queryParams]="{page: (page - 1)}">Назад</a>
+  <!-- end to back -->
+
+
+  <!-- current page -->
+  <a class="current-page me-2">{{page}}</a>
+  <!-- end current page -->
+
+
+  <!-- forward -->
+  <a class="me-2"
+     [routerLink]="route"
+     queryParamsHandling="merge"
+     [queryParams]="{page: (page + 1)}">Вперёд</a>
+  <!-- end forward -->
+
+  <!-- to last page -->
+  <!-- <a href="#"><i class="fa fa-angle-double-right"></i></a> -->
+  <!-- end to last page -->
+</div>
