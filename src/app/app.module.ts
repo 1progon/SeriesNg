@@ -31,6 +31,8 @@ import {MovieVideoComponent} from "./views/movies/movie-video/movie-video.compon
 import {MoviesIndexLayoutComponent} from './views/movies/layout/movies-index-layout/movies-index-layout.component';
 import {ContainerComponent} from './components/container/container.component';
 import {CollectionsIndexComponent} from './views/collections/collections-index/collections-index.component';
+import {LoginComponent} from './views/auth/login/login.component';
+import {RegisterComponent} from './views/auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import {CollectionsIndexComponent} from './views/collections/collections-index/c
     MoviesIndexLayoutComponent,
     ContainerComponent,
     CollectionsIndexComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
