@@ -1,11 +1,108 @@
-
-
 .anime__video__player {
+  position: relative;
   margin-bottom: 10px;
+
   iframe {
     border: none;
     width: 100%;
     min-height: 480px;
     height: 100%;
   }
+
+  .plyr--video {
+    border-radius: 5px;
+    background: transparent;
+
+    .plyr__control {
+      background: transparent;
+
+      &.plyr__tab-focus, &:hover, &[aria-expanded=true] {
+        background: transparent;
+      }
+
+
+    }
+
+    .plyr__controls {
+      .plyr__controls__item {
+
+        &.plyr__progress__container {
+          position: absolute;
+          left: 26px;
+          bottom: 45px;
+          width: calc(100% - 60px);
+        }
+
+        &:first-child {
+          position: absolute;
+          left: 32px;
+          bottom: 8px;
+        }
+
+        &:last-child {
+          position: absolute;
+          right: 32px;
+          bottom: 8px;
+        }
+
+        &.plyr__time {
+          position: absolute;
+          left: 106px;
+          bottom: 12px;
+        }
+      }
+
+
+    }
+
+    .plyr__progress__buffer {
+      color: transparent;
+    }
+  }
+
+  .plyr audio,
+  .plyr iframe,
+  .plyr video {
+    width: 102%;
+  }
+
+  .plyr--full-ui {
+    &.plyr--video {
+      .plyr__control--overlaid {
+        display: block;
+      }
+    }
+
+    input[type=range] {
+      color: #ffffff;
+    }
+  }
+
+  .plyr__menu {
+    margin-right: 70px;
+  }
+
+  .plyr__volume {
+    position: absolute;
+    width: auto;
+    left: 76px;
+    bottom: 8px;
+  }
+
+  .plyr__control--overlaid {
+    background: transparent;
+    /*background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, transparent)));*/
+
+    svg {
+      height: 60px;
+      width: 50px;
+    }
+  }
 }
+
+
+
+
+
+
+

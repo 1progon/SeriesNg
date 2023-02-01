@@ -1,0 +1,32 @@
+.pagination {
+  padding-top: 15px;
+
+  a {
+    display: inline-block;
+    font-size: 15px;
+    color: #b7b7b7;
+    font-weight: 600;
+    height: 50px;
+    width: 50px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    line-height: 48px;
+    text-align: center;
+    -webkit-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    &.current-page {
+      border: 1px solid #ffffff;
+    }
+
+    i {
+      color: #b7b7b7;
+      font-size: 15px;
+    }
+  }
+}
