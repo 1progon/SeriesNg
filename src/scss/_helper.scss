@@ -63,6 +63,11 @@
   text-transform: uppercase;
   display: inline-block;
   padding: 12px 30px;
+
+  &[disabled] {
+    background-color: #ff8484;
+    cursor: not-allowed;
+  }
 }
 
 

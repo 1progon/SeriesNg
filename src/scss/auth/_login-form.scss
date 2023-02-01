@@ -1,9 +1,4 @@
 
-.login {
-  padding-top: 130px;
-  padding-bottom: 120px;
-}
-
 .login__form {
   position: relative;
   padding-left: 145px;
@@ -45,8 +40,6 @@
   height: 50px;
   width: 100%;
   font-size: 15px;
-  color: #b7b7b7;
-  background: #ffffff;
   border: none;
   padding-left: 76px;
 }
@@ -73,10 +66,9 @@
 
 .login__form form .input__item span {
   color: #b7b7b7;
-  font-size: 20px;
   position: absolute;
   left: 15px;
-  top: 13px;
+  top: 11px;
 }
 
 .login__form form button {
@@ -150,6 +142,10 @@
 
 .login__social__links ul li a.facebook {
   background: #4267b2;
+}
+
+.login__social__links ul li a.vkontakte {
+  background: #1861ee;
 }
 
 .login__social__links ul li a.google {
