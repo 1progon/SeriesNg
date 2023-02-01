@@ -13,17 +13,23 @@ import {MoviesIndexLayoutComponent} from "./views/movies/layout/movies-index-lay
 import {CollectionsIndexComponent} from "./views/collections/collections-index/collections-index.component";
 import {MovieEpisodeComponent} from "./views/movies/movie-episode/movie-episode.component";
 import {MovieVideoComponent} from "./views/movies/movie-video/movie-video.component";
+import {LoginComponent} from "./views/auth/login/login.component";
+import {RegisterComponent} from "./views/auth/register/register.component";
 
 const routes: Routes = [
   {
-    path: '', component: MainLayoutComponent, children: [
+    path: '',
+    component: MainLayoutComponent,
+    children: [
       // homepage
       // {path: '', component: HomepageComponent},
       {path: '', redirectTo: '/movies', pathMatch: 'full'},
 
-      // movies
+      // movies fast selectors
       {
-        path: 'movies', component: MoviesIndexLayoutComponent, children: [
+        path: 'movies',
+        component: MoviesIndexLayoutComponent,
+        children: [
           {path: '', component: MoviesIndexComponent},
           {path: 'new', component: MoviesIndexComponent},
           {path: 'popular', component: MoviesIndexComponent},
@@ -35,6 +41,7 @@ const routes: Routes = [
         ]
       },
 
+      // movies
       {
         path: 'movies',
         children: [
@@ -81,17 +88,20 @@ const routes: Routes = [
         ]
       },
 
-
       // genres
       {path: 'genres/:slug', component: GenreShowComponent},
 
       // collections
       {path: 'collections/:slug', component: CollectionShowComponent},
 
-
       // actors
       {path: 'actors', component: ActorsIndexComponent},
       {path: 'actors/:slug', component: ActorShowComponent},
+
+      // auth
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+
 
       // errors
       {path: '404', component: Error404Component},
