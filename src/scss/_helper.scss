@@ -1,3 +1,4 @@
+@use "variables";
 
 .section-title {
 
@@ -15,15 +16,15 @@
       top: -6px;
       height: 32px;
       width: 4px;
-      background: #e53637;
+      background: variables.$accent-color;
     }
   }
 }
 
 
 .spad {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 
@@ -33,7 +34,198 @@
   }
 }
 
+/* rounder border */
+.rounded {
+  border-radius: 5px;
+}
+
+.rounded-2 {
+  border-radius: 10px;
+
+}
+
+/* overflow */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* flex */
+.d-flex {
+  display: flex;
+  flex-direction: row;
+
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  &.flex-column {
+    flex-direction: column;
+  }
+
+  &.gap-5 {
+    gap: 5px;
+  }
+
+  &.gap-10 {
+    gap: 10px;
+  }
+
+  &.justify-content-center {
+    justify-content: center;
+  }
+
+  &.align-items-center {
+    align-items: center;
+  }
+
+  &.justify-content-between {
+    justify-content: space-between;
+  }
+}
+
+/* padding */
+.p-1, .p-2, .p-3, .p-4, .p-5, .m-1, .m-2, .m-3, .m-4, .m-5,
+.my-3, .me-2 {
+  --padding-spacer: 5px;
+}
+
+.p-1 {
+  padding: var(--padding-spacer);
+}
+
+.p-2 {
+  padding: calc(var(--padding-spacer) * 2);
+}
+
+.p-3 {
+  padding: calc(var(--padding-spacer) * 3);
+}
+
+.p-4 {
+  padding: calc(var(--padding-spacer) * 4);
+}
+
+.p-5 {
+  padding: calc(var(--padding-spacer) * 5);
+}
+
+.m-1 {
+  margin: var(--padding-spacer);
+}
+
+.m-2 {
+  margin: calc(var(--padding-spacer) * 2);
+}
+
+.m-3 {
+  margin: calc(var(--padding-spacer) * 3);
+}
+
+.m-4 {
+  margin: calc(var(--padding-spacer) * 4);
+}
+
+.m-5 {
+  margin: calc(var(--padding-spacer) * 5);
+}
+
+.me-2 {
+  margin-right: calc(var(--padding-spacer) * 2);
+}
+
+.my-3 {
+  margin-top: calc(var(--padding-spacer) * 3);
+  margin-bottom: calc(var(--padding-spacer) * 3);
+}
+
+/* position */
+.position-relative {
+  position: relative;
+}
+
+/* opacity */
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-25 {
+  opacity: .25;
+}
+
+.opacity-50 {
+  opacity: .5;
+}
+
+
 /* buttons */
+.btn {
+  line-height: 1.2;
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #292945;
+  color: #fff;
+  background-color: variables.$bg-color-lighter;
+
+  &.btn-fluid {
+    width: 100%;
+  }
+
+  &.active {
+    border-color: variables.$accent-color;
+    background-color: variables.$bg-color-darker;
+  }
+
+  &.disabled {
+    color: variables.$bg-color-disabled;
+    cursor: not-allowed;
+    border-color: variables.$accent-color;
+  }
+
+
+  & svg {
+    margin-right: 3px;
+    width: 20px;
+    height: 20px;
+    fill: variables.$accent-color;
+
+  }
+
+  &.btn-outline {
+    background-color: unset;
+  }
+
+  &:hover {
+    background-color: variables.$bg-color;
+  }
+
+  &:first-child {
+    margin-left: unset;
+  }
+
+  &:last-child {
+    margin-right: unset;
+  }
+
+
+  // btn colors
+  &.btn-warning {
+    border-color: unset;
+    background-color: #ffc107;
+    color: variables.$bg-color-darker;
+
+    &:hover {
+      background-color: #ffcc33;
+    }
+  }
+}
 
 .primary-btn {
   display: inline-block;
@@ -55,19 +247,29 @@
 .site-btn {
   font-size: 13px;
   color: #ffffff;
-  background: #e53637;
+  background: variables.$accent-color;
   font-weight: 700;
   border: none;
   border-radius: 2px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   padding: 12px 30px;
 
   &[disabled] {
     background-color: #ff8484;
     cursor: not-allowed;
   }
+}
+
+/* badge */
+.badge {
+  padding: 0 5px;
+  font-size: 10px;
+  background-color: variables.$bg-color-lighter;
+  border-radius: 20px;
 }
 
 
@@ -137,3 +339,140 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
+
+
+/* alerts */
+.alert {
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: variables.$bg-color-lighter;
+  border: 1px solid variables.$accent-color;
+  color: #fff;
+
+
+  &.alert-danger {
+    background-color: variables.$accent-color;
+    border-color: variables.$accent-color-darker;
+
+    &.alert-outline {
+      color: variables.$accent-color-lighter;
+    }
+  }
+
+  &.alert-success {
+    background-color: variables.$green-color;
+    border-color: variables.$green-color-darker;
+
+    &.alert-outline {
+      color: variables.$green-color-lighter;
+    }
+  }
+
+  &.alert-outline {
+    background-color: transparent;
+  }
+
+
+}
+
+
+/* forms */
+form {
+
+  label {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+
+    &.required::before {
+      content: '*';
+      position: relative;
+      top: 3px;
+      font-weight: 600;
+      margin-right: 5px;
+      color: variables.$accent-color;
+    }
+  }
+
+  .group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: variables.$bg-color-lighter;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    .title {
+      flex-basis: 100%;
+    }
+
+    & > div {
+      flex: 1;
+      flex-basis: 180px;
+    }
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: variables.$bg-color;
+    outline: none;
+    border: 1px solid variables.$bg-color-lighter;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+
+    &.ng-invalid.ng-touched,
+    &.ng-invalid.ng-dirty {
+      border-left: 5px solid;
+      border-left-color: variables.$accent-color;
+    }
+
+    &.ng-valid.ng-touched,
+    &.ng-valid.ng-dirty {
+      border-left: 5px solid;
+      border-left-color: variables.$green-color;
+    }
+  }
+
+  input[readonly], textarea[readonly] {
+    background-color: darkgray;
+  }
+
+  input[disabled], select[disabled], textarea[disabled] {
+    background-color: gray;
+  }
+
+
+}
+
+
+/* tooltips */
+.tooltip-parent {
+  position: relative;
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    top: -40px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 10px;
+  }
+
+  &:hover + .tooltip {
+    display: block;
+  }
+
+
+}
+

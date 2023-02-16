@@ -1,3 +1,4 @@
+@use "variables";
 
 .blog {
   padding-top: 70px;
@@ -44,7 +45,7 @@
 }
 
 .blog__item__text p span {
-  color: #e53637;
+  color: $accent-color;
   margin-right: 5px;
 }
 

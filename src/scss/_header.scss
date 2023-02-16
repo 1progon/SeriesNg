@@ -1,0 +1,144 @@
+@use "src/scss/variables" as *;
+
+header {
+  background: $bg-color-darker;
+
+  &.header {
+
+    .asbo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .header__logo {
+        flex: 3;
+
+        img {
+          margin-right: 5px;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+        }
+
+        .header__logo__title {
+          color: #fff;
+          font-weight: 600;
+
+          @media screen and (max-width: 510px) {
+            display: none;
+          }
+
+        }
+      }
+
+      .header__nav {
+        flex: 6;
+
+        .header__menu {
+          text-align: center;
+
+          ul {
+
+            li {
+              list-style: none;
+              display: inline-block;
+              position: relative;
+              margin-right: 16px;
+
+              &:last-child {
+                margin-right: 0;
+              }
+
+              &.active a {
+                background: $accent-color;
+                color: #ffffff;
+              }
+
+              .dropdown {
+                position: absolute;
+                left: 0;
+                top: 82px;
+                width: 150px;
+                background: #ffffff;
+                text-align: left;
+                padding: 5px 0;
+                z-index: 9;
+                opacity: 0;
+                visibility: hidden;
+                -webkit-transition: all, 0.3s;
+                -o-transition: all, 0.3s;
+                transition: all, 0.3s;
+
+                li {
+                  display: block;
+                  margin-right: 0;
+
+                  a {
+                    font-size: 14px;
+                    color: #111111;
+                    font-weight: 500;
+                    padding: 5px 20px;
+                  }
+                }
+              }
+
+              &:hover a {
+                color: #ffffff;
+
+                .dropdown {
+                  top: 62px;
+                  opacity: 1;
+                  visibility: visible;
+
+                  li {
+                    a {
+                      background: transparent;
+                    }
+                  }
+                }
+              }
+
+              a {
+                font-size: 15px;
+                color: $text-color;
+                display: block;
+                font-weight: 700;
+                -webkit-transition: all, 0.5s;
+                -o-transition: all, 0.5s;
+                transition: all, 0.5s;
+                padding: 20px;
+
+                span {
+                  position: relative;
+                  font-size: 17px;
+                  top: 2px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .header__right {
+        flex: 3;
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        text-align: right;
+
+        a {
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+
+    }
+  }
+
+
+}

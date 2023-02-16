@@ -1,3 +1,4 @@
+@use "variables" as *;
 
 .blog-details {
   padding-top: 70px;
@@ -17,7 +18,7 @@
 }
 
 .blog__details__title h6 span {
-  color: #b7b7b7;
+  color: $text-color;
   font-weight: 400;
   text-transform: none;
 }
@@ -109,7 +110,7 @@
 
 .blog__details__tags a {
   display: inline-block;
-  color: #b7b7b7;
+  color: $text-color;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -148,7 +149,7 @@
 
 .blog__details__btns__item h5 a span {
   font-size: 30px;
-  color: #b7b7b7;
+  color: $text-color;
   position: relative;
   top: 8px;
 }
@@ -184,7 +185,7 @@
 
 .blog__details__comment__item__text span {
   font-size: 14px;
-  color: #b7b7b7;
+  color: $text-color;
   display: block;
   margin-bottom: 10px;
 }
@@ -196,7 +197,7 @@
 }
 
 .blog__details__comment__item__text p {
-  color: #b7b7b7;
+  color: $text-color;
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 25px;
@@ -216,7 +217,7 @@
 }
 
 .blog__details__comment__item__text a:hover {
-  background: #e53637;
+  background: $accent-color;
 }
 
 .blog__details__form {

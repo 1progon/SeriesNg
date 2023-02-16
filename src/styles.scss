@@ -1,25 +1,49 @@
 @use "scss/variables" as *;
 @use "helper";
-@use "details";
-@use "product";
+@use "header";
+@use "movie-details";
+@use "movies";
+@use "auth/login-form";
+@use "account/account";
 
 //@use "blog/blog";
 //@use "blog/blog-detail";
 
 @use "responsive/responsive";
 
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: local("OpenSans-Regular"),
+  url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: initial !important;
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
   background: $bg-color;
 }
 
 body {
+  font-family: 'OpenSans-Regular', sans-serif;
   overflow-y: scroll;
   color: $text-color;
+  font-size: 16px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $accent-color;
+    display: inline-block;
+  }
 
   ul,
   ol {
@@ -28,12 +52,26 @@ body {
   }
 
   a {
+    cursor: pointer;
     text-decoration: none;
+    color: unset;
+    display: flex;
 
     &:hover,
     &:focus {
       outline: none;
-      //color: #ffffff;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: unset;
+    outline: unset;
+    background-color: unset;
+
+    &[disabled] {
+      color: $bg-color-disabled;
+      cursor: not-allowed;
     }
   }
 
