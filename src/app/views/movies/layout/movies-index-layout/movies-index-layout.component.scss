@@ -1,20 +1,25 @@
+@use "variables";
+
 a {
   svg {
-    fill: #e53637 !important;
+    fill: variables.$accent-color !important;
   }
 }
 
-.search-block {
+form.search-block {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
+  margin-top: 15px;
   margin-bottom: 15px;
 
   input {
     flex: 1 1;
 
+    &:focus {
+      outline: unset;
+    }
+
   }
 
-  button {
-  }
 }

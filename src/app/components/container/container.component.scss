@@ -1,0 +1,27 @@
+.container-lg-local {
+  padding-right: .75rem;
+  padding-left: .75rem;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+  max-width: 100%;
+
+  @media screen and (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    max-width: 1320px;
+  }
+
+}
+
+
+
+
+
+

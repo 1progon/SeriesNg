@@ -1,59 +1,93 @@
 @use "variables" as *;
 
+.movie-detail {
+
+  .description {
+    margin-bottom: 30px;
+  }
+}
+
+.rating {
+  .add-movie-like-btn, .add-movie-dislike-button {
+    cursor: pointer;
+  }
+
+  .add-movie-like-btn {
+    margin-right: 10px;
+  }
+
+  .add-movie-dislike-button {
+    margin-left: 10px;
+  }
+}
+
+.likes {
+  display: flex;
+  gap: 20px;
+
+  .like-btn {
+    cursor: pointer;
+  }
+
+  svg {
+    fill: $text-color;
+
+    &.active, &:hover {
+      fill: $accent-color;
+
+    }
+  }
+}
+
 .images {
-  & .image-block {
-    position: relative;
 
-    & a {
-      display: block;
-      height: 206px;
+  .image-block-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    & .image-block {
+      position: relative;
+      border-radius: 5px;
       overflow: hidden;
+      flex-basis: calc(24% - 10px);
 
-
-      & img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: center;
+      @media screen and (max-width: 992px) {
+        flex-basis: calc(32% - 10px);
       }
+
+      @media screen and (max-width: 576px) {
+        flex-basis: calc(49% - 10px);
+      }
+
+      & a {
+        display: block;
+        height: 200px;
+        overflow: hidden;
+
+        @media screen and (max-width: 768px) {
+          height: 170px;
+        }
+
+        @media screen and (max-width: 576px) {
+          height: 140px;
+        }
+
+
+        & img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+
     }
-
-
   }
 }
 
 
-.actors,
-.anthologies,
-.collections {
-
-  overflow-x: auto;
-
-  & a {
-  }
-
-
-  & .actor,
-  & .anthology,
-  & .collection {
-    color: white;
-    width: 100px;
-    overflow-x: hidden;
-    font-size: 12px;
-    min-height: 130px;
-    background-color: $bg-color-lighter;
-
-    & img {
-      height: 130px;
-      object-fit: cover;
-    }
-  }
-
-  & .collection,
-  & .anthology {
-    width: 200px;
-  }
-}
 
 
 

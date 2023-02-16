@@ -1,0 +1,43 @@
+$for-screen: 648px;
+
+.account {
+
+  display: flex;
+  flex-direction: row;
+  min-height: 70vh;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: $for-screen) {
+    flex-direction: column;
+  }
+
+  .account__sidebar {
+    flex-basis: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+
+    @media screen and (max-width: $for-screen) {
+      flex-direction: row;
+      flex-basis: unset;
+    }
+
+    a {
+      &.btn {
+        width: 100%;
+
+        @media screen and (max-width: $for-screen) {
+          width: unset;
+        }
+      }
+    }
+  }
+
+  .account__content {
+    flex: 10 1;
+  }
+}

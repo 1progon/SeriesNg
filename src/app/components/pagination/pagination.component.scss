@@ -1,10 +1,12 @@
+@use "variables" as *;
+
 .pagination {
   padding-top: 15px;
 
   a {
     display: inline-block;
     font-size: 15px;
-    color: #b7b7b7;
+    color: $text-color;
     font-weight: 600;
     height: 50px;
     width: 50px;
@@ -25,7 +27,7 @@
     }
 
     i {
-      color: #b7b7b7;
+      color: $text-color;
       font-size: 15px;
     }
   }

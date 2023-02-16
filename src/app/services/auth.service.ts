@@ -10,6 +10,9 @@ import {map} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
+  set user(value: UserDto | undefined) {
+    this._user = value;
+  }
   get user(): UserDto | undefined {
     return this._user;
   }
@@ -21,7 +24,7 @@ export class AuthService {
 
 
   register(formDto: RegisterFormDto) {
-    return this.http.post<UserDto>(environment.apiUrl + 'login', formDto)
+    return this.http.post<UserDto>(environment.apiUrl + 'auth/register', formDto)
       .pipe(map(value => {
         this._user = value;
         return value;
@@ -29,10 +32,14 @@ export class AuthService {
   }
 
   login(formDto: LoginFormDto) {
-    return this.http.post<UserDto>(environment.apiUrl + 'register', formDto)
+    return this.http.post<UserDto>(environment.apiUrl + 'auth/login', formDto)
       .pipe(map(value => {
         this._user = value;
         return value;
       }));
+  }
+
+  logout() {
+    this._user = undefined;
   }
 }

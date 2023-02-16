@@ -1,14 +1,13 @@
-<app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+<app-container>
+  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
 
-<!-- Product Section Begin -->
-<app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="loading"></app-loader>
 
-<section class="product-page spad" [class.opacity-25]="loading">
-  <div class="row">
+  <section class="spad" [class.opacity-25]="loading">
     <!-- <div class="col-lg-8"> -->
     <div>
-      <div class="product__page__content">
-        <div class="product__page__title">
+      <div class="movies__content">
+        <div class="movies__content-head">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-6">
               <div class="section-title">
@@ -27,41 +26,29 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div *ngFor="let collection of collections;index as i"
-               class="col-lg-3 col-md-6 col-sm-6">
-            <div class="product__item">
-              <div class="product__item__pic rounded-2 overflow-hidden" [class.bg-secondary]="!imagesLoaded[i]">
-                <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
+        <div class="movies">
+          <div class="product__item" *ngFor="let collection of collections;index as i">
+            <div class="product__item__pic"
+                 [style.min-height.px]="!imagesLoaded[i] ? 200 : null"
+                 [style.width.%]="!imagesLoaded[i] ? 100 : null">
+              <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
+              <a [routerLink]="'/collections/' + collection.slug">
+                <img (load)="imagesLoaded[i] = true"
+                     [alt]="'картинка изображение к подборке фильмов ' + collection.name"
+                     [attr.loading]="i > 11 ? 'lazy' : null"
+                     [src]="imagesPath + collection.thumb">
+              </a>
+            </div>
+            <div class="movies-index__item-text">
+              <!-- <ul> -->
+              <!-- <li>Active</li> -->
+              <!-- <li>Movie</li> -->
+              <!-- </ul> -->
+              <h3 class="position-relative">
                 <a [routerLink]="'/collections/' + collection.slug">
-                  <img (load)="imagesLoaded[i] = true"
-                       [alt]="'картинка изображение к подборке фильмов ' + collection.name"
-                       [attr.loading]="i > 11 ? 'lazy' : null"
-                       [src]="imagesPath + collection.thumb">
+                  {{collection.name}}
                 </a>
-
-                <!-- <div class="ep">{{collection.episodesCount}}</div> -->
-                <!-- <div *ngIf="collection.comments?.length" class="comment"> -->
-                <!--   <i class="fa fa-comment"></i> -->
-                <!--   {{collection.comments?.length}} -->
-                <!-- </div> -->
-
-                <!-- <div class="view"> -->
-                <!--   <i class="fa fa-star"></i> -->
-                <!--   {{collection.rating}} -->
-                <!-- </div> -->
-              </div>
-              <div class="product__item__text">
-                <ul>
-                  <!-- <li>Active</li> -->
-                  <!-- <li>Movie</li> -->
-                </ul>
-                <h5 class="position-relative">
-                  <a [routerLink]="'/collections/' + collection.slug">
-                    {{collection.name}}
-                  </a>
-                </h5>
-              </div>
+              </h3>
             </div>
           </div>
         </div>
@@ -74,6 +61,5 @@
     <!-- <app-movies-index-sidebar></app-movies-index-sidebar> -->
     <!-- </div> -->
     <!-- end sidebar -->
-  </div>
-</section>
-<!-- Product Section End -->
+  </section>
+  <!-- Product Section End --></app-container>

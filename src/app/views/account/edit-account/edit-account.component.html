@@ -1,0 +1,245 @@
+<h2 class="title">Редактировать профиль</h2>
+<p><span class="red-star">*</span> - поля обязательные для заполнения</p>
+
+<form (ngSubmit)="submit()" #formRef="ngForm" class="position-relative">
+
+  <!-- disable form on request -->
+  <app-loader *ngIf="submitting"></app-loader>
+  <div *ngIf="submitting"
+       style="width: 100%;height: 100%;position: absolute;z-index: 999;background-color: rgba(72,72,72,0.5)"></div>
+  <!-- end disable form -->
+
+  <!-- edit email -->
+  <div class="edit-email my-3">
+
+    <button type="button" class="btn-change-password"
+            [disabled]="email.invalid"
+            (click)="changeEmail = !changeEmail">
+      {{changeEmail ? 'Редактировать почту' : 'Не редактировать почту'}}
+      <svg *ngIf="!changeEmail"
+           xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path>
+      </svg>
+    </button>
+    <label for="email" class="required">Email</label>
+    <input [(ngModel)]="updateUserForm.email"
+           class="form-control tooltip-parent"
+           id="email"
+           #email="ngModel"
+           [readOnly]="changeEmail"
+           email
+           required
+           name="email"
+           type="text">
+    <div class="alert alert-success alert-outline"
+         *ngIf="email.valid && updateUserForm.email != user?.email">Почта будет изменена при
+      нажатии кнопки "обновить профиль". Старая почта {{user?.email}}</div>
+  </div>
+  <!-- end edit email -->
+
+  <!-- phone -->
+  <div class="edit-phone my-3">
+    <label for="phone">Номер телефона</label>
+    <input [(ngModel)]="updateUserForm.phone"
+           class="form-control"
+           id="phone"
+           name="phone"
+           type="tel">
+
+  </div>
+  <!-- end phone -->
+
+  <!-- gender -->
+  <!-- <div class="edit-gender my-3"> -->
+  <!--   <label for="gender">Ваш пол</label> -->
+  <!--   <input [(ngModel)]="updateUserForm.gender" -->
+  <!--          class="form-control" -->
+  <!--          id="gender" -->
+  <!--          name="gender" -->
+  <!--          type="text"> -->
+
+  <!-- </div> -->
+  <!-- end gender -->
+
+  <!-- button folding change password -->
+  <button type="button"
+          class="btn-change-password"
+          (click)="changePassword = !changePassword">
+    <span *ngIf="!changePassword">Развернуть, чтобы изменить пароль!</span>
+    <span *ngIf="changePassword">Если свернуть, пароль не будет изменён!</span>
+    <svg
+      [style.rotate]="changePassword ? '180deg' : null"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24">
+      <path d="m6.293 13.293 1.414 1.414L12 10.414l4.293 4.293 1.414-1.414L12 7.586z"></path>
+    </svg>
+  </button>
+  <!-- end button folding change password -->
+
+  <!-- change passwords form -->
+  <div *ngIf="changePassword">
+
+    <div class="passwords group">
+      <h3 class="title">Заменить пароль?</h3>
+      <!-- show passwords button -->
+      <div class="btn-show-passwords">
+        <a class="btn"
+           (click)="showPasswords = !showPasswords">
+          {{!showPasswords ? 'Показать пароли' : 'Спрятать пароли'}}
+        </a>
+      </div>
+      <!-- end show passwords button -->
+
+      <div class="my-3">
+        <label class="required" for="password">Пароль</label>
+        <input #passRef="ngModel"
+               [(ngModel)]="updateUserForm.password"
+               [disabled]="!changePassword"
+               [type]="showPasswords ? 'text' : 'password'"
+               class="form-control"
+               id="password"
+               minlength="5"
+               name="password"
+               required>
+        <!-- errors -->
+        <div class="alert alert-danger"
+             *ngIf="passRef.invalid && passRef.touched && passRef.errors?.['required']">
+          Поле обязательно для заполнения
+        </div>
+        <div class="alert alert-danger"
+             *ngIf="passRef.invalid && passRef.touched && passRef.errors?.['minlength']">
+          Минимальная длина пароля {{passMinLength}}
+        </div>
+        <!-- end errors -->
+      </div>
+
+
+      <div class="my-3">
+        <label class="required" for="password">Пароль повторить</label>
+        <input #passConfRef="ngModel"
+               [(ngModel)]="updateUserForm.passwordConfirm"
+               [disabled]="!changePassword"
+               [minlength]="passMinLength"
+               [type]="showPasswords ? 'text' : 'password'"
+               class="form-control"
+               id="password-confirm"
+               name="password_confirm"
+               required>
+        <!-- errors -->
+        <div class="alert alert-danger"
+             *ngIf="passConfRef.invalid && passConfRef.touched && passConfRef.errors?.['minlength']">
+          Минимальная длина пароля {{passMinLength}}
+        </div>
+        <div class="alert alert-danger"
+             *ngIf="passConfRef.invalid && passConfRef.touched && passConfRef.errors?.['required']">
+          Поле обязательно для заполнения
+        </div>
+        <div class="alert alert-danger"
+             *ngIf="(passRef.touched || passConfRef.touched)
+           && updateUserForm.passwordConfirm != updateUserForm.password">
+          Пароли должны быть одинаковые
+        </div>
+        <!-- end errors -->
+      </div>
+
+
+    </div>
+  </div>
+  <!-- end change passwords form -->
+
+
+  <!-- update profile data -->
+  <div class="names group">
+    <h3 class="title">Как Вас зовут?</h3>
+    <div class="edit-firstname my-3">
+      <label for="firstname">Ваше имя</label>
+      <input [(ngModel)]="updateUserForm.firstName"
+             class="form-control"
+             id="firstname"
+             name="firstname"
+             type="text">
+
+    </div>
+    <div class="edit-lastname my-3">
+      <label for="lastname">Ваша фамилия</label>
+      <input [(ngModel)]="updateUserForm.lastName"
+             class="form-control"
+             id="lastname"
+             name="lastname"
+             type="text">
+
+    </div>
+  </div>
+
+
+  <!-- change location -->
+  <div class="location group">
+    <h3 class="title">А где Вы живёте?</h3>
+    <div class="edit-country my-3">
+      <label for="country">Страна</label>
+      <input [(ngModel)]="updateUserForm.country"
+             class="form-control"
+             id="country"
+             name="country"
+             type="text">
+    </div>
+
+    <div class="edit-region my-3">
+      <label for="region">Регион</label>
+      <input [(ngModel)]="updateUserForm.region"
+             class="form-control"
+             id="region"
+             name="region"
+             type="text">
+    </div>
+
+    <div class="edit-city my-3">
+      <label for="city">Город</label>
+      <input [(ngModel)]="updateUserForm.city"
+             class="form-control"
+             id="city"
+             name="city"
+             type="text">
+    </div>
+  </div>
+  <!-- end change location -->
+
+  <!-- social links -->
+  <div class="social-links group">
+    <h3 class="title">Зависаете в соц.сетях?</h3>
+    <div class="edit-vk-link my-3">
+      <label for="vk-link">ВКонтакте профиль</label>
+      <input [(ngModel)]="updateUserForm.vkProfile"
+             class="form-control"
+             id="vk-link"
+             name="vk_link"
+             type="text">
+
+    </div>
+    <div class="edit-ok-link my-3">
+      <label for="ok-link">Одноклассники профиль</label>
+      <input [(ngModel)]="updateUserForm.okProfile"
+             class="form-control"
+             id="ok-link"
+             name="ok_link"
+             type="text">
+
+    </div>
+  </div>
+  <!-- end social links -->
+
+  <!-- end update profile data -->
+
+  <button class="btn"
+          type="submit"
+          [disabled]="formRef.invalid
+          || formRef.pristine
+          || formRef.untouched
+          || submitting
+          || ((updateUserForm.password != updateUserForm.passwordConfirm) && changePassword)">
+    <app-btn-loader *ngIf="submitting"></app-btn-loader>
+    Обновить профиль
+  </button>
+</form>

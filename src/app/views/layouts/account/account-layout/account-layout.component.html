@@ -1,0 +1,36 @@
+<app-header></app-header>
+<app-container>
+  <div class="account">
+
+    <!-- menu sidebar left side -->
+    <aside class="account__sidebar">
+      <a class="btn" routerLink="/account/dashboard"
+         routerLinkActive="active">Домик</a>
+
+      <a class="btn" routerLink="/account/edit"
+         routerLinkActive="active">Профиль</a>
+
+      <a class="btn" routerLink="/account/favorites"
+         routerLinkActive="active">Избранное</a>
+
+      <a class="btn" routerLink="/account/wish-watch"
+         routerLinkActive="active">Хочу посмотреть</a>
+
+      <a class="btn" routerLink="/account/watching"
+         routerLinkActive="active">Смотрю</a>
+
+      <a class="btn" routerLink="/account/watched"
+         routerLinkActive="active">Просмотрено</a>
+
+    </aside>
+    <!-- end menu sidebar left side -->
+
+
+    <!-- right side -->
+    <aside class="account__content">
+      <router-outlet></router-outlet>
+    </aside>
+    <!-- end right side -->
+  </div>
+</app-container>
+<app-footer></app-footer>

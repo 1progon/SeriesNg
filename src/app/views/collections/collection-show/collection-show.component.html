@@ -1,15 +1,15 @@
-<app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
-
-<!-- Product Section Begin -->
-<app-loader *ngIf="loading"></app-loader>
-
 <app-container>
-  <section class="product-page spad">
+  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+
+  <!-- Product Section Begin -->
+  <app-loader *ngIf="loading"></app-loader>
+
+  <section class=" spad">
     <div class="row">
       <!-- <div class="col-lg-8"> -->
       <div>
         <div class="product__page__content">
-          <div class="product__page__title">
+          <div class="movies__content-head">
             <div class="row">
               <div class="col-lg-8 col-md-8 col-sm-6">
                 <div class="section-title">
@@ -28,9 +28,8 @@
               </div>
             </div>
           </div>
-          <div class="row" [class.opacity-25]="loading">
-            <div *ngFor="let movie of collection.movies;index as i"
-                 class="col-lg-3 col-md-6 col-sm-6">
+          <div class="movies" [class.opacity-25]="loading">
+            <div *ngFor="let movie of collection.movies;index as i">
               <div class="product__item">
                 <div class="product__item__pic rounded-2 overflow-hidden" [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
@@ -52,22 +51,24 @@
                   <!--   {{collection.rating}} -->
                   <!-- </div> -->
                 </div>
-                <div class="product__item__text">
-                  <ul>
+                <div class="movies-index__item-text">
+                  <!-- <ul> -->
                     <!-- <li>Active</li> -->
                     <!-- <li>Movie</li> -->
-                  </ul>
-                  <h5 class="position-relative">
+                  <!-- </ul> -->
+                  <h3 class="position-relative">
                     <a [routerLink]="'/movies/' + movie.slug">
                       {{movie.name}}
                     </a>
-                  </h5>
+                  </h3>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <app-pagination [page]="page" [route]="['/collections/', this.collection.slug]"></app-pagination>
+        <app-pagination [page]="page"
+                        [route]="['/collections/', this.collection.slug]">
+        </app-pagination>
       </div>
 
       <!-- sidebar -->

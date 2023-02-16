@@ -7,6 +7,8 @@ import {Comment} from "./Comment";
 import {Collection} from "./Collection";
 import {MovieVideo} from "./MovieVideo";
 import {Actor} from "../actors/Actor";
+import {UserFavoriteMovie} from "../middle/UserFavoriteMovie";
+import {UserMovieLikeDislike} from "../middle/UserMovieLikeDislike";
 
 export interface Movie extends BaseModel {
   type: MovieType
@@ -22,6 +24,8 @@ export interface Movie extends BaseModel {
   premierDate?: string;
 
   countryString?: string;
+  likes: number;
+  disLikes: number;
 
   rating?: number;
   ratingCount?: number;
@@ -57,5 +61,10 @@ export interface Movie extends BaseModel {
   mdlId?: string;
   shikimoriId?: string;
   worldartLink?: string;
+
+  usersFavorites: UserFavoriteMovie[];
+
+  usersLikes: UserMovieLikeDislike[];
+
 }
 

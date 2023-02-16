@@ -1,0 +1,17 @@
+svg {
+  animation-name: rotateLoading;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  max-width: 14px;
+  max-height: 14px;
+}
+
+@keyframes rotateLoading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

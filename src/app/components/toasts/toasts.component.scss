@@ -1,0 +1,90 @@
+@use "variables" as *;
+
+.toasts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  overflow-y: auto;
+  max-height: calc(100% - 20px);
+  z-index: 999;
+  top: 20px;
+  right: 20px;
+  max-width: 30%;
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  @media screen and (max-width: 992px){
+    max-width: 40%;
+  }
+
+  @media screen and (max-width: 768px){
+    max-width: 60%;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 576px){
+    max-width: 90%;
+    font-size: 13px;
+  }
+
+  .remove-all-toasts-btn {
+    background-color: $warning-bg-color;
+    color: $warning-bg-text;
+  }
+
+  .toast {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: #fff;
+    color: $bg-color;
+    min-width: 200px;
+    border-radius: 5px;
+
+    &.warning {
+      background-color: $warning-bg-color;
+      color: $warning-bg-text;
+    }
+
+    &.success {
+      background-color: $success-bg-color;
+      color: $success-bg-text;
+    }
+
+    &.info {
+      background-color: $info-bg-color;
+      color: $info-bg-text;
+    }
+
+    &.danger {
+      background-color: $danger-bg-color;
+      color: $danger-bg-text;
+    }
+
+    .head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $bg-color-lighter;
+      padding: 5px 10px;
+
+      .title {
+        font-weight: 600;
+      }
+
+      .remove-toast {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+
+    .message {
+      padding: 10px;
+    }
+  }
+
+}

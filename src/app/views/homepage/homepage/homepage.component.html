@@ -1,6 +1,6 @@
 <!-- Hero Section Begin -->
 <section class="hero">
-  <div class="container-lg">
+  <app-container>
     <div class="hero__slider owl-carousel">
       <div class="hero__items set-bg"
            data-setbg="assets/img/hero/hero-1.jpg">
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </app-container>
 </section>
 <!-- Hero Section End -->
 
@@ -69,14 +69,14 @@
             <div *ngFor="let trendMovie of trendMovies"
                  class="col-lg-4 col-md-6 col-sm-6">
               <div class="product__item">
-                <div class="product__item__pic set-bg">
+                <div class="movies__content-list-item-pic set-bg">
                   <!-- todo hardcoded img -->
                   <img src="/assets/img/trending/trend-1.jpg" alt="">
                   <div class="ep">18 / 18</div>
                   <div class="comment"><i class="fa fa-comments"></i> 11</div>
                   <div class="view"><i class="fa fa-eye"></i> 9141</div>
                 </div>
-                <div class="product__item__text">
+                <div class="movies-index__item-text">
                   <ul>
                     <li>Active</li>
                     <li>Movie</li>

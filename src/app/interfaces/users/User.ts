@@ -1,4 +1,6 @@
-﻿export interface User {
+﻿import {UserFavoriteMovie} from "../middle/UserFavoriteMovie";
+
+export interface User {
   id: number;
   guid: string;
 
@@ -7,4 +9,7 @@
 
   token?: string;
   tokenExpire?: string;
+
+  favoriteMovies: UserFavoriteMovie[];
+
 }

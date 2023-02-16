@@ -37,11 +37,12 @@ export class MoviesIndexComponent implements OnInit {
 
   moviesSelector: typeof MoviesSelector = MoviesSelector;
 
-  selectorPath: string = '';
+  selectorPath?: string = '';
   selectorNumber: MoviesSelector = MoviesSelector.undefined;
 
   routePath: any[] = ['/movies'];
   searchQuery?: string;
+
 
   getMoviesFromService(search?: string) {
     let offset = (this.page - 1) * this.service.defaultLimit;
@@ -67,6 +68,7 @@ export class MoviesIndexComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.route.queryParams.subscribe({
       next: queries => {
         this.searchQuery = queries['search'];
@@ -78,19 +80,28 @@ export class MoviesIndexComponent implements OnInit {
 
         this.crumbs = [
           {path: '/movies', name: 'Кино и сериалы, дорамы'},
-          {name: 'Стр.' + this.page},
         ];
 
-        this.selectorPath = this.route.routeConfig?.path ?? '';
-        this.selectorNumber = (<any>MoviesSelector)[this.selectorPath];
 
-        this.routePath = ['/movies'];
+        this.selectorPath = this.route.routeConfig?.path;
         if (this.selectorPath) {
-          this.routePath.push(this.selectorPath);
+          this.selectorNumber = (<any>MoviesSelector)[this.selectorPath];
+          this.crumbs.push({
+            path: '/movies/' + this.selectorPath, name: this.route.routeConfig?.title?.toString() ?? ''
+          })
         }
 
+        let seoTitle = 'Все дорамы.';
+        this.crumbs.push({name: 'Стр.' + this.page});
 
-        this.titleService.setTitle('Все дорамы. Стр. ' + this.page);
+        this.routePath = ['/movies'];
+
+        if (this.selectorPath) {
+          this.routePath.push(this.selectorPath);
+          seoTitle += ' ' + this.route.routeConfig?.title;
+        }
+
+        this.titleService.setTitle(seoTitle + ' Стр. ' + this.page);
 
         this.getMoviesFromService(this.searchQuery);
 

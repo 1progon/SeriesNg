@@ -1,36 +1,37 @@
-@use "auth/login-form";
+@use "variables" as *;
 
 .signup {
-  padding-top: 100px;
+
+  .login__form {
+
+    form {
+      .show-passwords-btn {
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+    }
+
+
+    h5 {
+      color: #ffffff;
+      margin-top: 36px;
+
+      a {
+        color: $accent-color;
+        font-weight: 700;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+  }
+
+
 }
 
-.signup .login__form:after {
-  height: 450px;
-}
 
-.signup .login__form h5 {
-  font-size: 15px;
-  color: #ffffff;
-  margin-top: 36px;
-}
 
-.signup .login__form h5 a {
-  color: #e53637;
-  font-weight: 700;
-}
 
-.signup .login__social__links {
-  text-align: left;
-  padding-left: 40px;
-}
 
-.signup .login__social__links h3 {
-  color: #ffffff;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.signup .login__social__links ul li a {
-  margin: 0;
-  text-align: center;
-}

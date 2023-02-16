@@ -19,51 +19,86 @@
       <div class="col-lg-6">
         <div class="login__form">
           <h3>Вход</h3>
+
           <form (ngSubmit)="submit()" #formRef="ngForm">
+
             <div class="input__item">
-              <input type="text" placeholder="Email"
-                     name="email"
-                     required
-                     email
-                     [(ngModel)]="form.email">
+
               <span class="icon_mail">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                     style="fill: rgba(183, 183, 183, 1)"><path
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"><path
                   d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path>
                 </svg>
               </span>
-            </div>
-            <div class="input__item">
-              <input type="password" placeholder="Пароль"
-                     name="password"
+              <input #emailRef="ngModel"
+                     [(ngModel)]="form.email"
+                     class="form-control"
+                     email
+                     id="email"
+                     name="email"
+                     placeholder="Email"
                      required
-                     minlength="5"
-                     [(ngModel)]="form.password">
+                     type="email">
+            </div>
+            <div class="alert alert-danger"
+                 *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
+              <div *ngIf="emailRef.errors?.['required']">Обязательное поле</div>
+              <div *ngIf="emailRef.errors?.['email']">Email формат не верный</div>
+            </div>
+
+
+            <div class="input__item">
+
               <span class="icon_lock">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                     style="fill: rgba(183, 183, 183, 1)"><path
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"><path
                   d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10 .002 8H6v-8h12zm-9-2V7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9z"></path>
                 </svg>
               </span>
+              <input #passRef="ngModel" [(ngModel)]="form.password"
+                     class="form-control"
+                     minlength="5"
+                     name="password"
+                     placeholder="Пароль"
+                     required
+                     type="password">
             </div>
 
+            <div class="alert alert-danger"
+                 *ngIf="passRef.invalid && (passRef.touched || passRef.dirty)">
+              <div *ngIf="passRef.errors?.['required']">Обязательное поле</div>
+              <div *ngIf="passRef.errors?.['minlength']">Минимальная длина 5 символов</div>
+            </div>
+
+
             <div class="form-check">
-              <input class="form-check-input"
+              <input [(ngModel)]="form.rememberMe"
+                     class="form-check-input"
+                     id="remember-me"
                      name="remember_me"
-                     [(ngModel)]="form.rememberMe"
-                     type="checkbox" value="" id="remember-me">
+                     type="checkbox">
               <label class="form-check-label" for="remember-me">
                 Запомнить меня
               </label>
             </div>
-            <button type="submit"
-                    [disabled]="formRef.invalid || formRef.untouched"
-                    class="site-btn">Войти</button>
+            <button
+              [disabled]="formRef.invalid || formRef.untouched || formRef.pristine || loading"
+              class="btn"
+              type="submit">
+              <app-btn-loader *ngIf="loading"></app-btn-loader>
+              Войти
+            </button>
           </form>
-          <a routerLink="#" class="forget_pass">Забыли Ваш пароль?</a>
+
+          <div class="alert alert-danger" *ngIf="errors">
+            Ошибка {{friendlyError}}
+          </div>
+
+          <a routerLink="/forgot-password"
+             class="forget_pass">Забыли Ваш пароль?</a>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="">
         <div class="login__register">
           <h3>У Вас ещё нет аккаунта?</h3>
           <a routerLink="/register"
@@ -71,33 +106,8 @@
         </div>
       </div>
     </div>
-    <div class="login__social">
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-6">
-          <div class="login__social__links">
-            <span>или</span>
-            <ul>
-              <li>
-                <a routerLink="#" class="vkontakte">
-                  Войти через ВКонтакте</a>
-              </li>
-              <li>
-                <a routerLink="#" class="facebook">
-                  Войти через Facebook</a>
-              </li>
-              <li>
-                <a routerLink="#" class="google">
-                  Войти через Google</a>
-              </li>
-              <li>
-                <a routerLink="#" class="twitter">
-                  Войти через Twitter</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <app-login-with-socials *ngIf="false"></app-login-with-socials>
   </app-container>
 </section>
 <!-- Login Section End -->

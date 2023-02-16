@@ -1,179 +1,232 @@
-<app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+<app-container>
+  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
 
-<!-- Anime Section Begin -->
-<app-loader *ngIf="loading"></app-loader>
+  <!-- Anime Section Begin -->
+  <app-loader *ngIf="loading"></app-loader>
 
-<!-- alert -->
-<div *ngIf="movie && movie.hiddenMovie"
-     class="container-lg my-3 alert alert-warning">Кино скрыто временно или постоянно!
-</div>
-<!-- end alert -->
+  <!-- alert -->
+  <div *ngIf="movie && movie.hiddenMovie"
+       class="my-3 alert alert-warning">Кино скрыто временно или постоянно!
+  </div>
+  <!-- end alert -->
 
-<section class="anime-details spad"
-         [class.opacity-25]="loading || movie.hiddenMovie">
-  <div class="container-lg">
-    <div class="anime__details__content">
-      <div class="row">
-        <div class="col-12 col-sm-auto">
-          <div class="anime__details__pic">
-            <div *ngIf="movie.soon" class="soon">
-              <span class="text-uppercase">Скоро</span>
+  <section class="movie-detail spad"
+           [class.opacity-25]="loading || movie.hiddenMovie">
+
+
+    <div class="movie-detail__content">
+
+      <div class="movie-detail__content-pic">
+
+        <div *ngIf="movie.soon" class="soon">
+          <span class="text-uppercase">Скоро</span>
+        </div>
+
+        <app-loader *ngIf="!imageLoaded"></app-loader>
+        <a [href]="imagesPath +movie.mainImage" target="_blank"
+           class="rounded-2 overflow-hidden position-relative">
+          <div *ngIf="movie.editorChoice" class="editor-choice" title="Выбор редактора">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                 height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(255, 255, 255, 1);position: absolute;bottom: 20px;right: 0;">
+              <path
+                d="M21 8c-.202 0-4.85.029-9 2.008C7.85 8.029 3.202 8 3 8a1 1 0 0 0-1 1v9.883a1 1 0 0 0 .305.719c.195.188.48.305.729.28l.127-.001c.683 0 4.296.098 8.416 2.025.016.008.034.005.05.011.119.049.244.083.373.083s.254-.034.374-.083c.016-.006.034-.003.05-.011 4.12-1.928 7.733-2.025 8.416-2.025l.127.001c.238.025.533-.092.729-.28.194-.189.304-.449.304-.719V9a1 1 0 0 0-1-1zM4 10.049c1.485.111 4.381.48 7 1.692v7.742c-3-1.175-5.59-1.494-7-1.576v-7.858zm16 7.858c-1.41.082-4 .401-7 1.576v-7.742c2.619-1.212 5.515-1.581 7-1.692v7.858z"></path>
+              <circle cx="12" cy="5" r="3"></circle>
+            </svg>
+          </div>
+
+
+          <img *ngIf="movie.mainImageThumb"
+               (load)="imageLoaded = true"
+               [src]="imagesPath +movie.mainImageThumb"
+               [alt]="'изображение фото к дораме ' + movie.name">
+        </a>
+
+        <!-- <div class="comment"><i class="fa fa-comments"></i>11</div> -->
+        <!-- <div class="view"><i class="fa fa-eye"></i>9141</div> -->
+      </div>
+      <div class="movie-detail__content-text">
+
+        <div class="movie-detail__title">
+          <h3>{{movie.name}}</h3>
+          <div class="movie-detail__title-rating">
+
+
+            <div class="rating">
+
+              <!-- colored stars -->
+              <a *ngFor="let star of starsColored">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     style="fill: rgba(232, 159, 18, 1);">
+                  <path
+                    d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path>
+                </svg>
+              </a>
+              <!-- end colored stars -->
+
+              <!-- not colored stars -->
+              <a *ngFor="let nonColoredStar of nonColoredStars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     style="fill: rgba(232, 159, 18, 1);">
+                  <path
+                    d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                </svg>
+              </a>
+              <!-- end not colored stars -->
+
 
             </div>
-
-
-            <a [href]="imagesPath +movie.mainImage" target="_blank"
-               class="rounded-2 overflow-hidden position-relative"
-               [class.bg-secondary]="!imageLoaded">
-              <div *ngIf="movie.editorChoice" class="editor-choice" title="Выбор редактора">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                     height="24" viewBox="0 0 24 24"
-                     style="fill: rgba(255, 255, 255, 1);position: absolute;bottom: 20px;right: 0;">
-                  <path
-                    d="M21 8c-.202 0-4.85.029-9 2.008C7.85 8.029 3.202 8 3 8a1 1 0 0 0-1 1v9.883a1 1 0 0 0 .305.719c.195.188.48.305.729.28l.127-.001c.683 0 4.296.098 8.416 2.025.016.008.034.005.05.011.119.049.244.083.373.083s.254-.034.374-.083c.016-.006.034-.003.05-.011 4.12-1.928 7.733-2.025 8.416-2.025l.127.001c.238.025.533-.092.729-.28.194-.189.304-.449.304-.719V9a1 1 0 0 0-1-1zM4 10.049c1.485.111 4.381.48 7 1.692v7.742c-3-1.175-5.59-1.494-7-1.576v-7.858zm16 7.858c-1.41.082-4 .401-7 1.576v-7.742c2.619-1.212 5.515-1.581 7-1.692v7.858z"></path>
-                  <circle cx="12" cy="5" r="3"></circle>
-                </svg>
-              </div>
-
-              <img *ngIf="movie.mainImageThumb"
-                   (load)="imageLoaded = true"
-                   [src]="imagesPath +movie.mainImageThumb"
-                   [alt]="'изображение фото к дораме ' + movie.name">
-              <app-loader *ngIf="!imageLoaded"></app-loader>
-            </a>
-
-            <!-- <div class="comment"><i class="fa fa-comments"></i>11</div> -->
-            <!-- <div class="view"><i class="fa fa-eye"></i>9141</div> -->
+            <span>{{movie.ratingCount}} голосов</span>
           </div>
         </div>
-        <div class="col-12 col-sm">
-          <div class="anime__details__text">
-            <div class="anime__details__title">
-              <div class="d-flex flex-wrap justify-content-between">
-                <h3>{{movie.name}}</h3>
-                <div class="anime__details__rating">
-                  <div class="rating">
 
-                    <!-- colored stars -->
-                    <a *ngFor="let star of starsColored">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                           style="fill: rgba(232, 159, 18, 1);">
-                        <path
-                          d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path>
-                      </svg>
-                    </a>
-                    <!-- end colored stars -->
 
-                    <!-- not colored stars -->
-                    <a *ngFor="let nonColoredStar of nonColoredStars">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                           style="fill: rgba(232, 159, 18, 1);">
-                        <path
-                          d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
-                      </svg>
-                    </a>
-                    <!-- end not colored stars -->
+        <span *ngIf="movie.otherNames"
+              [innerHTML]="movie.otherNames.split('|').join(', ')"></span>
 
+
+        <div class="my-3">
+          <button
+            (click)="addMovieToUserFavorites()"
+            *ngIf="!isUserFavoriteMovie"
+            class="btn"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24">
+              <path
+                d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
+            </svg>
+            Добавить в избранное
+            <app-btn-loader *ngIf="isUpdateFavoritesStatus"></app-btn-loader>
+          </button>
+
+          <button
+            (click)="removeFromFavorites()"
+            *ngIf="authService.user && isUserFavoriteMovie"
+            class="btn"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24">
+              <path
+                d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"></path>
+            </svg>
+            Удалить из избранного
+            <app-btn-loader *ngIf="isUpdateFavoritesStatus"></app-btn-loader>
+          </button>
+        </div>
+
+        <div class="likes">
+          <div class="like-btn add-movie-dislike-button"
+               (click)="addMovieLikeDislike(LikeTypesEnum.Dislike)">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 [class.active]="authService.user && movieLikeType && LikeTypesEnum.Dislike == movieLikeType"
+                 viewBox="0 0 24 24">
+              <path
+                d="M20 3h-1v13h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM4 16h7l-1.122 3.368A2 2 0 0 0 11.775 22H12l5-5.438V3H6l-3.937 8.649-.063.293V14a2 2 0 0 0 2 2z"></path>
+            </svg>
+          </div>
+
+          <app-btn-loader *ngIf="isUpdateMovieLikeDislike"></app-btn-loader>
+          <span *ngIf="!isUpdateMovieLikeDislike">{{movie.likes - movie.disLikes}}</span>
+
+          <div class="like-btn add-movie-like-btn"
+               (click)="addMovieLikeDislike(LikeTypesEnum.Like)">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 [class.active]="authService.user && movieLikeType && LikeTypesEnum.Like == movieLikeType"
+                 viewBox="0 0 24 24">
+              <path
+                d="M4 21h1V8H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2zM20 8h-7l1.122-3.368A2 2 0 0 0 12.225 2H12L7 7.438V21h11l3.912-8.596L22 12v-2a2 2 0 0 0-2-2z"></path>
+            </svg>
+          </div>
+
+
+        </div>
+
+        <div class="anime__details__widget">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <ul>
+                <!-- <li><span>Тип:</span> TV Series</li> -->
+                <li><span>Тип:</span>{{movieTypes[movie.type]}}</li>
+                <li><span>Страна:</span>{{movie.countryString}}</li>
+                <li><span>Дата выхода</span>{{movie.premierDate ?? movie.year}}</li>
+                <!-- <li><span>Status:</span> Airing</li> -->
+                <li class="genres">
+                  <div class="d-flex flex-wrap">
+                    <span style="width: unset; margin-right: 5px;">Жанры:</span>
+                    <div class="genres-block">
+                      <a *ngFor="let genre of movie.genres"
+                         [routerLink]="'/genres/' + genre.slug"
+                         class="badge rounded-pill text-bg-light">
+                        {{genre.name}}
+                      </a>
+                    </div>
                   </div>
-                  <span>{{movie.ratingCount}} голосов</span>
-                </div>
-              </div>
-
-              <span *ngIf="movie.otherNames"
-                    [innerHTML]="movie.otherNames.split('|').join(', ')"></span>
+                </li>
+              </ul>
             </div>
-
-
-            <div class="anime__details__widget">
-              <div class="row">
-                <div class="col-lg-6 col-md-6">
-                  <ul>
-                    <!-- <li><span>Тип:</span> TV Series</li> -->
-                    <li><span>Тип:</span>{{movieTypes[movie.type]}}</li>
-                    <li><span>Страна:</span>{{movie.countryString}}</li>
-                    <li><span>Дата выхода</span>{{movie.premierDate ?? movie.year}}</li>
-                    <!-- <li><span>Status:</span> Airing</li> -->
-                    <li class="genres">
-                      <div class="d-flex flex-wrap">
-                        <span style="width: unset; margin-right: 5px;">Жанры:</span>
-                        <div class="genres-block">
-                          <a *ngFor="let genre of movie.genres"
-                             [routerLink]="'/genres/' + genre.slug"
-                             class="badge rounded-pill text-bg-light">
-                            {{genre.name}}
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <ul>
-                    <li><span>Серий:</span> {{movie.episodesCount}}</li>
-                    <li><span>Рейтинг:</span>{{movie.rating}} / {{movie.ratingCount}} голосов</li>
-                    <!-- <li><span>Duration:</span> 24 min/ep</li> -->
-                    <!-- <li><span>Quality:</span> HD</li> -->
-                    <!-- <li><span>Просмотров:</span> 131,541</li> -->
-                  </ul>
-                </div>
-              </div>
+            <div class="col-lg-6 col-md-6">
+              <ul>
+                <li><span>Серий:</span> {{movie.episodesCount}}</li>
+                <li><span>Рейтинг:</span>{{movie.rating}} / {{movie.ratingCount}} голосов</li>
+                <!-- <li><span>Duration:</span> 24 min/ep</li> -->
+                <!-- <li><span>Quality:</span> HD</li> -->
+                <!-- <li><span>Просмотров:</span> 131,541</li> -->
+              </ul>
             </div>
-            <div class="anime__details__btn"
-                 *ngIf="movie.movieVideos?.length">
-              <!-- <a routerLink="follow" class="follow-btn">Follow</a> -->
-              <a [routerLink]="['/movies',
+          </div>
+        </div>
+        <div class="anime__details__btn"
+             *ngIf="movie.movieVideos?.length">
+          <a [routerLink]="['/movies',
               movie.slug,
               'videos',
               'v', movie.movieVideos[0].id,
               's', movie.movieVideos[0].seasons[0].seasonNumber,
               'e', movie.movieVideos[0].seasons[0].episodes[0].seriesNumber]"
-                 class="watch-btn d-flex">
-                <span>Смотреть</span>
-              </a>
-            </div>
-
-            <div class="mt-3" [innerHTML]="movie.description"></div>
-          </div>
+             class="watch-btn d-flex">
+            <span>Смотреть</span>
+          </a>
         </div>
+
       </div>
     </div>
+    <div class="description" [innerHTML]="movie.description"></div>
 
 
+    <!-- movie images -->
     <div class="images mb-5" *ngIf="movie.imagesString">
       <div class="section-title">
         <h5>Кадры из фильма (сериала, дорамы)</h5>
       </div>
-      <div class="d-flex flex-wrap">
-        <div class="col-12 col-sm-6 col-md-4"
+      <div class="image-block-wrapper">
+        <div class="image-block"
              *ngFor="let image of movie.imagesString?.split('|');index as i">
-          <div class="image-block p-2">
-            <a [href]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
-               target="_blank"
-               class="rounded-2">
-              <app-loader *ngIf="!loadedImages[i]"></app-loader>
+          <a [href]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
+             target="_blank"
+             class="rounded-2">
+            <app-loader *ngIf="!loadedImages[i]"></app-loader>
 
-              <!-- todo remove src startsWith when all images will be at local server -->
-              <img [src]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
-                   (load)="loadedImages[i] = true"
-                   class="bg-secondary"
-                   loading="lazy"
-                   [alt]="'картинка кадр к фильму сериалу дораме ' + movie.name">
-            </a>
-
-          </div>
+            <!-- todo remove src startsWith when all images will be at local server -->
+            <img [src]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
+                 (load)="loadedImages[i] = true"
+                 class="bg-secondary"
+                 loading="lazy"
+                 [alt]="'картинка кадр к фильму сериалу дораме ' + movie.name">
+          </a>
 
         </div>
 
-
       </div>
     </div>
+    <!-- end movie images -->
 
     <!-- actors -->
     <div class="actors mb-5" *ngIf="movie.actors?.length">
       <div class="section-title">
         <h5>Актёры</h5>
       </div>
-      <div class="d-flex flex-row gap-2 mb-3">
+      <div class="d-flex flex-row gap-10">
         <ng-container *ngFor="let actor of movie.actors">
           <a [routerLink]="'/actors/' + actor.slug">
             <div class="actor d-flex flex-column rounded">
@@ -192,11 +245,11 @@
     <!-- end actors -->
 
     <!-- anthology -->
-    <div class="anthologies mb-5" *ngIf="movie.anthology && movie.anthology.movies?.length">
+    <div class="anthologies" *ngIf="movie.anthology && movie.anthology.movies?.length">
       <div class="section-title">
         <h5>Антология</h5>
       </div>
-      <div class="d-flex flex-row gap-2">
+      <div class="d-flex flex-row gap-10">
         <ng-container *ngFor="let anthologyMovie of movie.anthology.movies">
           <a [routerLink]="'/movies/' + anthologyMovie.slug">
             <div class="anthology d-flex flex-column rounded"
@@ -213,11 +266,11 @@
     <!-- end anthology -->
 
     <!-- collections -->
-    <div class="collections mb-5" *ngIf="movie.collections?.length">
+    <div class="collections" *ngIf="movie.collections?.length">
       <div class="section-title">
         <h5>Фильм (сериал) в подборках</h5>
       </div>
-      <div class="d-flex flex-row gap-2">
+      <div class="d-flex flex-row gap-10">
         <ng-container *ngFor="let collection of movie.collections">
           <a [routerLink]="'/collections/' + collection.slug">
             <div class="collection d-flex flex-column rounded">
@@ -234,7 +287,6 @@
 
 
     <div class="row">
-
       <div class="col-lg-8 col-md-8">
         <!-- <div class="anime__details__review"> -->
         <!--   <div class="section-title"> -->
@@ -271,10 +323,8 @@
         <!-- <app-movie-show-related></app-movie-show-related> -->
       </div>
     </div>
-  </div>
-</section>
-<!-- Anime Section End -->
+  </section>
+  <!-- Anime Section End -->
 
 
-
-
+</app-container>

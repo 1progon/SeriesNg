@@ -1,35 +1,38 @@
 import {Injectable} from '@angular/core';
 import {Movie} from "../interfaces/movies/Movie";
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode} from "@angular/common/http";
 import {GetMovieShowDto} from "../dto/movies/GetMovieShowDto";
 import {MovieVideo} from "../interfaces/movies/MovieVideo";
-import {map, Observable, of, Subject} from "rxjs";
+import {BehaviorSubject, map, Observable, of, throwError} from "rxjs";
 import {MoviesSelector} from "../enums/movies/MoviesSelector";
 import {GetMovieVideoDto} from "../dto/movies/GetMovieVideoDto";
 import {MovieEpisode} from "../interfaces/movies/MovieEpisode";
 import {MovieSeason} from "../interfaces/movies/MovieSeason";
 import {CacheMovieVideo} from "../interfaces/caches/CacheMovieVideo";
+import {AuthService} from "./auth.service";
+import {MovieLikeDislikeType} from "../enums/movies/MovieLikeDislikeType";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
 
-  constructor(private http: HttpClient) {
-  }
-
-
   cacheMovieVideo?: CacheMovieVideo;
 
   cacheIndexMovies: { name: string, movies: Movie[] }[] = [];
 
-  activeMovieVideo: Subject<MovieVideo> = new Subject<MovieVideo>();
+  activeMovieVideo = new BehaviorSubject<MovieVideo | undefined>(undefined);
   activeSeason?: MovieSeason;
   activeEpisode?: MovieEpisode;
 
 
   defaultLimit = 28;
+  apiUserFavoriteMovies = environment.apiUrl + 'UserFavoriteMovies';
+
+  constructor(private http: HttpClient,
+              private authService: AuthService) {
+  }
 
   getMovies(offset: number = 0,
             limit: number = this.defaultLimit,
@@ -75,7 +78,15 @@ export class MoviesService {
   }
 
   getMovie(slug: string): Observable<GetMovieShowDto> {
-    return this.http.get<GetMovieShowDto>(environment.apiUrl + 'movies/' + slug);
+
+    let headers = new HttpHeaders();
+
+    if (this.authService.user) {
+      headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
+    }
+
+    return this.http.get<GetMovieShowDto>(environment.apiUrl + 'movies/' + slug,
+      {headers});
   }
 
   getMovieVideo(movieSlug: string,
@@ -100,4 +111,84 @@ export class MoviesService {
         return value;
       }));
   }
+
+
+  getUserFavoriteMovies() {
+    if (this.authService.user) {
+
+      let headers = new HttpHeaders();
+      headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
+
+      return this.http.get<Movie[]>(this.apiUserFavoriteMovies, {headers});
+
+    }
+
+    return throwError(() => {
+      throw new HttpErrorResponse({
+        status: HttpStatusCode.Unauthorized,
+        error: {message: 'Не аутентифицрован'}
+      });
+    })
+
+  }
+
+  removeUserFavoriteMovie(movieId: number) {
+    if (this.authService.user) {
+      let headers = new HttpHeaders();
+      headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
+
+      return this.http.delete(this.apiUserFavoriteMovies + '/' + movieId,
+        {headers});
+
+    }
+
+    return throwError(() => {
+      throw new HttpErrorResponse({
+        status: HttpStatusCode.Unauthorized,
+        error: {message: 'Не аутентифицрован'}
+      });
+    })
+  }
+
+  addUserFavoriteMovie(movieId: number) {
+    if (!this.authService.user) {
+
+      return throwError(() => {
+        throw new HttpErrorResponse({
+          status: HttpStatusCode.Unauthorized,
+          error: {message: 'Не аутентифицрован'}
+        });
+      })
+    }
+
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
+
+    return this.http.post(this.apiUserFavoriteMovies + '/' + movieId,
+      null, {headers})
+  }
+
+  addLikeDislikeToMovie(movieId: number, type: MovieLikeDislikeType) {
+    if (!this.authService.user) {
+
+      return throwError(() => {
+        throw new HttpErrorResponse({
+          status: HttpStatusCode.Unauthorized,
+          error: {message: 'Не аутентифицрован'}
+        });
+      })
+    }
+
+
+    let path = environment.apiUrl + 'Movies/AddLikeDislike/' + movieId;
+
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
+
+    return this.http.post<{ likes: number, disLikes: number }>(path,
+      type,
+      {headers})
+  }
+
+
 }

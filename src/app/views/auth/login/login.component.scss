@@ -1,10 +1,26 @@
-@use "auth/login-form";
+@use "variables";
 
 .login {
-  padding-top: 100px;
+
+  a:hover {
+    color: #fff;
+  }
+
+  .login__register {
+    padding-left: 30px;
+
+    h3 {
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .primary-btn {
+      background: variables.$accent-color;
+      padding: 12px 42px;
+    }
+  }
 }
 
-a:hover {
-  color: unset;
-}
+
 
