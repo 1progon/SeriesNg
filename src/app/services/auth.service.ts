@@ -5,6 +5,7 @@ import {LoginFormDto} from "../dto/auth/LoginFormDto";
 import {RegisterFormDto} from "../dto/auth/RegisterFormDto";
 import {UserDto} from "../dto/users/UserDto";
 import {map} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,19 @@ export class AuthService {
 
   logout() {
     this._user = undefined;
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigateByUrl('/' + AuthService.UNAUTHORIZED_ROUTE).finally();
+  }
+
+  redirectNotAuthenticated() {
+    this.router.navigateByUrl('/' + AuthService.UNAUTHENTICATED_ROUTE).finally();
+  }
+
+  logoutWithRedirectToLoginPage() {
+    this.logout();
+    this.router.navigateByUrl('/login').finally();
+
   }
 }
