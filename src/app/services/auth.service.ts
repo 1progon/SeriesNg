@@ -13,12 +13,18 @@ export class AuthService {
   set user(value: UserDto | undefined) {
     this._user = value;
   }
+
   get user(): UserDto | undefined {
     return this._user;
   }
 
-  constructor(private http: HttpClient) {
+  public static UNAUTHORIZED_ROUTE = 'unauthorized';
+  public static UNAUTHENTICATED_ROUTE = 'unauthenticated';
+
+
+  constructor(private http: HttpClient, private router: Router) {
   }
+
 
   private _user?: UserDto;
 

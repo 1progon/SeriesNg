@@ -28,7 +28,7 @@ export class AccountGuard implements CanActivate {
     }
 
 
-    this.router.navigateByUrl('/unauthorized').finally();
+    this.router.navigateByUrl('/' + AuthService.UNAUTHORIZED_ROUTE).finally();
     return false;
   }
 
