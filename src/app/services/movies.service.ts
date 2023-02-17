@@ -4,7 +4,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode} from "@angular/common/http";
 import {GetMovieShowDto} from "../dto/movies/GetMovieShowDto";
 import {MovieVideo} from "../interfaces/movies/MovieVideo";
-import {BehaviorSubject, map, Observable, of, throwError} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, of, throwError} from "rxjs";
 import {MoviesSelector} from "../enums/movies/MoviesSelector";
 import {GetMovieVideoDto} from "../dto/movies/GetMovieVideoDto";
 import {MovieEpisode} from "../interfaces/movies/MovieEpisode";
@@ -86,7 +86,7 @@ export class MoviesService {
     }
 
     return this.http.get<GetMovieShowDto>(environment.apiUrl + 'movies/' + slug,
-      {headers});
+      {headers})
   }
 
   getMovieVideo(movieSlug: string,
@@ -119,7 +119,16 @@ export class MoviesService {
       let headers = new HttpHeaders();
       headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
 
-      return this.http.get<Movie[]>(this.apiUserFavoriteMovies, {headers});
+      return this.http.get<Movie[]>(this.apiUserFavoriteMovies, {headers})
+        .pipe(
+          catchError((err, caught) => {
+            if (err instanceof HttpErrorResponse && err.status == HttpStatusCode.Forbidden) {
+              this.authService.logout();
+            }
+
+            return caught;
+          })
+        );
 
     }
 
@@ -138,7 +147,15 @@ export class MoviesService {
       headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
 
       return this.http.delete(this.apiUserFavoriteMovies + '/' + movieId,
-        {headers});
+        {headers})
+        .pipe(
+          catchError((err, caught) => {
+            if (err instanceof HttpErrorResponse && err.status == HttpStatusCode.Unauthorized) {
+              this.authService.logout();
+            }
+
+            return caught;
+          }));
 
     }
 
@@ -166,6 +183,12 @@ export class MoviesService {
 
     return this.http.post(this.apiUserFavoriteMovies + '/' + movieId,
       null, {headers})
+      .pipe(catchError((err, caught) => {
+        if (err instanceof HttpErrorResponse && err.status == HttpStatusCode.Unauthorized) {
+          this.authService.logout();
+        }
+        return caught;
+      }))
   }
 
   addLikeDislikeToMovie(movieId: number, type: MovieLikeDislikeType) {
@@ -174,7 +197,7 @@ export class MoviesService {
       return throwError(() => {
         throw new HttpErrorResponse({
           status: HttpStatusCode.Unauthorized,
-          error: {message: 'Не аутентифицрован'}
+          error: {message: 'Нужно войти в аккаунт'}
         });
       })
     }
@@ -185,9 +208,21 @@ export class MoviesService {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
 
-    return this.http.post<{ likes: number, disLikes: number }>(path,
+    return this.http.post<{ likes: number, disLikes: number }>(
+      path,
       type,
       {headers})
+      .pipe(
+        map(value => {
+          return value;
+        }),
+        catchError((err, caught) => {
+          if (err instanceof HttpErrorResponse && err.status == HttpStatusCode.Unauthorized) {
+            this.authService.logout();
+          }
+
+          return caught;
+        }))
   }
 
 
