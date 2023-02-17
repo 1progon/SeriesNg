@@ -48,6 +48,14 @@ export class EditAccountComponent implements OnInit {
   submit() {
     this.submitting = true;
 
+
+    for (let key in this.updateUserForm) {
+      if (this.updateUserForm[key] && typeof this.updateUserForm[key] == "string") {
+        this.updateUserForm[key] = this.updateUserForm[key].trim();
+      }
+    }
+
+
     this.usersService.updateUser(this.updateUserForm)
       .subscribe({
         next: value => {
