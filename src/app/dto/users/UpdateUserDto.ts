@@ -22,4 +22,6 @@ export interface UpdateUserDto {
   password?: string;
   passwordConfirm?: string;
 
+  token: string;
+
 }
