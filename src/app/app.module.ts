@@ -34,17 +34,22 @@ import {CollectionsIndexComponent} from './views/collections/collections-index/c
 import {LoginComponent} from './views/auth/login/login.component';
 import {RegisterComponent} from './views/auth/register/register.component';
 import {DashboardComponent} from './views/account/dashboard/dashboard.component';
-import { EditAccountComponent } from './views/account/edit-account/edit-account.component';
-import { AccountFavoritesMoviesComponent } from './views/account/account-favorites-movies/account-favorites-movies.component';
-import { AccountWishWatchComponent } from './views/account/account-wish-watch/account-wish-watch.component';
-import { AccountWatchingComponent } from './views/account/account-watching/account-watching.component';
-import { AccountWatchedComponent } from './views/account/account-watched/account-watched.component';
-import { AccountMovieLibrariesComponent } from './views/account/account-movie-libraries/account-movie-libraries.component';
-import { ErrorUnauthorizedComponent } from './views/errors/error-unauthorized/error-unauthorized.component';
-import { BtnLoaderComponent } from './components/btn-loader/btn-loader.component';
-import { LoginWithSocialsComponent } from './views/auth/login-with-socials/login-with-socials.component';
-import { ForgotPasswordComponent } from './views/auth/forgot-password/forgot-password.component';
-import { ToastsComponent } from './components/toasts/toasts.component';
+import {EditAccountComponent} from './views/account/edit-account/edit-account.component';
+import {
+  AccountFavoritesMoviesComponent
+} from './views/account/account-favorites-movies/account-favorites-movies.component';
+import {AccountWishWatchComponent} from './views/account/account-wish-watch/account-wish-watch.component';
+import {AccountWatchingComponent} from './views/account/account-watching/account-watching.component';
+import {AccountWatchedComponent} from './views/account/account-watched/account-watched.component';
+import {
+  AccountMovieLibrariesComponent
+} from './views/account/account-movie-libraries/account-movie-libraries.component';
+import {BtnLoaderComponent} from './components/btn-loader/btn-loader.component';
+import {LoginWithSocialsComponent} from './views/auth/login-with-socials/login-with-socials.component';
+import {ForgotPasswordComponent} from './views/auth/forgot-password/forgot-password.component';
+import {ToastsComponent} from './components/toasts/toasts.component';
+import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
+import {ErrorUnauthorizedComponent} from './views/errors/error-unauthorized/error-unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -82,11 +87,12 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     AccountWatchingComponent,
     AccountWatchedComponent,
     AccountMovieLibrariesComponent,
-    ErrorUnauthorizedComponent,
+    ErrorUnauthenticatedComponent,
     BtnLoaderComponent,
     LoginWithSocialsComponent,
     ForgotPasswordComponent,
     ToastsComponent,
+    ErrorUnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

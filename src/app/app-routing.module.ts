@@ -27,8 +27,10 @@ import {AccountWatchedComponent} from "./views/account/account-watched/account-w
 import {
   AccountMovieLibrariesComponent
 } from "./views/account/account-movie-libraries/account-movie-libraries.component";
-import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/error-unauthorized.component";
 import {ForgotPasswordComponent} from "./views/auth/forgot-password/forgot-password.component";
+import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
+import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/error-unauthorized.component";
+import {AuthService} from "./services/auth.service";
 
 const routes: Routes = [
   {
@@ -160,7 +162,8 @@ const routes: Routes = [
 
 
       // errors
-      {path: 'unauthorized', title: 'Не авторизован', component: ErrorUnauthorizedComponent},
+      {path: AuthService.UNAUTHENTICATED_ROUTE, title: 'Не войден в аккаунт', component: ErrorUnauthenticatedComponent},
+      {path: AuthService.UNAUTHORIZED_ROUTE, title: 'Нет прав доступа', component: ErrorUnauthorizedComponent},
       {path: '404', title: 'Страница 404', component: Error404Component},
       {path: '**', redirectTo: '/404'},
 
