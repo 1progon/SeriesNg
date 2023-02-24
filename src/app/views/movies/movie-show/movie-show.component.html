@@ -127,7 +127,9 @@
           </div>
 
           <app-btn-loader *ngIf="isUpdateMovieLikeDislike"></app-btn-loader>
-          <span *ngIf="!isUpdateMovieLikeDislike">{{movie.likes - movie.disLikes}}</span>
+          <span *ngIf="!isUpdateMovieLikeDislike && !loading">
+            {{movie.likes - movie.disLikes}}
+          </span>
 
           <div class="like-btn add-movie-like-btn"
                (click)="addMovieLikeDislike(LikeTypesEnum.Like)">
