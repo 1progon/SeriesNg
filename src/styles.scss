@@ -12,9 +12,9 @@
 @use "responsive/responsive";
 
 @font-face {
-  font-family: "OpenSans-Regular";
-  src: local("OpenSans-Regular"),
-  url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+  font-family: "Open Sans-Regular";
+  src: local("OpenSans-Regular"), local("Open Sans");
+  //url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
 * {
