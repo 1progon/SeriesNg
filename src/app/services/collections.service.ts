@@ -8,10 +8,13 @@ import {Collection} from "../interfaces/movies/Collection";
 })
 export class CollectionsService {
 
-  constructor(private http: HttpClient) {
-  }
 
   defaultLimit = 28;
+  controller: string = 'Collections';
+  api: string = environment.apiUrl + this.controller;
+
+  constructor(private http: HttpClient) {
+  }
 
   getCollection(slug: string, offset = 0, limit = this.defaultLimit) {
     let params = new HttpParams();
@@ -24,10 +27,10 @@ export class CollectionsService {
       params = params.append('offset', offset);
     }
 
-    return this.http.get<Collection>(environment.apiUrl + 'collections/' + slug, {params});
+    return this.http.get<Collection>(this.api + '/' + slug, {params});
   }
 
   getCollections() {
-    return this.http.get<Collection[]>(environment.apiUrl + 'collections')
+    return this.http.get<Collection[]>(this.api)
   }
 }
