@@ -1,8 +1,8 @@
 <app-container>
-  <!-- <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb> -->
+  <app-breadcrumb [crumbs]="crumbs"/>
 
   <!-- Product Section Begin -->
-  <app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="loading"/>
   <section class="product-page spad">
     <div class="row">
       <!-- <div class="col-lg-8"> -->
@@ -70,8 +70,7 @@
 
         <app-pagination *ngIf="genre"
                         [page]="page"
-                        [route]="['/genres/', genre.slug]">
-        </app-pagination>
+                        [route]="['/genres/', genre.slug]"/>
 
       </div>
 
