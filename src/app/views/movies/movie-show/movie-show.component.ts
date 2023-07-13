@@ -109,7 +109,7 @@ export class MovieShowComponent implements OnInit {
             ];
 
             // add meta
-            this.titleService.setTitle(this.movie.name);
+            this.titleService.setTitle('Дорама ' + this.movie.name);
             this.metaService.updateTag({
               name: 'description',
               content: 'Дорама ' + this.movie.name + ' информация и смотреть онлайн бесплатно'
