@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {GenresService} from "../../../services/genres.service";
 import {Genre} from "../../../interfaces/movies/Genre";
+import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 
 @Component({
   selector: 'app-genre-show',
@@ -18,6 +19,7 @@ export class GenreShowComponent implements OnInit {
   imagesPath: string = environment.imagesPath;
   imagesLoaded: boolean[] = [];
   limit = 28;
+  crumbs?: Breadcrumb[];
 
   constructor(private titleS: Title,
               private route: ActivatedRoute,
@@ -59,6 +61,12 @@ export class GenreShowComponent implements OnInit {
 
                       // set meta
                       this.titleS.setTitle('Дорамы в жанре ' + data.name);
+
+                      // gen crumbs
+                      this.crumbs = [
+                        {path: 'genres/', name: 'Жанры дорам'},
+                        {path: '', name: this.genre.name},
+                      ];
                     }
                   })
                   .add(() => this.loading = false)
