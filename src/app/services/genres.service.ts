@@ -8,6 +8,8 @@ import {Genre} from "../interfaces/movies/Genre";
 })
 export class GenresService {
   defaultLimit = 28;
+  controller: string = 'Genres';
+  api = environment.apiUrl + this.controller;
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +25,11 @@ export class GenresService {
       params = params.append('offset', offset);
     }
 
-    return this.http.get<Genre>(environment.apiUrl + 'genres/' + slug, {params});
+    return this.http.get<Genre>(this.api + '/' + slug, {params});
+  }
+
+  getGenres() {
+    return this.http.get<Genre[]>(this.api);
+
   }
 }
