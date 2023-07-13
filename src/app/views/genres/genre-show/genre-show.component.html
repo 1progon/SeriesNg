@@ -1,0 +1,87 @@
+<app-container>
+  <!-- <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb> -->
+
+  <!-- Product Section Begin -->
+  <app-loader *ngIf="loading"></app-loader>
+  <section class="product-page spad">
+    <div class="row">
+      <!-- <div class="col-lg-8"> -->
+      <div>
+        <div class="product__page__content">
+          <div class="movies__content-head">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-6">
+                <div class="section-title">
+                  <h4>Фильмы и сериалы в жанре - {{genre.name}}</h4>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- <div class="product__page__filter"> -->
+                <!--   <p>Сортировать по:</p> -->
+                <!--   <select> -->
+                <!--     <option value="">Алфавит</option> -->
+                <!--     <option value="">1-10</option> -->
+                <!--     <option value="">10-50</option> -->
+                <!--   </select> -->
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-10 justify-content-between"
+               [class.opacity-25]="loading">
+            <div *ngFor="let movie of genre.movies; index as i">
+              <div class="product__item">
+                <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
+                     [class.bg-secondary]="!imagesLoaded[i]">
+                  <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
+                  <a [routerLink]="'/movies/' + movie.slug">
+                    <img (load)="imagesLoaded[i] = true"
+                         [alt]="'картинка изображение к подборке фильмов ' + movie.name"
+                         [attr.loading]="i > 11 ? 'lazy' : null"
+                         [src]="imagesPath + movie.mainImageThumb">
+                  </a>
+
+                  <!-- <div class="ep">{{collection.episodesCount}}</div> -->
+                  <!-- <div *ngIf="collection.comments?.length" class="comment"> -->
+                  <!--   <i class="fa fa-comment"></i> -->
+                  <!--   {{collection.comments?.length}} -->
+                  <!-- </div> -->
+
+                  <!-- <div class="view"> -->
+                  <!--   <i class="fa fa-star"></i> -->
+                  <!--   {{collection.rating}} -->
+                  <!-- </div> -->
+                </div>
+                <div class="movies-index__item-text">
+                  <ul>
+                    <!-- <li>Active</li> -->
+                    <!-- <li>Movie</li> -->
+                  </ul>
+                  <h5 class="position-relative">
+                    <a [routerLink]="'/movies/' + movie.slug">
+                      {{movie.name}}
+                    </a>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-pagination *ngIf="genre"
+                        [page]="page"
+                        [route]="['/genres/', genre.slug]">
+        </app-pagination>
+
+      </div>
+
+      <!-- sidebar -->
+      <!-- <div class="sidebar col-lg-4 col-md-6 col-sm-8"> -->
+      <!-- <app-movies-index-sidebar></app-movies-index-sidebar> -->
+      <!-- </div> -->
+      <!-- end sidebar -->
+    </div>
+  </section>
+  <!-- Product Section End -->
+</app-container>
+
