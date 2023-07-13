@@ -1,0 +1,43 @@
+@use "variables";
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product__item {
+  flex-basis: 23%;
+  background-color: variables.$bg-color-disabled;
+  padding: 10px;
+  border-radius: 5px;
+
+  @media screen and (max-width: 992px) {
+    flex-basis: 30%;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-basis: 45%;
+  }
+
+  @media screen and (max-width: 320px) {
+    flex-basis: 100%;
+  }
+
+
+  .product__item__pic {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    width: fit-content;
+  }
+
+  .movies__content-list-item-pic {
+    width: 100%;
+    min-height: 140px;
+  }
+
+  .movies-index__item-text {
+
+  }
+}

@@ -50,6 +50,7 @@ import {ForgotPasswordComponent} from './views/auth/forgot-password/forgot-passw
 import {ToastsComponent} from './components/toasts/toasts.component';
 import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
 import {ErrorUnauthorizedComponent} from './views/errors/error-unauthorized/error-unauthorized.component';
+import {GenresIndexComponent} from './views/genres/genres-index/genres-index.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {ErrorUnauthorizedComponent} from './views/errors/error-unauthorized/erro
     ForgotPasswordComponent,
     ToastsComponent,
     ErrorUnauthorizedComponent,
+    GenresIndexComponent,
   ],
   imports: [
     BrowserModule,
