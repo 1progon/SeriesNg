@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-collection-show',
@@ -13,7 +14,8 @@ import {environment} from "../../../../environments/environment";
 export class CollectionShowComponent implements OnInit {
 
   constructor(private service: CollectionsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private titleS: Title) {
   }
 
   collection: Collection = <Collection>{};
@@ -37,16 +39,18 @@ export class CollectionShowComponent implements OnInit {
         this.route.params.subscribe({
           next: params => {
             let offset = (this.page - 1) * this.limit;
-            this.service.getCollection(params['slug'], offset).subscribe({
-              next: data => {
-                this.collection = data;
+            this.service.getCollection(params['slug'], offset)
+              .subscribe({
+                next: data => {
+                  this.collection = data;
+                  this.titleS.setTitle('Подборка дорам ' + data.name)
 
-                this.crumbs = [
-                  {path: 'movies/collections', name: 'Подборки кино'},
-                  {path: '', name: this.collection.name},
-                ];
-              }
-            }).add(() => this.loading = false)
+                  this.crumbs = [
+                    {path: 'movies/collections', name: 'Подборки кино'},
+                    {path: '', name: this.collection.name},
+                  ];
+                }
+              }).add(() => this.loading = false)
 
           }
         })

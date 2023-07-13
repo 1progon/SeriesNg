@@ -4,6 +4,7 @@ import {environment} from "../../../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
 import {ActorsService} from "../../../services/actors.service";
 import {Actor} from "../../../interfaces/actors/Actor";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-actor-show',
@@ -14,7 +15,8 @@ export class ActorShowComponent implements OnInit {
 
 
   constructor(private service: ActorsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private titleS: Title) {
   }
 
   actor: Actor = <Actor>{};
@@ -49,6 +51,7 @@ export class ActorShowComponent implements OnInit {
                 this.limit)
                 .subscribe({
                   next: data => {
+                    this.titleS.setTitle('Дорамы с актёром ' + data.name);
                     this.actor = data;
 
 
