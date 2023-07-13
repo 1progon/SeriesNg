@@ -31,6 +31,7 @@ import {ForgotPasswordComponent} from "./views/auth/forgot-password/forgot-passw
 import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
 import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/error-unauthorized.component";
 import {AuthService} from "./services/auth.service";
+import {GenresIndexComponent} from "./views/genres/genres-index/genres-index.component";
 
 const routes: Routes = [
   {
@@ -143,7 +144,13 @@ const routes: Routes = [
       },
 
       // genres
-      {path: 'genres/:slug', component: GenreShowComponent},
+      {
+        path: 'genres', children: [
+          {path: '', component: GenresIndexComponent, title: 'Жанры дорам'},
+          {path: ':slug', component: GenreShowComponent},
+        ]
+      },
+
 
       // collections
       {path: 'collections/:slug', component: CollectionShowComponent},
