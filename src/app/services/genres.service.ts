@@ -8,6 +8,7 @@ import {Genre} from "../interfaces/movies/Genre";
 })
 export class GenresService {
   defaultLimit = 28;
+
   controller: string = 'Genres';
   api = environment.apiUrl + this.controller;
 

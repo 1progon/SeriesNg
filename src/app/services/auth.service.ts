@@ -11,6 +11,19 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
+  private _user?: UserDto;
+
+  public static UNAUTHORIZED_ROUTE = 'unauthorized';
+  public static UNAUTHENTICATED_ROUTE = 'unauthenticated';
+
+  controller: string = 'Auth';
+  api: string = environment.apiUrl + this.controller;
+
+
+  constructor(private http: HttpClient,
+              private router: Router) {
+  }
+
   set user(value: UserDto | undefined) {
     this._user = value;
   }
@@ -19,19 +32,9 @@ export class AuthService {
     return this._user;
   }
 
-  public static UNAUTHORIZED_ROUTE = 'unauthorized';
-  public static UNAUTHENTICATED_ROUTE = 'unauthenticated';
-
-
-  constructor(private http: HttpClient, private router: Router) {
-  }
-
-
-  private _user?: UserDto;
-
 
   register(formDto: RegisterFormDto) {
-    return this.http.post<UserDto>(environment.apiUrl + 'auth/register', formDto)
+    return this.http.post<UserDto>(this.api + '/register', formDto)
       .pipe(map(value => {
         this._user = value;
         return value;
@@ -39,7 +42,7 @@ export class AuthService {
   }
 
   login(formDto: LoginFormDto) {
-    return this.http.post<UserDto>(environment.apiUrl + 'auth/login', formDto)
+    return this.http.post<UserDto>(this.api + '/login', formDto)
       .pipe(map(value => {
         this._user = value;
         return value;

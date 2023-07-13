@@ -11,6 +11,9 @@ export class ActorsService {
   constructor(private http: HttpClient) {
   }
 
+  controller: string = 'Actors';
+  api: string = environment.apiUrl + this.controller;
+
   offset = 0;
   limit = 28;
 
@@ -26,7 +29,7 @@ export class ActorsService {
       params = params.append('limit', limit);
     }
 
-    return this.http.get<Actor[]>(environment.apiUrl + 'actors', {params});
+    return this.http.get<Actor[]>(this.api, {params});
 
   }
 
@@ -43,7 +46,6 @@ export class ActorsService {
       params = params.append('limit', moviesLimit);
     }
 
-    return this.http.get<Actor>(environment.apiUrl + 'actors/' + slug,
-      {params});
+    return this.http.get<Actor>(this.api + '/' + slug, {params});
   }
 }

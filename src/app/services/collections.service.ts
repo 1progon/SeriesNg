@@ -10,6 +10,7 @@ export class CollectionsService {
 
 
   defaultLimit = 28;
+
   controller: string = 'Collections';
   api: string = environment.apiUrl + this.controller;
 

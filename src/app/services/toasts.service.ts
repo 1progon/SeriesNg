@@ -6,14 +6,18 @@ import {ToastType} from "../enums/ToastType";
   providedIn: 'root'
 })
 export class ToastsService {
-  get toasts(): Toast[] {
-    return this._toasts;
-  }
 
   private _toasts: Toast[] = [];
   timeOut = 2000;
 
-  setTimeOutIds: NodeJS.Timeout[] = []
+  setTimeOutIds: NodeJS.Timeout[] = [];
+
+  constructor() {
+  }
+
+  get toasts(): Toast[] {
+    return this._toasts;
+  }
 
 
   pushToast(message: { message: string, type: ToastType }) {
@@ -70,8 +74,6 @@ export class ToastsService {
     })
   }
 
-  constructor() {
-  }
 
   removeAllToasts() {
     this._toasts = [];

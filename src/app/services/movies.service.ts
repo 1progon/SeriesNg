@@ -18,6 +18,11 @@ import {MovieLikeDislikeType} from "../enums/movies/MovieLikeDislikeType";
 })
 export class MoviesService {
 
+  controller: string = 'Movies';
+  api: string = environment.apiUrl + this.controller;
+
+  apiUserFavoriteMovies = environment.apiUrl + 'UserFavoriteMovies';
+
   cacheMovieVideo?: CacheMovieVideo;
 
   cacheIndexMovies: { name: string, movies: Movie[] }[] = [];
@@ -28,7 +33,7 @@ export class MoviesService {
 
 
   defaultLimit = 28;
-  apiUserFavoriteMovies = environment.apiUrl + 'UserFavoriteMovies';
+
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
@@ -67,8 +72,7 @@ export class MoviesService {
     }
 
 
-    return this.http.get<Movie[]>(environment.apiUrl + 'movies',
-      {params})
+    return this.http.get<Movie[]>(this.api, {params})
       .pipe(map(value => {
         if (selector != MoviesSelector.random) {
           this.cacheIndexMovies.push({name: cacheName, movies: value});
@@ -85,8 +89,7 @@ export class MoviesService {
       headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);
     }
 
-    return this.http.get<GetMovieShowDto>(environment.apiUrl + 'movies/' + slug,
-      {headers})
+    return this.http.get<GetMovieShowDto>(this.api + '/' + slug, {headers})
   }
 
   getMovieVideo(movieSlug: string,
@@ -203,7 +206,7 @@ export class MoviesService {
     }
 
 
-    let path = environment.apiUrl + 'Movies/AddLikeDislike/' + movieId;
+    let path = this.api + '/AddLikeDislike/' + movieId;
 
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token);

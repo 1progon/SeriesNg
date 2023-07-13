@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class UsersService {
+  controller: string = 'Users';
+  api: string = environment.apiUrl + this.controller;
 
   constructor(private http: HttpClient,
               private authService: AuthService,
@@ -31,7 +33,7 @@ export class UsersService {
     headers = headers.append('Authorization', 'Bearer ' + this.authService.user.token)
 
 
-    return this.http.put<UserDto>(environment.apiUrl + 'users/update-user',
+    return this.http.put<UserDto>(this.api + '/update-user',
       user, {headers})
       .pipe(
         map(value => {
