@@ -1,0 +1,55 @@
+<div class="movies__content-list" [class.opacity-25]="loading">
+  <ng-container *ngFor="let movie of movies; index as i">
+    <div class="movies__content-list-item">
+      <div class="movies__content-list-item-pic"
+           [style.min-height.px]="!imagesLoaded[i] ? 270 : null">
+        <app-loader *ngIf="!imagesLoaded[i]"/>
+        <a [routerLink]="'/movies/' + movie.slug"
+           class="rounded-2 overflow-hidden">
+          <img [src]="imagesPath + movie.mainImageThumb"
+               [attr.loading]="i > 11 ? 'lazy' : null"
+               (load)="imagesLoaded[i] = true"
+               class="bg-secondary"
+               [alt]="'картинка изображение к дораме ' + movie.name">
+        </a>
+
+        <div class="ep">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24">
+            <path
+              d="M21 6h-5v2h4v9H4V8h5v3l5-4-5-4v3H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"></path>
+          </svg>
+          {{movie.episodesCount}}
+        </div>
+        <div *ngIf="movie.comments?.length" class="comment">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24">
+            <path
+              d="M20 2H4c-1.103 0-2 .897-2 2v18l5.333-4H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14H6.667L4 18V4h16v12z"></path>
+          </svg>
+          {{movie.comments?.length}}
+        </div>
+
+        <div class="view">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24">
+            <path
+              d="M21.947 9.179a1.001 1.001 0 0 0-.868-.676l-5.701-.453-2.467-5.461a.998.998 0 0 0-1.822-.001L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.213 4.107-1.49 6.452a1 1 0 0 0 1.53 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082c.297-.268.406-.686.278-1.065z"></path>
+          </svg>
+          {{movie.rating}}
+        </div>
+      </div>
+      <div class="movies__content-list-item-text">
+        <!-- <ul> -->
+        <!-- <li>Active</li> -->
+        <!-- <li>Movie</li> -->
+        <!-- </ul> -->
+        <h3 class="position-relative">
+          <a [routerLink]="'/movies/' + movie.slug">
+            {{movie.name}} ({{movie.year}})
+          </a>
+        </h3>
+      </div>
+    </div>
+  </ng-container>
+</div>

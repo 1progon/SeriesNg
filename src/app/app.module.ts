@@ -51,6 +51,7 @@ import {ToastsComponent} from './components/toasts/toasts.component';
 import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
 import {ErrorUnauthorizedComponent} from './views/errors/error-unauthorized/error-unauthorized.component';
 import {GenresIndexComponent} from './views/genres/genres-index/genres-index.component';
+import { MoviesIndexListComponent } from './views/movies/include/movies-index-list/movies-index-list.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import {GenresIndexComponent} from './views/genres/genres-index/genres-index.com
     ToastsComponent,
     ErrorUnauthorizedComponent,
     GenresIndexComponent,
+    MoviesIndexListComponent,
   ],
   imports: [
     BrowserModule,
