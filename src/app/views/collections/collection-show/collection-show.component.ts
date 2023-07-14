@@ -46,8 +46,8 @@ export class CollectionShowComponent implements OnInit {
                   this.titleS.setTitle('Подборка дорам ' + data.name)
 
                   this.crumbs = [
-                    {path: 'movies/collections', name: 'Подборки кино'},
-                    {path: '', name: this.collection.name},
+                    {path: 'movies/collections', name: 'Подборки дорам, кино и сериалов'},
+                    {path: '', name: 'Подборка дорам ' + this.collection.name},
                   ];
                 }
               }).add(() => this.loading = false)

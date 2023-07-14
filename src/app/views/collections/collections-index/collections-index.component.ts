@@ -29,7 +29,7 @@ export class CollectionsIndexComponent implements OnInit {
 
         this.crumbs = [
           {path: '/movies' ,name: 'Кино и сериалы, дорамы'},
-          {name: 'Подборки кино и сериалов'},
+          {name: 'Подборки дорам, кино и сериалов'},
         ];
 
       }

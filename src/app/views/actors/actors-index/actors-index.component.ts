@@ -20,7 +20,7 @@ export class ActorsIndexComponent implements OnInit {
   actors: Actor[] = [];
   loading: boolean = false;
   crumbs: Breadcrumb[] = [
-    {name: 'Актёры'}
+    {name: 'Актёры дорам'}
   ];
   imagesLoaded: boolean[] = [];
   imagesPath: string = environment.imagesPath;
@@ -41,7 +41,7 @@ export class ActorsIndexComponent implements OnInit {
 
         if (this.page > 1) {
           this.crumbs = [
-            {path: '/actors', name: 'Актёры'},
+            {path: '/actors', name: 'Актёры дорам'},
             {name: 'Стр.' + this.page},
           ];
         }

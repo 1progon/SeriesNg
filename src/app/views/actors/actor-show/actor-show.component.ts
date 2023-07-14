@@ -56,8 +56,8 @@ export class ActorShowComponent implements OnInit {
 
 
                     this.crumbs = [
-                      {path: '/actors', name: 'Актёры'},
-                      {name: 'Актёр ' + data.name},
+                      {path: '/actors', name: 'Актёры дорам'},
+                      {name: 'Дорамы с актёром ' + data.name},
                     ]
                   }
                 }).add(() => this.loading = false)

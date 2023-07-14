@@ -67,7 +67,7 @@ export class GenreShowComponent implements OnInit {
                       // gen crumbs
                       this.crumbs = [
                         {path: 'genres/', name: 'Жанры дорам'},
-                        {path: '', name: this.genre.name},
+                        {path: '', name: 'Жанр дорам ' + this.genre.name},
                       ];
                     },
                     error: (err: HttpErrorResponse) => {
