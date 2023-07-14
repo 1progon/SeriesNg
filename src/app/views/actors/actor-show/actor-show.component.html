@@ -28,9 +28,12 @@
             </div>
           </div>
           <div class="d-flex flex-wrap gap-10 justify-content-between" [class.opacity-25]="loading">
-            <div *ngFor="let movie of actor.movies;index as i">
+            <div *ngIf="!loading && page == 1 && !actor.movies.length">Дорам пока ещё нет у актёра</div>
+            <div *ngIf="!loading && page > 1 && !actor.movies.length">Больше нет дорам с этим актёром</div>
+            <div *ngFor="let movie of actor.movies; index as i">
               <div class="product__item">
-                <div class="movies__content-list-item-pic rounded-2 overflow-hidden" [class.bg-secondary]="!imagesLoaded[i]">
+                <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
+                     [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
                   <a [routerLink]="'/movies/' + movie.slug">
                     <img (load)="imagesLoaded[i] = true"

@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ActorsService} from "../../../services/actors.service";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {Title} from "@angular/platform-browser";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-actor-show',
@@ -16,7 +17,8 @@ export class ActorShowComponent implements OnInit {
 
   constructor(private service: ActorsService,
               private route: ActivatedRoute,
-              private titleS: Title) {
+              private titleS: Title,
+              private router: Router) {
   }
 
   actor: Actor = <Actor>{};
@@ -59,6 +61,14 @@ export class ActorShowComponent implements OnInit {
                       {path: '/actors', name: 'Актёры дорам'},
                       {name: 'Дорамы с актёром ' + data.name},
                     ]
+                  },
+                  error: (err: HttpErrorResponse) => {
+                    if (this.page > 1 && !this.actor.movies) {
+                      this.router.navigate(['/', 'actors', actorSlug]).finally();
+                    }
+
+                    this.actor.movies = [];
+
                   }
                 }).add(() => this.loading = false)
             }
