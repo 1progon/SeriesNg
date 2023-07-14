@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CollectionsService} from "../../../services/collections.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
@@ -15,7 +15,8 @@ export class CollectionShowComponent implements OnInit {
 
   constructor(private service: CollectionsService,
               private route: ActivatedRoute,
-              private titleS: Title) {
+              private titleS: Title,
+              private router: Router) {
   }
 
   collection: Collection = <Collection>{};
@@ -50,6 +51,13 @@ export class CollectionShowComponent implements OnInit {
                     {path: 'movies/collections', name: 'Подборки дорам, кино и сериалов'},
                     {path: '', name: 'Подборка дорам ' + this.collection.name},
                   ];
+                },
+                error: () => {
+                  if (this.page > 1 && !this.collection.movies) {
+                    this.router.navigate(['/', 'collections', slug]).finally();
+                  }
+
+                  this.collection.movies = [];
                 }
               }).add(() => this.loading = false)
 
