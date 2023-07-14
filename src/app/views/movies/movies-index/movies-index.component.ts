@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
-import {environment} from "../../../../environments/environment";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
@@ -23,8 +22,6 @@ export class MoviesIndexComponent implements OnInit {
               private titleService: Title,
               private htmlS: HtmlHeadOptionsService) {
   }
-
-  imagesPath = environment.imagesPath;
 
   movies: Movie[] = [];
   page = 1;

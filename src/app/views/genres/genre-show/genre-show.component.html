@@ -28,47 +28,10 @@
               </div>
             </div>
           </div>
-          <div class="movies__content-list d-flex flex-wrap gap-10 justify-content-between"
-               [class.opacity-25]="loading">
-            <div *ngIf="!loading && page > 1 && !genre.movies.length">Больше нет дорам</div>
-            <div *ngIf="!loading && page == 1 && !genre.movies.length">Здесь пока нет дорам</div>
-            <div *ngFor="let movie of genre.movies; index as i">
-              <div class="movies__content-list-item">
-                <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
-                     [class.bg-secondary]="!imagesLoaded[i]">
-                  <app-loader *ngIf="!imagesLoaded[i]"/>
-                  <a [routerLink]="'/movies/' + movie.slug">
-                    <img (load)="imagesLoaded[i] = true"
-                         [alt]="'картинка изображение к подборке фильмов ' + movie.name"
-                         [attr.loading]="i > 11 ? 'lazy' : null"
-                         [src]="imagesPath + movie.mainImageThumb">
-                  </a>
 
-                  <!-- <div class="ep">{{collection.episodesCount}}</div> -->
-                  <!-- <div *ngIf="collection.comments?.length" class="comment"> -->
-                  <!--   <i class="fa fa-comment"></i> -->
-                  <!--   {{collection.comments?.length}} -->
-                  <!-- </div> -->
-
-                  <!-- <div class="view"> -->
-                  <!--   <i class="fa fa-star"></i> -->
-                  <!--   {{collection.rating}} -->
-                  <!-- </div> -->
-                </div>
-                <div class="movies-index__item-text">
-                  <ul>
-                    <!-- <li>Active</li> -->
-                    <!-- <li>Movie</li> -->
-                  </ul>
-                  <h5 class="position-relative">
-                    <a [routerLink]="'/movies/' + movie.slug">
-                      {{movie.name}}
-                    </a>
-                  </h5>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-movies-index-list [movies]="genre.movies"
+                                 [loading]="loading"
+                                 [imagesLoaded]="imagesLoaded"/>
         </div>
 
         <app-pagination *ngIf="genre"

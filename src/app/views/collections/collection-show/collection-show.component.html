@@ -28,46 +28,9 @@
               </div>
             </div>
           </div>
-          <div class="movies__content-list" [class.opacity-25]="loading">
-            <div *ngIf="!loading && !collection.movies.length && page > 1">Больше нет дорам в этой коллекции</div>
-            <div *ngIf="!loading && !collection.movies.length && page == 1">В этой коллекции пока нет дорам</div>
-            <div *ngFor="let movie of collection.movies; index as i">
-              <div class="movies__content-list-item product__item">
-                <div class="movies__content-list-item-pic product__item__pic rounded-2 overflow-hidden"
-                     [class.bg-secondary]="!imagesLoaded[i]">
-                  <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
-                  <a [routerLink]="'/movies/' + movie.slug">
-                    <img (load)="imagesLoaded[i] = true"
-                         [alt]="'картинка изображение к подборке фильмов ' + movie.name"
-                         [attr.loading]="i > 11 ? 'lazy' : null"
-                         [src]="imagesPath + movie.mainImageThumb">
-                  </a>
-
-                  <!-- <div class="ep">{{collection.episodesCount}}</div> -->
-                  <!-- <div *ngIf="collection.comments?.length" class="comment"> -->
-                  <!--   <i class="fa fa-comment"></i> -->
-                  <!--   {{collection.comments?.length}} -->
-                  <!-- </div> -->
-
-                  <!-- <div class="view"> -->
-                  <!--   <i class="fa fa-star"></i> -->
-                  <!--   {{collection.rating}} -->
-                  <!-- </div> -->
-                </div>
-                <div class="movies-index__item-text">
-                  <!-- <ul> -->
-                  <!-- <li>Active</li> -->
-                  <!-- <li>Movie</li> -->
-                  <!-- </ul> -->
-                  <h3 class="position-relative">
-                    <a [routerLink]="'/movies/' + movie.slug">
-                      {{movie.name}}
-                    </a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-movies-index-list [movies]="collection.movies"
+                                 [imagesLoaded]="imagesLoaded"
+                                 [loading]="loading"/>
         </div>
         <app-pagination [page]="page"
                         [route]="['/collections/', this.collection.slug]"/>
