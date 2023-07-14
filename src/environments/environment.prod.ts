@@ -1,5 +1,8 @@
+let domain = 'https://dorama.media';
+
 export const environment = {
   production: true,
-  apiUrl: 'https://dorama.media/api/',
+  domain,
+  apiUrl: domain + '/api/',
   imagesPath: '/images/'
 };
