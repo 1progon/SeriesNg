@@ -1,14 +1,4 @@
-@use "variables";
-
-.movies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.product__item {
-  flex-basis: 23%;
-  background-color: variables.$bg-color-disabled;
+.movies__content-list-item-pic {
   padding: 10px;
   border-radius: 5px;
 
