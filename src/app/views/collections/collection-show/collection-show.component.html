@@ -29,7 +29,9 @@
             </div>
           </div>
           <div class="movies" [class.opacity-25]="loading">
-            <div *ngFor="let movie of collection.movies;index as i">
+            <div *ngIf="!loading && !collection.movies.length && page > 1">Больше нет дорам в этой коллекции</div>
+            <div *ngIf="!loading && !collection.movies.length && page == 1">В этой коллекции пока нет дорам</div>
+            <div *ngFor="let movie of collection.movies; index as i">
               <div class="product__item">
                 <div class="product__item__pic rounded-2 overflow-hidden" [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
