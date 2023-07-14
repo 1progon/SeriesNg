@@ -12,6 +12,12 @@
   padding: 10px;
   border-radius: 5px;
 
+
+  &:hover {
+    background-color: variables.$bg-color-lighter;
+    transition: .3s;
+  }
+
   @media screen and (max-width: 992px) {
     flex-basis: 30%;
   }
