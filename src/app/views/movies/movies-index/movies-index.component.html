@@ -1,7 +1,7 @@
 <app-container>
-  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+  <app-breadcrumb [crumbs]="crumbs"/>
 
-  <app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="loading"/>
 
   <!-- random update button -->
   <button (click)="updateRandom()"
@@ -94,7 +94,7 @@
       </div>
       <app-pagination [page]="page"
                       [route]="routePath"
-                      [queries]="{search: searchQuery}"></app-pagination>
+                      [queries]="{search: searchQuery}"/>
     </div>
 
     <!-- sidebar -->
