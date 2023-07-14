@@ -29,6 +29,8 @@
           </div>
           <div class="d-flex flex-wrap gap-10 justify-content-between"
                [class.opacity-25]="loading">
+            <div *ngIf="!genre.movies.length && page > 1">Больше нет дорам</div>
+            <div *ngIf="!genre.movies.length && page == 1">Здесь пока нет дорам</div>
             <div *ngFor="let movie of genre.movies; index as i">
               <div class="product__item">
                 <div class="movies__content-list-item-pic rounded-2 overflow-hidden"

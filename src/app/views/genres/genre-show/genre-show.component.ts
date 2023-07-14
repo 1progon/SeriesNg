@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../environments/environment";
 import {GenresService} from "../../../services/genres.service";
 import {Genre} from "../../../interfaces/movies/Genre";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-genre-show',
@@ -23,7 +24,8 @@ export class GenreShowComponent implements OnInit {
 
   constructor(private titleS: Title,
               private route: ActivatedRoute,
-              private genreS: GenresService) {
+              private genreS: GenresService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -67,6 +69,12 @@ export class GenreShowComponent implements OnInit {
                         {path: 'genres/', name: 'Жанры дорам'},
                         {path: '', name: this.genre.name},
                       ];
+                    },
+                    error: (err: HttpErrorResponse) => {
+                      if (this.page > 1 && !this.genre.movies) {
+                        this.router.navigateByUrl('/genres').finally();
+                      }
+                      this.genre.movies = [];
                     }
                   })
                   .add(() => this.loading = false)
