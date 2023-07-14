@@ -29,10 +29,14 @@
 .movies {
   margin-top: 10px;
   margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 
   .movies__content {
 
-    .movies__content-list {
+    &-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -54,16 +58,30 @@
           flex-basis: calc((100vw / 2) - 20px);
         }
 
+        .movies-index__item-text {
+
+          h3 {
+            margin-top: 10px;
+            margin-bottom: 0;
+
+            a {
+              color: #fff;
+
+            }
+          }
+        }
+
         &-pic {
           position: relative;
           border-radius: 5px;
-          width: 100%;
+          width: fit-content;
+          min-width: 270px;
+          min-height: 405px;
 
           background-color: variables.$bg-color-lighter;
 
 
           & a {
-            display: block;
             border-radius: 5px;
             overflow: hidden;
           }
