@@ -153,6 +153,7 @@ const routes: Routes = [
 
 
       // collections
+      {path: 'collections', redirectTo: '/movies/collections', pathMatch: 'full'},
       {path: 'collections/:slug', component: CollectionShowComponent},
 
       // actors
