@@ -38,6 +38,7 @@ export class CollectionShowComponent implements OnInit {
 
         this.route.params.subscribe({
           next: params => {
+            let slug = params['slug'];
             let offset = (this.page - 1) * this.limit;
             this.service.getCollection(params['slug'], offset)
               .subscribe({
