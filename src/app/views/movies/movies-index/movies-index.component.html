@@ -36,7 +36,7 @@
         </div>
 
         <div class="movies__content-list" [class.opacity-25]="loading">
-          <ng-container *ngFor="let movie of movies;index as i">
+          <ng-container *ngFor="let movie of movies; index as i">
             <div class="movies__content-list-item">
               <div class="movies__content-list-item-pic"
                    [style.min-height.px]="!imagesLoaded[i] ? 270 : null">
