@@ -3,6 +3,7 @@ import {CollectionsService} from "../../../services/collections.service";
 import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-collections-index',
@@ -12,7 +13,8 @@ import {environment} from "../../../../environments/environment";
 export class CollectionsIndexComponent implements OnInit {
 
 
-  constructor(private service: CollectionsService) {
+  constructor(private service: CollectionsService,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   collections: Collection[] = [];
@@ -22,13 +24,15 @@ export class CollectionsIndexComponent implements OnInit {
   imagesPath: string = environment.imagesPath;
 
   ngOnInit(): void {
+    this.htmlS.setCanonical('movies/collections');
+
     this.service.getCollections().subscribe({
       next: data => {
         this.loading = true;
         this.collections = data;
 
         this.crumbs = [
-          {path: '/movies' ,name: 'Кино и сериалы, дорамы'},
+          {path: '/movies', name: 'Кино и сериалы, дорамы'},
           {name: 'Подборки дорам, кино и сериалов'},
         ];
 

@@ -7,6 +7,7 @@ import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-movies-index',
@@ -19,7 +20,8 @@ export class MoviesIndexComponent implements OnInit {
   constructor(private service: MoviesService,
               private route: ActivatedRoute,
               private router: Router,
-              private titleService: Title) {
+              private titleService: Title,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   imagesPath = environment.imagesPath;
@@ -82,13 +84,15 @@ export class MoviesIndexComponent implements OnInit {
           {path: '/movies', name: 'Дорамы, сериалы, кино'},
         ];
 
+        let canonical = 'movies';
+
 
         this.selectorPath = this.route.routeConfig?.path;
         if (this.selectorPath) {
           this.selectorNumber = (<any>MoviesSelector)[this.selectorPath];
           this.crumbs.push({
             path: '/movies/' + this.selectorPath, name: this.route.routeConfig?.title?.toString() ?? ''
-          })
+          });
         }
 
         let seoTitle = 'Все дорамы.';
@@ -99,9 +103,15 @@ export class MoviesIndexComponent implements OnInit {
         if (this.selectorPath) {
           this.routePath.push(this.selectorPath);
           seoTitle += ' ' + this.route.routeConfig?.title;
+          canonical += '/' + this.selectorPath;
+        }
+
+        if (this.page > 1) {
+          canonical += '?page=' + this.page;
         }
 
         this.titleService.setTitle(seoTitle + ' Стр. ' + this.page);
+        this.htmlS.setCanonical(canonical);
 
         this.getMoviesFromService(this.searchQuery);
 

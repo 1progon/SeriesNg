@@ -4,6 +4,7 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
 import {Actor} from "../../../interfaces/actors/Actor";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-actors-index',
@@ -14,7 +15,8 @@ export class ActorsIndexComponent implements OnInit {
 
 
   constructor(private service: ActorsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   actors: Actor[] = [];
@@ -35,6 +37,8 @@ export class ActorsIndexComponent implements OnInit {
         this.imagesLoaded = [];
         document.body.scrollIntoView();
 
+        let canonical = 'actors';
+
         let page = parseInt(queries['page']);
 
         this.page = !isNaN(page) ? page : 1;
@@ -44,14 +48,15 @@ export class ActorsIndexComponent implements OnInit {
             {path: '/actors', name: 'Актёры дорам'},
             {name: 'Стр.' + this.page},
           ];
+          canonical += '/' + this.page;
         }
+
+        this.htmlS.setCanonical(canonical);
 
         this.service.getActors((this.page - 1) * this.limit, this.limit)
           .subscribe({
             next: data => {
-
               this.actors = data;
-
             }
           })
 

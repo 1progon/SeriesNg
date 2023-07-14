@@ -3,6 +3,7 @@ import {Genre} from "../../../interfaces/movies/Genre";
 import {environment} from "../../../../environments/environment";
 import {GenresService} from "../../../services/genres.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-genres-index',
@@ -19,10 +20,12 @@ export class GenresIndexComponent implements OnInit {
   ];
 
 
-  constructor(private genresService: GenresService) {
+  constructor(private genresService: GenresService,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
+    this.htmlS.setCanonical('genres');
     // scroll into top
     document.body.scrollIntoView();
 
