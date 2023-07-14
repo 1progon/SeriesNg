@@ -52,6 +52,7 @@ import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentifica
 import {ErrorUnauthorizedComponent} from './views/errors/error-unauthorized/error-unauthorized.component';
 import {GenresIndexComponent} from './views/genres/genres-index/genres-index.component';
 import { MoviesIndexListComponent } from './views/movies/include/movies-index-list/movies-index-list.component';
+import { MoviesIndexListHeadComponent } from './views/movies/include/movies-index-list-head/movies-index-list-head.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { MoviesIndexListComponent } from './views/movies/include/movies-index-li
     ErrorUnauthorizedComponent,
     GenresIndexComponent,
     MoviesIndexListComponent,
+    MoviesIndexListHeadComponent,
   ],
   imports: [
     BrowserModule,
