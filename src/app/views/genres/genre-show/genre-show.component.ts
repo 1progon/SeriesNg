@@ -18,7 +18,6 @@ export class GenreShowComponent implements OnInit {
   page = 1;
   loading = false;
   genre: Genre = <Genre>{};
-  imagesPath: string = environment.imagesPath;
   imagesLoaded: boolean[] = [];
   limit = 28;
   crumbs?: Breadcrumb[];

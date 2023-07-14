@@ -28,7 +28,6 @@ export class ActorShowComponent implements OnInit {
   crumbs: Breadcrumb[] = [];
 
   imagesLoaded: boolean[] = [];
-  imagesPath = environment.imagesPath;
   page: number = 1;
   limit = 28;
 
