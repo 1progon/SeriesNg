@@ -5,6 +5,7 @@ import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {Title} from "@angular/platform-browser";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-collection-show',
@@ -16,7 +17,8 @@ export class CollectionShowComponent implements OnInit {
   constructor(private service: CollectionsService,
               private route: ActivatedRoute,
               private titleS: Title,
-              private router: Router) {
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   collection: Collection = <Collection>{};
@@ -45,7 +47,14 @@ export class CollectionShowComponent implements OnInit {
               .subscribe({
                 next: data => {
                   this.collection = data;
-                  this.titleS.setTitle('Подборка дорам ' + data.name)
+                  this.titleS.setTitle('Подборка дорам ' + data.name);
+
+                  // set canonical in head
+                  let canonical = 'collections/' + slug;
+                  if (this.page > 1) {
+                    canonical += '?page=' + this.page;
+                  }
+                  this.htmlS.setCanonical(canonical);
 
                   this.crumbs = [
                     {path: 'movies/collections', name: 'Подборки дорам, кино и сериалов'},

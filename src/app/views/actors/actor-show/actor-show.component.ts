@@ -6,6 +6,7 @@ import {ActorsService} from "../../../services/actors.service";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse} from "@angular/common/http";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-actor-show',
@@ -18,7 +19,8 @@ export class ActorShowComponent implements OnInit {
   constructor(private service: ActorsService,
               private route: ActivatedRoute,
               private titleS: Title,
-              private router: Router) {
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   actor: Actor = <Actor>{};
@@ -54,6 +56,14 @@ export class ActorShowComponent implements OnInit {
                 .subscribe({
                   next: data => {
                     this.titleS.setTitle('Дорамы с актёром ' + data.name);
+
+                    // set canonical in head
+                    let canonical = 'actors/' + actorSlug;
+                    if (this.page > 1) {
+                      canonical += '?page=' + this.page;
+                    }
+                    this.htmlS.setCanonical(canonical);
+
                     this.actor = data;
 
 

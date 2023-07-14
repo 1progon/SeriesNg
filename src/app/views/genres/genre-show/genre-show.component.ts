@@ -6,6 +6,7 @@ import {GenresService} from "../../../services/genres.service";
 import {Genre} from "../../../interfaces/movies/Genre";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {HttpErrorResponse} from "@angular/common/http";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-genre-show',
@@ -25,7 +26,8 @@ export class GenreShowComponent implements OnInit {
   constructor(private titleS: Title,
               private route: ActivatedRoute,
               private genreS: GenresService,
-              private router: Router) {
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService) {
   }
 
   ngOnInit(): void {
@@ -63,6 +65,13 @@ export class GenreShowComponent implements OnInit {
 
                       // set meta
                       this.titleS.setTitle('Дорамы в жанре ' + data.name);
+
+                      // set canonical in head
+                      let canonical = 'genres/' + this.slug;
+                      if (this.page > 1) {
+                        canonical += '?page=' + this.page;
+                      }
+                      this.htmlS.setCanonical(canonical);
 
                       // gen crumbs
                       this.crumbs = [

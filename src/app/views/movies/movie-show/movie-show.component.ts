@@ -11,6 +11,7 @@ import {AuthService} from "../../../services/auth.service";
 import {ToastsService} from "../../../services/toasts.service";
 import {ToastType} from "../../../enums/ToastType";
 import {MovieLikeDislikeType} from "../../../enums/movies/MovieLikeDislikeType";
+import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 
 @Component({
   selector: 'app-movie-show',
@@ -26,7 +27,8 @@ export class MovieShowComponent implements OnInit {
               private titleService: Title,
               private metaService: Meta,
               public authService: AuthService,
-              private toastService: ToastsService) {
+              private toastService: ToastsService,
+              private htmlService: HtmlHeadOptionsService) {
 
 
   }
@@ -120,6 +122,8 @@ export class MovieShowComponent implements OnInit {
               name: 'keywords',
               content: 'дорама ' + movieNameLower + ', смотреть дораму ' + movieNameLower
             });
+
+            this.htmlService.setCanonical('movies/' + this.movie.slug);
             // end add meta
 
             // switch (this.movie.type) {
