@@ -72,7 +72,7 @@ export class GenreShowComponent implements OnInit {
                     },
                     error: (err: HttpErrorResponse) => {
                       if (this.page > 1 && !this.genre.movies) {
-                        this.router.navigateByUrl('/genres').finally();
+                        this.router.navigate(['/', 'genres', this.slug]).finally();
                       }
                       this.genre.movies = [];
                     }
