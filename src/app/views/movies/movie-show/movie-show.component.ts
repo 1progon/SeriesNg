@@ -104,7 +104,7 @@ export class MovieShowComponent implements OnInit {
             }
 
             this.crumbs = [
-              {path: 'movies', name: 'Кино и сериалы, дорамы.'},
+              {path: 'movies', name: 'Дорамы, сериалы, кино'},
               {path: '', name: this.movie.name},
             ];
 

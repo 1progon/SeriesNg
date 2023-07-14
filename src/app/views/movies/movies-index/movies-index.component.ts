@@ -79,7 +79,7 @@ export class MoviesIndexComponent implements OnInit {
         this.page = isNaN(page) ? 1 : page;
 
         this.crumbs = [
-          {path: '/movies', name: 'Кино и сериалы, дорамы'},
+          {path: '/movies', name: 'Дорамы, сериалы, кино'},
         ];
 
 
