@@ -3,11 +3,11 @@
 
   <!-- Product Section Begin -->
   <app-loader *ngIf="loading"></app-loader>
-  <section class="product-page spad">
+  <section class="movies spad">
     <div class="row">
       <!-- <div class="col-lg-8"> -->
       <div>
-        <div class="product__page__content">
+        <div class="movies__content">
           <div class="movies__content-head">
             <div class="row">
               <div class="col-lg-8 col-md-8 col-sm-6">
@@ -27,11 +27,12 @@
               </div>
             </div>
           </div>
-          <div class="d-flex flex-wrap gap-10 justify-content-between" [class.opacity-25]="loading">
+          <div class="movies__content-list d-flex flex-wrap gap-10 justify-content-between"
+               [class.opacity-25]="loading">
             <div *ngIf="!loading && page == 1 && !actor.movies.length">Дорам пока ещё нет у актёра</div>
             <div *ngIf="!loading && page > 1 && !actor.movies.length">Больше нет дорам с этим актёром</div>
             <div *ngFor="let movie of actor.movies; index as i">
-              <div class="product__item">
+              <div class="movies__content-list-item">
                 <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
                      [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>

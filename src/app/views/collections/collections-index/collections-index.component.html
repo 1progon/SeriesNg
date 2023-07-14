@@ -3,7 +3,7 @@
 
   <app-loader *ngIf="loading"/>
 
-  <section class="spad" [class.opacity-25]="loading">
+  <section class="movies spad" [class.opacity-25]="loading">
     <!-- <div class="col-lg-8"> -->
     <div>
       <div class="movies__content">
@@ -26,9 +26,9 @@
             </div>
           </div>
         </div>
-        <div class="movies">
-          <div class="product__item" *ngFor="let collection of collections;index as i">
-            <div class="product__item__pic"
+        <div class="movies__content-list">
+          <div class="movies__content-list-item" *ngFor="let collection of collections;index as i">
+            <div class="movies__content-list-item-pic"
                  [style.min-height.px]="!imagesLoaded[i] ? 200 : null"
                  [style.width.%]="!imagesLoaded[i] ? 100 : null">
               <app-loader *ngIf="!imagesLoaded[i]"></app-loader>

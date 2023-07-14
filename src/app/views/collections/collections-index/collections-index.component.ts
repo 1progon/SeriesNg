@@ -26,17 +26,19 @@ export class CollectionsIndexComponent implements OnInit {
   ngOnInit(): void {
     this.htmlS.setCanonical('movies/collections');
 
-    this.service.getCollections().subscribe({
-      next: data => {
-        this.loading = true;
-        this.collections = data;
+    this.loading = true;
+    this.service.getCollections()
+      .subscribe({
+        next: data => {
 
-        this.crumbs = [
-          {path: '/movies', name: 'Кино и сериалы, дорамы'},
-          {name: 'Подборки дорам, кино и сериалов'},
-        ];
+          this.collections = data;
 
-      }
-    }).add(() => this.loading = false)
+          this.crumbs = [
+            {path: '/movies', name: 'Кино и сериалы, дорамы'},
+            {name: 'Подборки дорам, кино и сериалов'},
+          ];
+
+        }
+      }).add(() => this.loading = false)
   }
 }

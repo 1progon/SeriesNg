@@ -40,7 +40,7 @@
             <div class="movies__content-list-item">
               <div class="movies__content-list-item-pic"
                    [style.min-height.px]="!imagesLoaded[i] ? 270 : null">
-                <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
+                <app-loader *ngIf="!imagesLoaded[i]"/>
                 <a [routerLink]="'/movies/' + movie.slug"
                    class="rounded-2 overflow-hidden">
                   <img [src]="imagesPath + movie.mainImageThumb"

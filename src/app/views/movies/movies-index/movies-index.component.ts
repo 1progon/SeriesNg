@@ -49,6 +49,8 @@ export class MoviesIndexComponent implements OnInit {
   getMoviesFromService(search?: string) {
     let offset = (this.page - 1) * this.service.defaultLimit;
 
+    this.imagesLoaded = [];
+
     this.service.getMovies(
       offset,
       this.service.defaultLimit,
@@ -56,9 +58,7 @@ export class MoviesIndexComponent implements OnInit {
       search)
       .subscribe({
         next: data => {
-          this.imagesLoaded = [];
           this.movies = data;
-
         },
         error: (err: HttpErrorResponse) => {
           if (err.status == 404) {
@@ -76,7 +76,7 @@ export class MoviesIndexComponent implements OnInit {
         this.searchQuery = queries['search'];
 
         document.body.scrollIntoView();
-        this.loading = true;
+
         let page = parseInt(queries['page']);
         this.page = isNaN(page) ? 1 : page;
 
@@ -113,6 +113,7 @@ export class MoviesIndexComponent implements OnInit {
         this.titleService.setTitle(seoTitle + ' Стр. ' + this.page);
         this.htmlS.setCanonical(canonical);
 
+        this.loading = true;
         this.getMoviesFromService(this.searchQuery);
 
       }

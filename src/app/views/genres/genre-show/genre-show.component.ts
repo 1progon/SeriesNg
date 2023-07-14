@@ -37,9 +37,6 @@ export class GenreShowComponent implements OnInit {
           // scroll to top
           document.body.scrollIntoView();
 
-          // loaded images to empty
-          this.imagesLoaded = [];
-
           // get page number
           let number = parseInt(query['page']);
           this.page = isNaN(number) ? 1 : number;
@@ -53,6 +50,9 @@ export class GenreShowComponent implements OnInit {
 
                 // start loading
                 this.loading = true;
+
+                // loaded images to empty
+                this.imagesLoaded = [];
 
                 // get offset
                 let offset = (this.page - 1) * this.limit;
@@ -78,6 +78,7 @@ export class GenreShowComponent implements OnInit {
                         {path: 'genres/', name: 'Жанры дорам'},
                         {path: '', name: 'Жанр дорам ' + this.genre.name},
                       ];
+
                     },
                     error: (err: HttpErrorResponse) => {
                       if (this.page > 1 && !this.genre.movies) {

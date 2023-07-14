@@ -45,11 +45,12 @@ export class ActorShowComponent implements OnInit {
 
         this.route.params.subscribe({
           next: params => {
-            this.imagesLoaded = [];
-            this.loading = true;
             let actorSlug = params['slug'];
 
             if (actorSlug) {
+              this.loading = true;
+              this.imagesLoaded = [];
+
               this.service.getActor(actorSlug,
                 offset,
                 this.limit)

@@ -1,14 +1,14 @@
 <app-container>
-  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+  <app-breadcrumb [crumbs]="crumbs"/>
 
   <!-- Product Section Begin -->
-  <app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="loading"/>
 
-  <section class=" spad">
+  <section class="movies spad">
     <div class="row">
       <!-- <div class="col-lg-8"> -->
       <div>
-        <div class="product__page__content">
+        <div class="movies__content product__page__content">
           <div class="movies__content-head">
             <div class="row">
               <div class="col-lg-8 col-md-8 col-sm-6">
@@ -28,12 +28,13 @@
               </div>
             </div>
           </div>
-          <div class="movies" [class.opacity-25]="loading">
+          <div class="movies__content-list" [class.opacity-25]="loading">
             <div *ngIf="!loading && !collection.movies.length && page > 1">Больше нет дорам в этой коллекции</div>
             <div *ngIf="!loading && !collection.movies.length && page == 1">В этой коллекции пока нет дорам</div>
             <div *ngFor="let movie of collection.movies; index as i">
-              <div class="product__item">
-                <div class="product__item__pic rounded-2 overflow-hidden" [class.bg-secondary]="!imagesLoaded[i]">
+              <div class="movies__content-list-item product__item">
+                <div class="movies__content-list-item-pic product__item__pic rounded-2 overflow-hidden"
+                     [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
                   <a [routerLink]="'/movies/' + movie.slug">
                     <img (load)="imagesLoaded[i] = true"
@@ -55,8 +56,8 @@
                 </div>
                 <div class="movies-index__item-text">
                   <!-- <ul> -->
-                    <!-- <li>Active</li> -->
-                    <!-- <li>Movie</li> -->
+                  <!-- <li>Active</li> -->
+                  <!-- <li>Movie</li> -->
                   <!-- </ul> -->
                   <h3 class="position-relative">
                     <a [routerLink]="'/movies/' + movie.slug">
@@ -69,8 +70,7 @@
           </div>
         </div>
         <app-pagination [page]="page"
-                        [route]="['/collections/', this.collection.slug]">
-        </app-pagination>
+                        [route]="['/collections/', this.collection.slug]"/>
       </div>
 
       <!-- sidebar -->

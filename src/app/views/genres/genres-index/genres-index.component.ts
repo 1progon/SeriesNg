@@ -26,11 +26,13 @@ export class GenresIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.htmlS.setCanonical('genres');
-    // scroll into top
-    document.body.scrollIntoView();
+
 
     // start loading
     this.loading = true;
+
+    // scroll into top
+    document.body.scrollIntoView();
 
     // get genres from service
     this.genresService.getGenres()

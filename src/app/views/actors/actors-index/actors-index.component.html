@@ -1,15 +1,15 @@
 <app-container>
-  <app-breadcrumb [crumbs]="crumbs"></app-breadcrumb>
+  <app-breadcrumb [crumbs]="crumbs"/>
 
   <!-- Product Section Begin -->
-  <app-loader *ngIf="loading"></app-loader>
+  <app-loader *ngIf="loading"/>
 
-  <section class="product-page spad"
+  <section class="movies spad"
            [class.opacity-25]="loading">
     <div class="row">
       <!-- <div class="col-lg-8"> -->
       <div>
-        <div class="product__page__content">
+        <div class="movies__content">
           <div class="movies__content-head">
             <div class="row">
               <div class="col-lg-8 col-md-8 col-sm-6">
@@ -29,9 +29,9 @@
               </div>
             </div>
           </div>
-          <div class="d-flex flex-wrap justify-content-between gap-10">
+          <div class="movies__content-list d-flex flex-wrap justify-content-between gap-10">
             <div *ngFor="let actor of actors;index as i">
-              <div class="product__item">
+              <div class="movies__content-list-item">
                 <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
                      [class.bg-secondary]="!imagesLoaded[i]">
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
@@ -69,7 +69,7 @@
           </div>
         </div>
         <app-pagination [page]="page"
-                        [route]="['/actors']"></app-pagination>
+                        [route]="['/actors']"/>
       </div>
 
       <!-- sidebar -->

@@ -34,13 +34,12 @@ export class ActorsIndexComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: queries => {
-        this.imagesLoaded = [];
         document.body.scrollIntoView();
+
 
         let canonical = 'actors';
 
         let page = parseInt(queries['page']);
-
         this.page = !isNaN(page) ? page : 1;
 
         if (this.page > 1) {
@@ -53,12 +52,17 @@ export class ActorsIndexComponent implements OnInit {
 
         this.htmlS.setCanonical(canonical);
 
+        this.imagesLoaded = [];
+        this.loading = true;
+
         this.service.getActors((this.page - 1) * this.limit, this.limit)
           .subscribe({
             next: data => {
               this.actors = data;
             }
           })
+          .add(() => this.loading = false)
+
 
       }
 

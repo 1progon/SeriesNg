@@ -3,7 +3,7 @@
 
   <app-loader *ngIf="loading"/>
 
-  <section class="spad" [class.opacity-25]="loading">
+  <section class="movies spad" [class.opacity-25]="loading">
     <!-- <div class="col-lg-8"> -->
     <div>
       <div class="movies__content">
@@ -26,15 +26,18 @@
             </div>
           </div>
         </div>
-        <div class="movies">
-          <div class="product__item" *ngFor="let genre of genres; index as i">
+        <div class="movies__content-list">
+          <div class="movies__content-list-item"
+               *ngFor="let genre of genres; index as i">
             <div class="movies-index__item-text">
               <!-- <ul> -->
               <!-- <li>Active</li> -->
               <!-- <li>Movie</li> -->
               <!-- </ul> -->
               <a [routerLink]="'/genres/' + genre.slug">
-                <h3 class="position-relative">{{genre.name}}</h3>
+                <div class="movies__content-list-item-pic">
+                  <h3 class="position-relative">{{genre.name}}</h3>
+                </div>
               </a>
             </div>
           </div>

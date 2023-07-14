@@ -33,16 +33,19 @@ export class CollectionShowComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: query => {
-        this.loading = true;
-        document.body.scrollIntoView();
-        this.imagesLoaded = [];
         let number = parseInt(query['page']);
         this.page = isNaN(number) ? 1 : number;
+
+        document.body.scrollIntoView();
 
         this.route.params.subscribe({
           next: params => {
             let slug = params['slug'];
             let offset = (this.page - 1) * this.limit;
+
+            this.loading = true;
+            this.imagesLoaded = [];
+
             this.service.getCollection(slug, offset)
               .subscribe({
                 next: data => {
