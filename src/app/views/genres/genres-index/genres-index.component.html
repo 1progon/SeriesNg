@@ -33,11 +33,9 @@
               <!-- <li>Active</li> -->
               <!-- <li>Movie</li> -->
               <!-- </ul> -->
-              <h3 class="position-relative">
-                <a [routerLink]="'/genres/' + genre.slug">
-                  {{genre.name}}
-                </a>
-              </h3>
+              <a [routerLink]="'/genres/' + genre.slug">
+                <h3 class="position-relative">{{genre.name}}</h3>
+              </a>
             </div>
           </div>
         </div>
