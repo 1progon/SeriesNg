@@ -17,7 +17,9 @@ export class GenreShowComponent implements OnInit {
   slug?: string;
   page = 1;
   loading = false;
-  genre: Genre = <Genre>{};
+  genre: Genre = <Genre>{
+    name: ''
+  };
   imagesLoaded: boolean[] = [];
   limit = 28;
   crumbs?: Breadcrumb[];

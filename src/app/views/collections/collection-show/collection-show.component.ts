@@ -21,7 +21,9 @@ export class CollectionShowComponent implements OnInit {
               private htmlS: HtmlHeadOptionsService) {
   }
 
-  collection: Collection = <Collection>{};
+  collection: Collection = <Collection>{
+    name: ''
+  };
   loading = false;
   crumbs: Breadcrumb[] = [];
 

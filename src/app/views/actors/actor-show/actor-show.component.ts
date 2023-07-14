@@ -23,7 +23,9 @@ export class ActorShowComponent implements OnInit {
               private htmlS: HtmlHeadOptionsService) {
   }
 
-  actor: Actor = <Actor>{};
+  actor: Actor = <Actor>{
+    name: ''
+  };
   loading = false;
   crumbs: Breadcrumb[] = [];
 
