@@ -33,7 +33,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/kodik.txt"
+              "src/kodik.txt",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.scss"
