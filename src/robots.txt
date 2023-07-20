@@ -3,4 +3,5 @@ User-agent: *
 Disallow: /login
 Disallow: /register
 Disallow: /account/
+Disallow: /api/
 Disallow: /movies?search=*
