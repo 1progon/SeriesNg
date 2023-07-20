@@ -253,7 +253,8 @@
       </div>
       <div class="d-flex flex-row gap-10">
         <ng-container *ngFor="let anthologyMovie of movie.anthology.movies">
-          <a [routerLink]="'/movies/' + anthologyMovie.slug">
+          <a [routerLink]="'/movies/' + anthologyMovie.slug"
+             [class.this]="anthologyMovie.id == movie.id">
             <div class="anthology d-flex flex-column rounded"
                  [class.border]="anthologyMovie.slug == movie.slug">
               <img [src]="imagesPath + anthologyMovie.mainImageThumb"

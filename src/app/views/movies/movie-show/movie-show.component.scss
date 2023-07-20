@@ -1,5 +1,9 @@
 @use "variables" as *;
 
+.this {
+  border-bottom: 3px solid $accent-color;
+}
+
 .movie-detail {
 
   .description {
