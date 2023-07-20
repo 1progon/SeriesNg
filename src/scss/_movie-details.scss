@@ -264,6 +264,11 @@
   overflow-x: auto;
   margin-bottom: 20px;
 
+  & .anthology:hover {
+    transition: .3s;
+    opacity: .7;
+  }
+
   & .actor,
   & .anthology,
   & .collection {
