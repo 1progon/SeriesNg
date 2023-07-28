@@ -26,6 +26,10 @@ export class MoviesService {
   cacheMovieVideo?: CacheMovieVideo;
 
   cacheIndexMovies: { name: string, movies: Movie[] }[] = [];
+  cacheIndexMoviesMaxLength = 10;
+
+  cacheSingleMovies: { name: string, movie: GetMovieShowDto }[] = [];
+  cacheSingleMoviesMaxLength = 10;
 
   activeMovieVideo = new BehaviorSubject<MovieVideo | undefined>(undefined);
   activeSeason?: MovieSeason;
