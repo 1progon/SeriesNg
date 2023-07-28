@@ -89,6 +89,13 @@ export class MoviesService {
   }
 
   getMovie(slug: string): Observable<GetMovieShowDto> {
+    let cacheName = `single-movie-${slug}`;
+    if (this.cacheSingleMovies.length > 0) {
+      let fromCache = this.cacheSingleMovies.find(value => value.name == cacheName);
+      if (fromCache) {
+        return of(fromCache.movie);
+      }
+    }
 
     let headers = new HttpHeaders();
 
@@ -97,6 +104,16 @@ export class MoviesService {
     }
 
     return this.http.get<GetMovieShowDto>(this.api + '/' + slug, {headers})
+      .pipe(map(
+        movie => {
+          if (this.cacheSingleMovies.length >= this.cacheSingleMoviesMaxLength) {
+            this.cacheSingleMovies.shift();
+          }
+          this.cacheSingleMovies.push({name: cacheName, movie});
+
+          return movie;
+        }
+      ))
   }
 
   getMovieVideo(movieSlug: string,
