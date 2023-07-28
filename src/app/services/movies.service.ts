@@ -46,9 +46,9 @@ export class MoviesService {
 
     let cacheName = `movies-offset-${offset}-limit-${limit}-selector-${selector}-search-${search}`;
     if (this.cacheIndexMovies.length > 0) {
-      let cache = this.cacheIndexMovies.find(value => value.name == cacheName);
-      if (cache && selector != MoviesSelector.random) {
-        return of(cache.movies);
+      let fromCache = this.cacheIndexMovies.find(value => value.name == cacheName);
+      if (fromCache && selector != MoviesSelector.random) {
+        return of(fromCache.movies);
       }
 
     }
