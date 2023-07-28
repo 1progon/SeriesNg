@@ -77,11 +77,14 @@ export class MoviesService {
 
 
     return this.http.get<Movie[]>(this.api, {params})
-      .pipe(map(value => {
+      .pipe(map(movies => {
         if (selector != MoviesSelector.random) {
-          this.cacheIndexMovies.push({name: cacheName, movies: value});
+          if (this.cacheIndexMovies.length >= this.cacheIndexMoviesMaxLength) {
+            this.cacheIndexMovies.shift();
+          }
+          this.cacheIndexMovies.push({name: cacheName, movies});
         }
-        return value;
+        return movies;
       }));
   }
 
