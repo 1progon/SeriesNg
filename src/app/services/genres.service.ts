@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Genre} from "../interfaces/movies/Genre";
 import {GenreDto} from "../dto/movies/GenreDto";
+import {GenreShowDto} from "../dto/movies/GenreShowDto";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class GenresService {
       params = params.append('offset', offset);
     }
 
-    return this.http.get<Genre>(this.api + '/' + slug, {params});
+    return this.http.get<GenreShowDto>(this.api + '/' + slug, {params});
   }
 
   getGenres() {

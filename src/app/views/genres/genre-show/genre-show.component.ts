@@ -7,6 +7,7 @@ import {Genre} from "../../../interfaces/movies/Genre";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
 
 @Component({
   selector: 'app-genre-show',
@@ -17,7 +18,7 @@ export class GenreShowComponent implements OnInit {
   slug?: string;
   page = 1;
   loading = false;
-  genre: Genre = <Genre>{
+  genre = <GenreShowDto>{
     name: ''
   };
   imagesLoaded: boolean[] = [];
