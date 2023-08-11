@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Actor} from "../interfaces/actors/Actor";
+import {ActorShowDto} from "../dto/actors/ActorShowDto";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,6 @@ export class ActorsService {
       params = params.append('limit', moviesLimit);
     }
 
-    return this.http.get<Actor>(this.api + '/' + slug, {params});
+    return this.http.get<ActorShowDto>(this.api + '/' + slug, {params});
   }
 }

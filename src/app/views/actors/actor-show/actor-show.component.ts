@@ -7,6 +7,7 @@ import {Actor} from "../../../interfaces/actors/Actor";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {ActorShowDto} from "../../../dto/actors/ActorShowDto";
 
 @Component({
   selector: 'app-actor-show',
@@ -23,7 +24,7 @@ export class ActorShowComponent implements OnInit {
               private htmlS: HtmlHeadOptionsService) {
   }
 
-  actor: Actor = <Actor>{
+  actor = <ActorShowDto>{
     name: ''
   };
   loading = false;
