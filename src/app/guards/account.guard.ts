@@ -7,7 +7,7 @@ import {UserType} from "../enums/users/UserType";
 @Injectable({
   providedIn: 'root'
 })
-export class AccountGuard implements CanActivate {
+export class AccountGuard  {
 
   constructor(private authService: AuthService,
               private router: Router) {
