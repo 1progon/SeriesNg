@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Genre} from "../../../interfaces/movies/Genre";
 import {environment} from "../../../../environments/environment";
 import {GenresService} from "../../../services/genres.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {GenreDto} from "../../../dto/movies/GenreDto";
 
 @Component({
   selector: 'app-genres-index',
@@ -11,7 +11,7 @@ import {HtmlHeadOptionsService} from "../../../services/html-head-options.servic
   styleUrls: ['./genres-index.component.scss']
 })
 export class GenresIndexComponent implements OnInit {
-  genres: Genre[] = [];
+  genres: GenreDto[] = [];
   imagesLoaded: boolean[] = [];
   imagesPath = environment.imagesPath;
   loading: boolean = false;

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Genre} from "../interfaces/movies/Genre";
+import {GenreDto} from "../dto/movies/GenreDto";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class GenresService {
   }
 
   getGenres() {
-    return this.http.get<Genre[]>(this.api);
+    return this.http.get<GenreDto[]>(this.api);
 
   }
 }
