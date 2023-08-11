@@ -16,7 +16,6 @@ import {MovieVideoComponent} from "./views/movies/movie-video/movie-video.compon
 import {LoginComponent} from "./views/auth/login/login.component";
 import {RegisterComponent} from "./views/auth/register/register.component";
 import {DashboardComponent} from "./views/account/dashboard/dashboard.component";
-import {AccountGuard} from "./guards/account.guard";
 import {EditAccountComponent} from "./views/account/edit-account/edit-account.component";
 import {
   AccountFavoritesMoviesComponent
@@ -32,12 +31,13 @@ import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentifica
 import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/error-unauthorized.component";
 import {AuthService} from "./services/auth.service";
 import {GenresIndexComponent} from "./views/genres/genres-index/genres-index.component";
+import {accountGuard} from "./guards/account.guard";
 
 const routes: Routes = [
   {
     path: 'account',
     title: 'Аккаунт пользователя',
-    canActivate: [AccountGuard],
+    canActivate: [accountGuard],
     component: AccountLayoutComponent,
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
