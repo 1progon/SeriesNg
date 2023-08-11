@@ -7,6 +7,7 @@ import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {MovieDto} from "../../../dto/movies/MovieDto";
 
 @Component({
   selector: 'app-movies-index',
@@ -23,7 +24,7 @@ export class MoviesIndexComponent implements OnInit {
               private htmlS: HtmlHeadOptionsService) {
   }
 
-  movies: Movie[] = [];
+  movies: MovieDto[] = [];
   page = 1;
 
   crumbs?: Breadcrumb[] = [

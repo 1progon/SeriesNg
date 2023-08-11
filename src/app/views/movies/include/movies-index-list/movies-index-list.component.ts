@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Movie} from "../../../../interfaces/movies/Movie";
 import {environment} from "../../../../../environments/environment";
+import {MovieDto} from "../../../../dto/movies/MovieDto";
 
 @Component({
   selector: 'app-movies-index-list',
@@ -8,7 +8,7 @@ import {environment} from "../../../../../environments/environment";
   styleUrls: ['./movies-index-list.component.scss']
 })
 export class MoviesIndexListComponent {
-  @Input() movies: Movie[] = [];
+  @Input() movies: MovieDto[] = [];
   @Input() imagesLoaded: boolean[] = [];
   @Input() loading: boolean = false;
 

@@ -12,6 +12,7 @@ import {MovieSeason} from "../interfaces/movies/MovieSeason";
 import {CacheMovieVideo} from "../interfaces/caches/CacheMovieVideo";
 import {AuthService} from "./auth.service";
 import {MovieLikeDislikeType} from "../enums/movies/MovieLikeDislikeType";
+import {MovieDto} from "../dto/movies/MovieDto";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class MoviesService {
 
   cacheMovieVideo?: CacheMovieVideo;
 
-  cacheIndexMovies: { name: string, movies: Movie[] }[] = [];
+  cacheIndexMovies: { name: string, movies: MovieDto[] }[] = [];
   cacheIndexMoviesMaxLength = 10;
 
   cacheSingleMovies: { name: string, movie: GetMovieShowDto }[] = [];
@@ -76,7 +77,7 @@ export class MoviesService {
     }
 
 
-    return this.http.get<Movie[]>(this.api, {params})
+    return this.http.get<MovieDto[]>(this.api, {params})
       .pipe(map(movies => {
         if (selector != MoviesSelector.random) {
           if (this.cacheIndexMovies.length >= this.cacheIndexMoviesMaxLength) {
