@@ -37,7 +37,7 @@
                   <app-loader *ngIf="!imagesLoaded[i]"></app-loader>
                   <a [routerLink]="'/actors/' + actor.slug">
                     <img (load)="imagesLoaded[i] = true"
-                         [alt]="'картинка изображение к подборке фильмов ' + actor.name"
+                         [alt]="'фотография актёра дорамы ' + actor.name"
                          [attr.loading]="i > 11 ? 'lazy' : null"
                          [src]="imagesPath + actor.mainThumb">
                   </a>
