@@ -98,82 +98,87 @@ export class MovieShowComponent implements OnInit {
       next: params => {
         this.loading = true;
         this.imageLoaded = false;
-        this.moviesService.getMovie(params['movieSlug']).subscribe({
-          next: data => {
-            document.body.scrollIntoView();
-            this.movie = data.movie;
-            this.movie.anthology = data.anthology;
+        let slug = params['movieSlug'];
 
-            if (this.movie && this.movie.anthology.movies?.length) {
-              this.movie.anthology.movies = this.movie.anthology.movies
-                .sort(this.compareMoviesSort)
-            }
+        this.moviesService.getMovie(slug)
+          .subscribe({
+            next: data => {
+              // scroll to top
+              document.body.scrollIntoView();
 
-            this.crumbs = [
-              {path: 'movies', name: 'Дорамы, сериалы, кино'},
-              {path: '', name: 'Дорама ' + this.movie.name},
-            ];
+              this.movie = data.movie;
+              this.movie.anthology = data.anthology;
 
-            // add meta
-            this.titleService.setTitle('Дорама ' + this.movie.name);
-            this.metaService.updateTag({
-              name: 'description',
-              content: 'Дорама ' + this.movie.name + ' информация и смотреть онлайн бесплатно'
-            });
+              if (this.movie && this.movie.anthology.movies?.length) {
+                this.movie.anthology.movies = this.movie.anthology.movies
+                  .sort(this.compareMoviesSort)
+              }
 
-            let movieNameLower = this.movie.name.toLowerCase();
-            this.metaService.updateTag({
-              name: 'keywords',
-              content: 'дорама ' + movieNameLower + ', смотреть дораму ' + movieNameLower
-            });
+              this.crumbs = [
+                {path: 'movies', name: 'Дорамы, сериалы, кино'},
+                {path: '', name: 'Дорама ' + this.movie.name},
+              ];
 
-            this.htmlService.setCanonical('movies/' + this.movie.slug);
-            // end add meta
+              // add meta
+              this.titleService.setTitle('Дорама ' + this.movie.name);
+              this.metaService.updateTag({
+                name: 'description',
+                content: 'Дорама ' + this.movie.name + ' информация и смотреть онлайн бесплатно'
+              });
 
-            // switch (this.movie.type) {
-            //   case MovieType.ManySeriesMovie:
-            //     this.linkToWatch = `/movies/${this.movie.slug}/episode/1`;
-            //     break;
-            //   case MovieType.SeriesWithSeasons:
-            //     this.linkToWatch = `/movies/${this.movie.slug}/season/1/episode/1`;
-            //     break;
-            //   case MovieType.SingleMovie:
-            //     this.linkToWatch = `#player-single`;
-            //     this.episodeLink = this.san.bypassSecurityTrustResourceUrl(this.movie.kodikLink ?? '');
-            //     break;
-            // }
+              let movieNameLower = this.movie.name.toLowerCase();
+              this.metaService.updateTag({
+                name: 'keywords',
+                content: 'дорама ' + movieNameLower + ', смотреть дораму ' + movieNameLower
+              });
 
-            // generate stars
-            this.starsColored = Array<number>(Math.floor(this.movie.rating ?? 0))
-              .fill(0);
-            this.nonColoredStars = Array<number>(5 - Math.floor(this.movie.rating ?? 0))
-              .fill(0);
-            // end generate stars
+              this.htmlService.setCanonical('movies/' + this.movie.slug);
+              // end add meta
+
+              // switch (this.movie.type) {
+              //   case MovieType.ManySeriesMovie:
+              //     this.linkToWatch = `/movies/${this.movie.slug}/episode/1`;
+              //     break;
+              //   case MovieType.SeriesWithSeasons:
+              //     this.linkToWatch = `/movies/${this.movie.slug}/season/1/episode/1`;
+              //     break;
+              //   case MovieType.SingleMovie:
+              //     this.linkToWatch = `#player-single`;
+              //     this.episodeLink = this.san.bypassSecurityTrustResourceUrl(this.movie.kodikLink ?? '');
+              //     break;
+              // }
+
+              // generate stars
+              this.starsColored = Array<number>(Math.floor(this.movie.rating ?? 0))
+                .fill(0);
+              this.nonColoredStars = Array<number>(5 - Math.floor(this.movie.rating ?? 0))
+                .fill(0);
+              // end generate stars
 
 
-            if (this.authService.user) {
+              if (this.authService.user) {
 
-              // set user favorite heart
-              if (data.movie.usersFavorites.length) {
-                this.isUserFavoriteMovie = this.movie
-                  .usersFavorites?.[0]?.movieId == data.movie.id;
+                // set user favorite heart
+                if (data.movie.usersFavorites.length) {
+                  this.isUserFavoriteMovie = this.movie
+                    .usersFavorites?.[0]?.movieId == data.movie.id;
+                }
+
+
+                // set user like dislike
+                if (data.movie.usersLikes.length && data.movie.usersLikes[0].movieId == data.movie.id) {
+                  this.movieLikeType = data.movie.usersLikes[0].type;
+                }
               }
 
 
-              // set user like dislike
-              if (data.movie.usersLikes.length && data.movie.usersLikes[0].movieId == data.movie.id) {
-                this.movieLikeType = data.movie.usersLikes[0].type;
+            },
+            error: (err: HttpErrorResponse) => {
+              if (err.status == 404) {
+                this.router.navigateByUrl('/404').finally();
               }
             }
-
-
-          },
-          error: (err: HttpErrorResponse) => {
-            if (err.status == 404) {
-              this.router.navigateByUrl('/404').finally();
-            }
-          }
-        }).add(() => this.loading = false)
+          }).add(() => this.loading = false)
       }
     })
   }
