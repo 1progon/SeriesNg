@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Movie} from "../../../interfaces/movies/Movie";
 import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -46,13 +45,14 @@ export class MoviesIndexComponent implements OnInit {
 
   getMoviesFromService(search?: string) {
     let offset = (this.page - 1) * this.service.defaultLimit;
+    let selector = (this.selectorNumber > 0) ? this.selectorNumber : undefined;
 
     this.imagesLoaded = [];
 
     this.service.getMovies(
       offset,
       this.service.defaultLimit,
-      this.selectorNumber,
+      selector,
       search)
       .subscribe({
         next: data => {
