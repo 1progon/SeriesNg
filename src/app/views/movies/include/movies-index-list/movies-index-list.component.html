@@ -5,6 +5,7 @@
            [style.min-height.px]="!imagesLoaded[i] ? 270 : null">
         <app-loader *ngIf="!imagesLoaded[i]"/>
         <a [routerLink]="'/movies/' + movie.slug"
+           [state]="{moviePart: movie}"
            class="rounded-2 overflow-hidden">
           <img [src]="imagesPath + movie.mainImageThumb"
                [attr.loading]="i > 11 ? 'lazy' : null"

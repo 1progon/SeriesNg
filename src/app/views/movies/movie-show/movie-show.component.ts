@@ -30,6 +30,10 @@ export class MovieShowComponent implements OnInit {
               private toastService: ToastsService,
               private htmlService: HtmlHeadOptionsService) {
 
+    let partMovie: Movie = this.router.getCurrentNavigation()?.extras?.state?.['moviePart'];
+    if (partMovie) {
+      this.movie = partMovie;
+    }
 
   }
 
