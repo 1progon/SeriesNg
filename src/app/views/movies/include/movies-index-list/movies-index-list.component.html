@@ -7,11 +7,13 @@
         <a [routerLink]="'/movies/' + movie.slug"
            [state]="{moviePart: movie}"
            class="rounded-2 overflow-hidden">
-          <img [src]="imagesPath + movie.mainImageThumb"
+          <img (load)="imagesLoaded[i] = true"
+               [alt]="'картинка изображение к дораме ' + movie.name"
                [attr.loading]="i > 11 ? 'lazy' : null"
-               (load)="imagesLoaded[i] = true"
+               [src]="imagesPath + movie.mainImageThumb"
                class="bg-secondary"
-               [alt]="'картинка изображение к дораме ' + movie.name">
+               height="405"
+               width="270">
         </a>
 
         <div class="ep">
