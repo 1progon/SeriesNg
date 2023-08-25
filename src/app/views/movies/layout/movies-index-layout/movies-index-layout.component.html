@@ -12,9 +12,10 @@
   </form>
 
   <div class="d-flex flex-wrap gap-5">
-    <a class="btn"
-       [class.active]="routePath == ''"
-       routerLink="/movies">
+    <a [routerLinkActiveOptions]="{exact: true}"
+       class="btn"
+       routerLink="/movies"
+       routerLinkActive="active">
       <svg xmlns="http://www.w3.org/2000/svg"
            width="20"
            height="20"
