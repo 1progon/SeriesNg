@@ -96,6 +96,9 @@ export class ActorsIndexComponent implements OnInit {
           .subscribe({
             next: data => {
               this.actors = data;
+            },
+            error: () => {
+              this.actors = [];
             }
           })
           .add(() => this.loading = false)

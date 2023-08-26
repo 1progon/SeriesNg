@@ -45,6 +45,11 @@
             </div>
           </div>
           <div class="movies__content-list d-flex flex-wrap justify-content-between gap-10">
+            <h2 *ngIf="!actors.length">
+              Здесь пока нет дорам. Приносим свои извинения. Попробуйте другой раздел
+            </h2>
+
+
             <div *ngFor="let actor of actors;index as i">
               <div class="movies__content-list-item">
                 <div class="movies__content-list-item-pic rounded-2 overflow-hidden"
