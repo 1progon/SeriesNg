@@ -18,7 +18,7 @@ export class ActorsService {
   offset = 0;
   limit = 28;
 
-  getActors(offset = 0, limit = 28) {
+  getActors(offset = 0, limit = 28, startsWith?: string) {
 
     let params = new HttpParams();
 
@@ -28,6 +28,10 @@ export class ActorsService {
 
     if (limit != 28) {
       params = params.append('limit', limit);
+    }
+
+    if (startsWith) {
+      params = params.append('startsWith', startsWith);
     }
 
     return this.http.get<Actor[]>(this.api, {params});
