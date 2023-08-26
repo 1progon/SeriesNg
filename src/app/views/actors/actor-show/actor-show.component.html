@@ -8,6 +8,18 @@
     <div class="row">
       <!-- <div class="col-lg-8"> -->
       <div>
+
+        <!-- actor info -->
+        <!-- actor photo -->
+        <h2>Актёр дорам {{actor.name}}</h2>
+        <img [alt]="'фотография актёра дорам ' + actor.name"
+             [src]="imagesPath + actor.mainThumb"
+             height="225"
+             width="150">
+
+        <!-- end actor info -->
+
+
         <div class="movies__content">
           <app-movies-index-list-head
             [title]="'Фильмы и сериалы с актёром - ' + actor.name"/>
