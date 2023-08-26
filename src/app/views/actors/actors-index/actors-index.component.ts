@@ -30,6 +30,41 @@ export class ActorsIndexComponent implements OnInit {
   page = 1;
   limit = 28;
 
+  alphabet = [
+    'а',
+    'б',
+    'в',
+    'г',
+    'д',
+    'е',
+    'ё',
+    'ж',
+    'з',
+    'и',
+    'й',
+    'к',
+    'л',
+    'м',
+    'н',
+    'о',
+    'п',
+    'р',
+    'с',
+    'т',
+    'у',
+    'ф',
+    'х',
+    'ц',
+    'ч',
+    'ш',
+    'щ',
+    'ы',
+    'э',
+    'ю',
+    'я',
+  ];
+  activeLetter?: string;
+
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({
