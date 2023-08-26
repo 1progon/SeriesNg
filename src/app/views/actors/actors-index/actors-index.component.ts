@@ -55,7 +55,9 @@ export class ActorsIndexComponent implements OnInit {
         this.imagesLoaded = [];
         this.loading = true;
 
-        this.service.getActors((this.page - 1) * this.limit, this.limit)
+        let startsWith = queries['startsWith'] ?? undefined;
+
+        this.service.getActors((this.page - 1) * this.limit, this.limit, startsWith)
           .subscribe({
             next: data => {
               this.actors = data;
