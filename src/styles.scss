@@ -54,8 +54,8 @@ body {
   a {
     cursor: pointer;
     text-decoration: none;
-    color: unset;
-    display: flex;
+    color: $accent-color;
+    display: inline-flex;
 
     &:hover,
     &:focus {
