@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
-import {Meta, Title} from "@angular/platform-browser";
+import {Meta, SafeResourceUrl, Title} from "@angular/platform-browser";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
@@ -67,6 +67,7 @@ export class MovieShowComponent implements OnInit {
   LikeTypesEnum = MovieLikeDislikeType;
 
   movieLikeType?: MovieLikeDislikeType;
+  imageModal: { show: boolean; imageSrc?: SafeResourceUrl } = {show: false};
 
 
   compareMoviesSort(a: Movie, b: Movie): number {
