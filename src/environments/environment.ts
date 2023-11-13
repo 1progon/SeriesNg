@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   domain,
   apiUrl: domain + '/api/',
-  imagesPath: 'http://localhost:8000/images/',
+  imagesPath: 'http://localhost:8080/images/',
 };
 
 /*
