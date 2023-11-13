@@ -108,12 +108,14 @@ export class MoviesIndexComponent implements OnInit {
           canonical += '?page=' + this.page;
         }
 
-        this.titleService.setTitle(seoTitle + ' Стр. ' + this.page);
-        this.htmlS.setCanonical(canonical);
+
+        setTimeout(() => {
+          this.titleService.setTitle(seoTitle + ' Стр. ' + this.page);
+          this.htmlS.setCanonical(canonical);
+        }, 0)
 
         this.loading = true;
         this.getMoviesFromService(this.searchQuery);
-
       }
     })
 
