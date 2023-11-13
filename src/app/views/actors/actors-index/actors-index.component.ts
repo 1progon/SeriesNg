@@ -5,6 +5,7 @@ import {environment} from "../../../../environments/environment";
 import {ActivatedRoute} from "@angular/router";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-actors-index',
@@ -16,7 +17,8 @@ export class ActorsIndexComponent implements OnInit {
 
   constructor(private service: ActorsService,
               private route: ActivatedRoute,
-              private htmlS: HtmlHeadOptionsService) {
+              private htmlS: HtmlHeadOptionsService,
+              private titleS: Title) {
   }
 
   actors: Actor[] = [];
