@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../../environments/environment";
 import {GenresService} from "../../../services/genres.service";
-import {Genre} from "../../../interfaces/movies/Genre";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
@@ -65,8 +63,15 @@ export class GenreShowComponent implements OnInit {
                     next: data => {
                       this.genre = data;
 
+                      let seoTitle = 'Дорамы в жанре ' + data.name;
+
+                      if (this.page > 1) {
+                        seoTitle += '. Стр. ' + this.page;
+                      }
+
                       // set meta
-                      this.titleS.setTitle('Дорамы в жанре ' + data.name);
+                      this.titleS.setTitle(seoTitle);
+
 
                       // set canonical in head
                       let canonical = 'genres/' + this.slug;
