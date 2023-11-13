@@ -157,7 +157,7 @@ const routes: Routes = [
       {path: 'collections/:slug', component: CollectionShowComponent},
 
       // actors
-      {path: 'actors', title: 'Все актёры', component: ActorsIndexComponent},
+      {path: 'actors', title: 'Все актёры дорам', component: ActorsIndexComponent},
       {path: 'actors/:slug', component: ActorShowComponent},
 
       // auth
