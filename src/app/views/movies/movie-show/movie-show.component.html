@@ -1,3 +1,7 @@
+<app-image-modal (onCloseModal)="imageModal.show = false; imageModal.imageSrc= undefined"
+                 *ngIf="imageModal.show && imageModal.imageSrc"
+                 [image]="imageModal.imageSrc"/>
+
 <app-container>
   <app-breadcrumb [crumbs]="crumbs"/>
 
@@ -23,8 +27,10 @@
         </div>
 
         <app-loader *ngIf="!imageLoaded"></app-loader>
-        <a [href]="imagesPath +movie.mainImage" target="_blank"
-           class="rounded-2 overflow-hidden position-relative">
+        <a [href]="imagesPath + movie.mainImage"
+           (click)="$event.preventDefault();imageModal.show=true;imageModal.imageSrc=imagesPath + movie.mainImage"
+           class="rounded-2 overflow-hidden position-relative"
+           target="_blank">
           <div *ngIf="movie.editorChoice" class="editor-choice" title="Выбор редактора">
             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                  height="24" viewBox="0 0 24 24"
@@ -204,9 +210,12 @@
       <div class="image-block-wrapper">
         <div class="image-block"
              *ngFor="let image of movie.imagesString?.split('|');index as i">
-          <a [href]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
-             target="_blank"
-             class="rounded-2">
+          <a (click)="$event.preventDefault();imageModal.show = true;
+             imageModal.imageSrc=image.startsWith('https://doramalive.ru') ?
+             image : imagesPath + image"
+             [href]="image.startsWith('https://doramalive.ru') ? image : imagesPath + image"
+             class="rounded-2"
+             target="_blank">
             <app-loader *ngIf="!loadedImages[i]"></app-loader>
 
             <!-- todo remove src startsWith when all images will be at local server -->
