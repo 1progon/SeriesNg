@@ -105,9 +105,8 @@ export class ActorsIndexComponent implements OnInit {
           seoTitle += '. Стр. ' + this.page;
         }
 
-
         canonical += '?' + canonicalQueries.join('&');
-        console.log(canonical)
+
         setTimeout(() => {
           this.htmlS.setCanonical(canonical);
           this.titleS.setTitle(seoTitle);
