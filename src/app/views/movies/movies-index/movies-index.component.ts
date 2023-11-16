@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
@@ -59,8 +59,8 @@ export class MoviesIndexComponent implements OnInit {
           this.movies = data;
         },
         error: (err: HttpErrorResponse) => {
-          if (err.status == 404) {
-            this.router.navigateByUrl('/404').finally();
+          if (err.status == HttpStatusCode.NotFound) {
+            this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
           }
         }
       }).add(() => this.loading = false)

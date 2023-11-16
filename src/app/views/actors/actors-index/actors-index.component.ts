@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActorsService} from "../../../services/actors.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {Title} from "@angular/platform-browser";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 
 @Component({
   selector: 'app-actors-index',
@@ -17,6 +18,7 @@ export class ActorsIndexComponent implements OnInit {
 
   constructor(private service: ActorsService,
               private route: ActivatedRoute,
+              private router: Router,
               private htmlS: HtmlHeadOptionsService,
               private titleS: Title) {
   }
@@ -112,8 +114,10 @@ export class ActorsIndexComponent implements OnInit {
             next: data => {
               this.actors = data;
             },
-            error: () => {
-              this.actors = [];
+            error: (err: HttpErrorResponse) => {
+              if (err.status == HttpStatusCode.NotFound) {
+                this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
+              }
             }
           })
           .add(() => this.loading = false)

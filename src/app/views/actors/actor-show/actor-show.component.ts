@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ActorsService} from "../../../services/actors.service";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {Title} from "@angular/platform-browser";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {ActorShowDto} from "../../../dto/actors/ActorShowDto";
 
@@ -77,8 +77,8 @@ export class ActorShowComponent implements OnInit {
                     ]
                   },
                   error: (err: HttpErrorResponse) => {
-                    if (this.page > 1 && !this.actor.movies) {
-                      this.router.navigate(['/', 'actors', actorSlug]).finally();
+                    if (err.status == HttpStatusCode.NotFound) {
+                      this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                     }
 
                     this.actor.movies = [];

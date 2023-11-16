@@ -3,7 +3,7 @@ import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GenresService} from "../../../services/genres.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
 
@@ -88,8 +88,8 @@ export class GenreShowComponent implements OnInit {
 
                     },
                     error: (err: HttpErrorResponse) => {
-                      if (this.page > 1 && !this.genre.movies) {
-                        this.router.navigate(['/', 'genres', this.slug]).finally();
+                      if (err.status == HttpStatusCode.NotFound) {
+                        this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                       }
                       this.genre.movies = [];
                     }
