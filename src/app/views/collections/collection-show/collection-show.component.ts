@@ -74,8 +74,6 @@ export class CollectionShowComponent implements OnInit {
                   if (err.status == HttpStatusCode.NotFound) {
                     this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                   }
-
-                  this.collection.movies = [];
                 }
               }).add(() => this.loading = false)
 
