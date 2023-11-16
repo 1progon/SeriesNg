@@ -32,22 +32,23 @@ import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/erro
 import {AuthService} from "./services/auth.service";
 import {GenresIndexComponent} from "./views/genres/genres-index/genres-index.component";
 import {accountGuard} from "./guards/account.guard";
+import {RNames} from "./enums/RoutesNames";
 
 const routes: Routes = [
   {
-    path: 'account',
+    path: RNames.account,
     title: 'Аккаунт пользователя',
     canActivate: [accountGuard],
     component: AccountLayoutComponent,
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', title: 'Аккаунт: Дашборд', component: DashboardComponent},
+      {path: RNames.dash, title: 'Аккаунт: Дашборд', component: DashboardComponent},
       {
         path: '',
         component: AccountMovieLibrariesComponent,
         children: [
           {
-            path: 'edit', component: EditAccountComponent,
+            path: RNames.edit, component: EditAccountComponent,
             title: 'Аккаунт: Редактировать профиль',
           },
           {
@@ -77,11 +78,11 @@ const routes: Routes = [
     children: [
       // homepage
       // {path: '', component: HomepageComponent},
-      {path: '', redirectTo: '/movies', pathMatch: 'full'},
+      {path: '', redirectTo: '/' + RNames.movies, pathMatch: 'full'},
 
       // movies fast selectors
       {
-        path: 'movies',
+        path: RNames.movies,
         component: MoviesIndexLayoutComponent,
         children: [
           {path: '', title: 'Все дорамы', component: MoviesIndexComponent},
@@ -97,14 +98,14 @@ const routes: Routes = [
 
       // movies
       {
-        path: 'movies',
+        path: RNames.movies,
         title: 'Все дорамы',
         children: [
           {
             path: ':movieSlug', children: [
               {path: '', component: MovieShowComponent},
               {
-                path: 'videos',
+                path: RNames.videos,
                 children: [
                   {path: '', component: MovieVideoComponent},
                   {
@@ -145,26 +146,37 @@ const routes: Routes = [
 
       // genres
       {
-        path: 'genres', children: [
+        path: RNames.genres, children: [
           {path: '', component: GenresIndexComponent, title: 'Жанры дорам'},
-          {path: ':slug', component: GenreShowComponent},
+          {path: RNames.slugParam, component: GenreShowComponent},
         ]
       },
 
 
       // collections
-      {path: 'collections', redirectTo: '/movies/collections', pathMatch: 'full'},
-      {path: 'collections/:slug', component: CollectionShowComponent},
+      {
+        path: RNames.collections, children: [
+          {path: '', redirectTo: '/' + RNames.movies + '/' + RNames.collections, pathMatch: 'full'},
+          {path: RNames.slugParam, component: CollectionShowComponent},
+
+        ]
+      },
 
       // actors
-      {path: 'actors', title: 'Все актёры дорам', component: ActorsIndexComponent},
-      {path: 'actors/:slug', component: ActorShowComponent},
+      {
+        path: RNames.actors, children: [
+          {path: '', title: 'Все актёры дорам', component: ActorsIndexComponent},
+          {path: RNames.slugParam, component: ActorShowComponent},
+
+        ]
+      },
 
       // auth
-      {path: 'login', title: 'Вход в аккаунт', component: LoginComponent},
-      {path: 'register', title: 'Регистрация пользователя', component: RegisterComponent},
+      {path: RNames.login, title: 'Вход в аккаунт', component: LoginComponent},
+      {path: RNames.register, title: 'Регистрация пользователя', component: RegisterComponent},
       {
-        path: 'forgot-password', title: 'Восстановление пароля',
+        path: RNames.forgotPassword,
+        title: 'Восстановление пароля',
         component: ForgotPasswordComponent
       },
 
@@ -172,8 +184,8 @@ const routes: Routes = [
       // errors
       {path: AuthService.UNAUTHENTICATED_ROUTE, title: 'Не войден в аккаунт', component: ErrorUnauthenticatedComponent},
       {path: AuthService.UNAUTHORIZED_ROUTE, title: 'Нет прав доступа', component: ErrorUnauthorizedComponent},
-      {path: '404', title: 'Страница 404', component: Error404Component},
-      {path: '**', redirectTo: '/404'},
+      {path: RNames.error404, title: 'Страница 404', component: Error404Component},
+      {path: '**', redirectTo: '/' + RNames.error404},
 
     ]
   },
