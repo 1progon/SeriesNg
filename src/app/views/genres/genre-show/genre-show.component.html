@@ -12,7 +12,12 @@
           <app-movies-index-list-head
             [title]="'Дорамы и сериалы из жанра - ' + genre.name"/>
 
-          <app-movies-index-list [movies]="genre.movies"
+          <div *ngIf="genre.movies.length <= 0">
+            <h3>К сожалению, дорам не найдено!</h3>
+          </div>
+
+          <app-movies-index-list *ngIf="genre.movies.length > 0"
+                                 [movies]="genre.movies"
                                  [loading]="loading"
                                  [imagesLoaded]="imagesLoaded"/>
         </div>
