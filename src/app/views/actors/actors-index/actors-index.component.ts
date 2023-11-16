@@ -7,6 +7,7 @@ import {Actor} from "../../../interfaces/actors/Actor";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {RNames} from "../../../enums/RoutesNames";
 
 @Component({
   selector: 'app-actors-index',
@@ -85,18 +86,21 @@ export class ActorsIndexComponent implements OnInit {
         this.imagesLoaded = [];
         this.loading = true;
 
+        this.crumbs = [
+          {path: '/' + RNames.actors, name: 'Актёры дорам'}
+        ];
+
         let startsWith = queries['startsWith'] ?? undefined;
         let canonicalQueries: string[] = [];
+
         if (startsWith) {
           seoTitle += '. На букву "' + startsWith + '"';
           canonicalQueries.push('startsWith=' + startsWith);
+          this.crumbs.push({name: 'На букву "' + startsWith + '"'});
         }
 
         if (this.page > 1) {
-          this.crumbs = [
-            {path: '/actors', name: 'Актёры дорам'},
-            {name: 'Стр.' + this.page},
-          ];
+          this.crumbs.push({name: 'Стр.' + this.page});
           canonicalQueries.push('page=' + this.page)
           seoTitle += '. Стр. ' + this.page;
         }
