@@ -225,6 +225,16 @@
       background-color: #ffcc33;
     }
   }
+
+  &.btn-success {
+    border-color: unset;
+    background-color: #32b200;
+    color: variables.$bg-color-darker;
+
+    &:hover {
+      background-color: #299100;
+    }
+  }
 }
 
 .primary-btn {
