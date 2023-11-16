@@ -3,7 +3,6 @@ import {CollectionsService} from "../../../services/collections.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
-import {environment} from "../../../../environments/environment";
 import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
@@ -52,7 +51,12 @@ export class CollectionShowComponent implements OnInit {
               .subscribe({
                 next: data => {
                   this.collection = data;
-                  this.titleS.setTitle('Подборка дорам ' + data.name);
+                  let title = 'Подборка дорам ' + data.name;
+                  if (this.page > 1) {
+                    title += '. Стр. ' + this.page;
+                  }
+
+                  this.titleS.setTitle(title);
 
                   // set canonical in head
                   let canonical = 'collections/' + slug;
