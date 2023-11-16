@@ -81,8 +81,6 @@ export class ActorShowComponent implements OnInit {
                       this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                     }
 
-                    this.actor.movies = [];
-
                   }
                 }).add(() => this.loading = false)
             }

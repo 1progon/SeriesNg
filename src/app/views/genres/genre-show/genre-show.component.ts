@@ -91,7 +91,6 @@ export class GenreShowComponent implements OnInit {
                       if (err.status == HttpStatusCode.NotFound) {
                         this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                       }
-                      this.genre.movies = [];
                     }
                   })
                   .add(() => this.loading = false)
