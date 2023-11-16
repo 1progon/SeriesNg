@@ -6,6 +6,7 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
+import {RNames} from "../../../enums/RoutesNames";
 
 @Component({
   selector: 'app-genre-show',
@@ -45,7 +46,7 @@ export class GenreShowComponent implements OnInit {
             .subscribe({
               next: params => {
 
-                this.slug = params['slug'];
+                this.slug = params[RNames.slug];
                 if (!this.slug || this.loading) return;
 
                 // start loading

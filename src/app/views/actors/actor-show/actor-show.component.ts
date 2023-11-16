@@ -7,6 +7,7 @@ import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {ActorShowDto} from "../../../dto/actors/ActorShowDto";
+import {RNames} from "../../../enums/RoutesNames";
 
 @Component({
   selector: 'app-actor-show',
@@ -47,7 +48,7 @@ export class ActorShowComponent implements OnInit {
 
         this.route.params.subscribe({
           next: params => {
-            let actorSlug = params['slug'];
+            let actorSlug = params[RNames.slug];
 
             if (actorSlug) {
               this.loading = true;

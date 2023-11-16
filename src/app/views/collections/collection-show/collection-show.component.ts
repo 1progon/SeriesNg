@@ -6,6 +6,7 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {RNames} from "../../../enums/RoutesNames";
 
 @Component({
   selector: 'app-collection-show',
@@ -41,7 +42,7 @@ export class CollectionShowComponent implements OnInit {
 
         this.route.params.subscribe({
           next: params => {
-            let slug = params['slug'];
+            let slug = params[RNames.slug];
             let offset = (this.page - 1) * this.limit;
 
             this.loading = true;
