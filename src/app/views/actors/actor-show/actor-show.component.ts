@@ -62,7 +62,7 @@ export class ActorShowComponent implements OnInit {
                     this.titleS.setTitle('Дорамы с актёром ' + data.name);
 
                     // set canonical in head
-                    let canonical = 'actors/' + actorSlug;
+                    let canonical = RNames.actors + '/' + actorSlug;
                     if (this.page > 1) {
                       canonical += '?page=' + this.page;
                     }
