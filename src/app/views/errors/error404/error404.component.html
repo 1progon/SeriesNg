@@ -1,6 +1,10 @@
 <app-container>
-  <p class="text-white">Извините, странице не найдена, или ещё не создана.
-    Ошибка 404.</p>
+  <p class="text-white">Ошибка 404. Извините, страница не найдена, или ещё пока не создана.</p>
+  <p class="text-white">А может просто такие дорамы, актёры или жанры не найдены.</p>
+  <p class="text-white">Попробуйте пойти по другому маршруту</p>
 
-  <a class="btn btn-warning" routerLink="/">Перейти на главную</a>
+  <div class="d-flex flex-wrap gap-10">
+    <a class="btn btn-success" (click)="goBack()">Вернуться назад</a>
+    <a class="btn btn-warning" routerLink="/">Перейти на главную</a>
+  </div>
 </app-container>
