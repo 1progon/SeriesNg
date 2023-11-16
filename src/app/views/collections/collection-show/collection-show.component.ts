@@ -6,6 +6,7 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 
 @Component({
   selector: 'app-collection-show',
@@ -65,9 +66,9 @@ export class CollectionShowComponent implements OnInit {
                     {path: '', name: 'Подборка дорам ' + this.collection.name},
                   ];
                 },
-                error: () => {
-                  if (this.page > 1 && !this.collection.movies) {
-                    this.router.navigate(['/', 'collections', slug]).finally();
+                error: (err: HttpErrorResponse) => {
+                  if (err.status == HttpStatusCode.NotFound) {
+                    this.router.navigateByUrl('/404', {replaceUrl: true}).finally();
                   }
 
                   this.collection.movies = [];
