@@ -3,7 +3,6 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ActorsService} from "../../../services/actors.service";
-import {Actor} from "../../../interfaces/actors/Actor";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
