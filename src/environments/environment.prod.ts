@@ -1,4 +1,4 @@
-let domain = 'https://dorama.media';
+let domain = 'https://kinoteka.top';
 
 export const environment = {
   production: true,
