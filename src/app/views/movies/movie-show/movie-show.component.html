@@ -278,13 +278,13 @@
     <!-- end anthology -->
 
     <!-- collections -->
-    <div class="collections" *ngIf="movie.collections?.length">
+    <div class="collections" *ngIf="movie && movie.collections && movie.collections.length > 0">
       <div class="section-title">
         <h5>Фильм (сериал) в подборках</h5>
       </div>
       <div class="d-flex flex-row gap-10">
         <ng-container *ngFor="let collection of movie.collections">
-          <a [routerLink]="'/collections/' + collection.slug">
+          <a *ngIf="collection" [routerLink]="'/collections/' + collection.slug">
             <div class="collection d-flex flex-column rounded">
               <img [src]="imagesPath + collection.thumb"
                    loading="lazy"
