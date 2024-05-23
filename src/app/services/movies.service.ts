@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Movie} from "../interfaces/movies/Movie";
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode } from "@angular/common/http";
 import {GetMovieShowDto} from "../dto/movies/GetMovieShowDto";
 import {MovieVideo} from "../interfaces/movies/MovieVideo";
 import {BehaviorSubject, catchError, map, Observable, of, throwError} from "rxjs";

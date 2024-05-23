@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
 import {environment} from "../../../../environments/environment";

@@ -3,7 +3,7 @@ import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
 import {Meta, SafeResourceUrl, Title} from "@angular/platform-browser";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {MovieType} from "../../../enums/movies/MovieType";

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Actor} from "../interfaces/actors/Actor";
 import {ActorShowDto} from "../dto/actors/ActorShowDto";

@@ -3,7 +3,7 @@ import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GenresService} from "../../../services/genres.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
 import {RNames} from "../../../enums/RoutesNames";

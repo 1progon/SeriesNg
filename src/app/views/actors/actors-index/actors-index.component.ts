@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {Title} from "@angular/platform-browser";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {RNames} from "../../../enums/RoutesNames";
 
 @Component({

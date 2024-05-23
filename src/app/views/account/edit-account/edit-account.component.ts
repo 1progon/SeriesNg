@@ -3,7 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {UserDto} from "../../../dto/users/UserDto";
 import {UpdateUserDto} from "../../../dto/users/UpdateUserDto";
 import {UsersService} from "../../../services/users.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 import {ToastsService} from "../../../services/toasts.service";
 import {ToastType} from "../../../enums/ToastType";
 

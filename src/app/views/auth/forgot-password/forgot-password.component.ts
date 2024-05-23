@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 

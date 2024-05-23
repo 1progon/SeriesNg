@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UpdateUserDto} from "../dto/users/UpdateUserDto";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from "@angular/common/http";
 import {UserDto} from "../dto/users/UserDto";
 import {environment} from "../../environments/environment";
 import {catchError, map, throwError} from "rxjs";

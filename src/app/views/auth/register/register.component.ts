@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RegisterFormDto} from "../../../dto/auth/RegisterFormDto";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-register',

@@ -5,7 +5,7 @@ import {MovieVideo} from "../../../interfaces/movies/MovieVideo";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {DomSanitizer} from "@angular/platform-browser";
 import {GetMovieVideoDto} from "../../../dto/movies/GetMovieVideoDto";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 import {TranslationType} from "../../../enums/movies/TranslationType";
 
 @Component({

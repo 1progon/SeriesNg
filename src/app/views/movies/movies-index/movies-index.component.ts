@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";

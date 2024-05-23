@@ -5,7 +5,7 @@ import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {RNames} from "../../../enums/RoutesNames";
 
 @Component({
