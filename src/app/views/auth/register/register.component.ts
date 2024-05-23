@@ -17,16 +17,17 @@ import {ContainerComponent} from '../../../components/container/container.compon
   imports: [ContainerComponent, FormsModule, NgIf, BtnLoaderComponent, RouterLink, LoginWithSocialsComponent]
 })
 export class RegisterComponent implements OnInit {
-  constructor(private service: AuthService,
-              private router: Router) {
-    afterRender(() => document.body.scrollIntoView())
-  }
-
   form: RegisterFormDto = <RegisterFormDto>{}
   errors?: HttpErrorResponse;
   friendlyError?: string;
   loading: boolean = false;
   showPasswords: boolean = false;
+
+  constructor(private service: AuthService,
+              private router: Router) {
+    afterRender(() => document.body.scrollIntoView())
+  }
+
 
   ngOnInit(): void {
     if (this.service.user) {

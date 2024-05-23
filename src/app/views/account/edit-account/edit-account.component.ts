@@ -3,29 +3,22 @@ import {AuthService} from "../../../services/auth.service";
 import {UserDto} from "../../../dto/users/UserDto";
 import {UpdateUserDto} from "../../../dto/users/UpdateUserDto";
 import {UsersService} from "../../../services/users.service";
-import { HttpErrorResponse } from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {ToastsService} from "../../../services/toasts.service";
 import {ToastType} from "../../../enums/ToastType";
-import { BtnLoaderComponent } from '../../../components/btn-loader/btn-loader.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {BtnLoaderComponent} from '../../../components/btn-loader/btn-loader.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {NgIf} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
-    selector: 'app-edit-account',
-    templateUrl: './edit-account.component.html',
-    styleUrls: ['./edit-account.component.scss'],
-    standalone: true,
-    imports: [FormsModule, NgIf, LoaderComponent, BtnLoaderComponent]
+  selector: 'app-edit-account',
+  templateUrl: './edit-account.component.html',
+  styleUrls: ['./edit-account.component.scss'],
+  standalone: true,
+  imports: [FormsModule, NgIf, LoaderComponent, BtnLoaderComponent]
 })
 export class EditAccountComponent implements OnInit {
-
-
-  constructor(private authService: AuthService,
-              private usersService: UsersService,
-              private toastService: ToastsService) {
-  }
-
   user?: UserDto;
   updateUserForm: UpdateUserDto = <UpdateUserDto>{};
 
@@ -37,6 +30,12 @@ export class EditAccountComponent implements OnInit {
   showPasswords: boolean = false;
 
   submitting = false;
+
+  constructor(private authService: AuthService,
+              private usersService: UsersService,
+              private toastService: ToastsService) {
+  }
+
 
   setDefaultUserValues() {
     for (let key in this.user) {

@@ -13,12 +13,7 @@ export class ImageModalComponent {
   @Input() image?: SafeResourceUrl;
   @Output() onCloseModal: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
-
-  }
-
-
-  onClickImage() {
+  protected onClickImage() {
     this.onCloseModal.emit();
 
   }

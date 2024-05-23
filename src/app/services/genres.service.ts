@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Genre} from "../interfaces/movies/Genre";
 import {GenreDto} from "../dto/movies/GenreDto";
 import {GenreShowDto} from "../dto/movies/GenreShowDto";
 
@@ -9,10 +8,10 @@ import {GenreShowDto} from "../dto/movies/GenreShowDto";
   providedIn: 'root'
 })
 export class GenresService {
-  defaultLimit = 28;
+  private defaultLimit = 28;
 
-  controller: string = 'Genres';
-  api = environment.apiUrl + this.controller;
+  private controller: string = 'Genres';
+  private api = environment.apiUrl + this.controller;
 
   constructor(private http: HttpClient) {
   }

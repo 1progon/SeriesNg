@@ -22,16 +22,6 @@ import {ContainerComponent} from '../../../components/container/container.compon
   imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, RouterLinkActive, RouterLink, NgFor, PaginationComponent]
 })
 export class ActorsIndexComponent implements OnInit {
-
-
-  constructor(private service: ActorsService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private htmlS: HtmlHeadOptionsService,
-              private titleS: Title) {
-    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  }
-
   isBrowser = false;
 
   actors: Actor[] = [];
@@ -79,6 +69,14 @@ export class ActorsIndexComponent implements OnInit {
     'я',
   ];
   activeLetter?: string;
+
+  constructor(private service: ActorsService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService,
+              private titleS: Title) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  }
 
 
   ngOnInit(): void {

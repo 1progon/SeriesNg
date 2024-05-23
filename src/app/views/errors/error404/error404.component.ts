@@ -14,7 +14,7 @@ export class Error404Component {
   constructor(private location: Location) {
   }
 
-  goBack() {
+  protected goBack() {
     this.location.back();
   }
 }

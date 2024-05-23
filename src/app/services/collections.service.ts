@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Collection} from "../interfaces/movies/Collection";
 
@@ -7,12 +7,10 @@ import {Collection} from "../interfaces/movies/Collection";
   providedIn: 'root'
 })
 export class CollectionsService {
+  private defaultLimit = 28;
 
-
-  defaultLimit = 28;
-
-  controller: string = 'Collections';
-  api: string = environment.apiUrl + this.controller;
+  private controller: string = 'Collections';
+  private api: string = environment.apiUrl + this.controller;
 
   constructor(private http: HttpClient) {
   }

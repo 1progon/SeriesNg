@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Actor} from "../interfaces/actors/Actor";
 import {ActorShowDto} from "../dto/actors/ActorShowDto";
@@ -8,15 +8,14 @@ import {ActorShowDto} from "../dto/actors/ActorShowDto";
   providedIn: 'root'
 })
 export class ActorsService {
+  private controller: string = 'Actors';
+  private api: string = environment.apiUrl + this.controller;
+
+  private offset = 0;
+  private limit = 28;
 
   constructor(private http: HttpClient) {
   }
-
-  controller: string = 'Actors';
-  api: string = environment.apiUrl + this.controller;
-
-  offset = 0;
-  limit = 28;
 
   getActors(offset = 0, limit = 28, startsWith?: string) {
 

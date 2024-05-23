@@ -13,11 +13,11 @@ import {Router} from "@angular/router";
 export class AuthService {
   private _user?: UserDto;
 
+  private controller: string = 'Auth';
+  private api: string = environment.apiUrl + this.controller;
+
   public static UNAUTHORIZED_ROUTE = 'unauthorized';
   public static UNAUTHENTICATED_ROUTE = 'unauthenticated';
-
-  controller: string = 'Auth';
-  api: string = environment.apiUrl + this.controller;
 
 
   constructor(private http: HttpClient,

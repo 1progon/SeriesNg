@@ -19,14 +19,6 @@ import {ContainerComponent} from '../../../components/container/container.compon
   imports: [ContainerComponent, BreadcrumbComponent, RouterOutlet, NgFor, RouterLink, NgIf]
 })
 export class MovieVideoComponent implements OnInit {
-
-  constructor(public service: MoviesService,
-              private san: DomSanitizer,
-              private route: ActivatedRoute,
-              private router: Router) {
-  }
-
-
   mainVideo: MovieVideo = <MovieVideo>{
     movie: {}
   };
@@ -39,6 +31,12 @@ export class MovieVideoComponent implements OnInit {
   playerLoaded: boolean = false;
 
   translationTypes: typeof TranslationType = TranslationType;
+
+  constructor(public service: MoviesService,
+              private san: DomSanitizer,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
   updateSeasonAndEpisode(params: Params, data: GetMovieVideoDto) {
     if (params['videoId'] && (!params['seasonNumber'] && !params['episodeNumber'])) {

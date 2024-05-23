@@ -17,19 +17,18 @@ import {ContainerComponent} from '../../../components/container/container.compon
   imports: [ContainerComponent, FormsModule, NgIf, BtnLoaderComponent, RouterLink, LoginWithSocialsComponent]
 })
 export class LoginComponent implements OnInit {
-
-
-  constructor(private service: AuthService,
-              private router: Router) {
-    afterRender(() => document.body.scrollIntoView())
-  }
-
   form: LoginFormDto = <LoginFormDto>{}
 
   loading: boolean = false;
 
   errors?: HttpErrorResponse;
   friendlyError?: string;
+
+  constructor(private service: AuthService,
+              private router: Router) {
+    afterRender(() => document.body.scrollIntoView())
+  }
+
 
   ngOnInit(): void {
     if (this.service.user) {

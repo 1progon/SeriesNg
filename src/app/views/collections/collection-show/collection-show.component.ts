@@ -25,16 +25,6 @@ import {ContainerComponent} from '../../../components/container/container.compon
   imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class CollectionShowComponent implements OnInit {
-
-
-  constructor(private service: CollectionsService,
-              private route: ActivatedRoute,
-              private titleS: Title,
-              private router: Router,
-              private htmlS: HtmlHeadOptionsService) {
-    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-  }
-
   isBrowser: boolean = false;
   collection: Collection = <Collection>{
     name: ''
@@ -45,6 +35,15 @@ export class CollectionShowComponent implements OnInit {
   imagesLoaded: boolean[] = [];
   page: number = 1;
   limit = 28;
+
+  constructor(private service: CollectionsService,
+              private route: ActivatedRoute,
+              private titleS: Title,
+              private router: Router,
+              private htmlS: HtmlHeadOptionsService) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  }
+
 
   ngOnInit(): void {
     this.route.queryParams.subscribe({

@@ -27,26 +27,6 @@ import {isPlatformBrowser, NgFor, NgIf} from '@angular/common';
   imports: [NgIf, ImageModalComponent, ContainerComponent, BreadcrumbComponent, LoaderComponent, NgFor, BtnLoaderComponent, RouterLink]
 })
 export class MovieShowComponent implements OnInit {
-
-
-  constructor(public moviesService: MoviesService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private titleService: Title,
-              private metaService: Meta,
-              public authService: AuthService,
-              private toastService: ToastsService,
-              private htmlService: HtmlHeadOptionsService) {
-
-    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-
-    let partMovie: Movie = this.router.getCurrentNavigation()?.extras?.state?.['moviePart'];
-    if (partMovie) {
-      this.movie = partMovie;
-    }
-
-  }
-
   isBrowser = false;
 
   imagesPath = environment.imagesPath;
@@ -81,6 +61,23 @@ export class MovieShowComponent implements OnInit {
   movieLikeType?: MovieLikeDislikeType;
   imageModal: { show: boolean; imageSrc?: SafeResourceUrl } = {show: false};
 
+  constructor(public moviesService: MoviesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private titleService: Title,
+              private metaService: Meta,
+              public authService: AuthService,
+              private toastService: ToastsService,
+              private htmlService: HtmlHeadOptionsService) {
+
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+    let partMovie: Movie = this.router.getCurrentNavigation()?.extras?.state?.['moviePart'];
+    if (partMovie) {
+      this.movie = partMovie;
+    }
+
+  }
 
   compareMoviesSort(a: Movie, b: Movie): number {
     if (a.year < b.year) {

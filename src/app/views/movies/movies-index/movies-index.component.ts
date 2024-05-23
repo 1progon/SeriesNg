@@ -25,15 +25,6 @@ import {ContainerComponent} from '../../../components/container/container.compon
 export class MoviesIndexComponent implements OnInit {
 
   isBrowser = false;
-
-  constructor(private service: MoviesService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private titleService: Title,
-              private htmlS: HtmlHeadOptionsService) {
-    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID))
-  }
-
   movies: MovieDto[] = [];
   page = 1;
 
@@ -53,6 +44,13 @@ export class MoviesIndexComponent implements OnInit {
   routePath: any[] = ['/movies'];
   searchQuery?: string;
 
+  constructor(private service: MoviesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private titleService: Title,
+              private htmlS: HtmlHeadOptionsService) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID))
+  }
 
   getMoviesFromService(search?: string) {
     let offset = (this.page - 1) * this.service.defaultLimit;

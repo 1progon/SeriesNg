@@ -8,9 +8,9 @@ import {ToastType} from "../enums/ToastType";
 export class ToastsService {
 
   private _toasts: Toast[] = [];
-  timeOut = 2000;
+  private timeOut = 2000;
 
-  setTimeOutIds: NodeJS.Timeout[] = [];
+  private setTimeOutIds: NodeJS.Timeout[] = [];
 
   constructor() {
   }

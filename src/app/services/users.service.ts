@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UpdateUserDto} from "../dto/users/UpdateUserDto";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode} from "@angular/common/http";
 import {UserDto} from "../dto/users/UserDto";
 import {environment} from "../../environments/environment";
 import {catchError, map, throwError} from "rxjs";
@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class UsersService {
-  controller: string = 'Users';
-  api: string = environment.apiUrl + this.controller;
+  private controller: string = 'Users';
+  private api: string = environment.apiUrl + this.controller;
 
   constructor(private http: HttpClient,
               private authService: AuthService,

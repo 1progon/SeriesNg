@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Movie} from "../interfaces/movies/Movie";
 import {environment} from "../../environments/environment";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode } from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpStatusCode} from "@angular/common/http";
 import {GetMovieShowDto} from "../dto/movies/GetMovieShowDto";
 import {MovieVideo} from "../interfaces/movies/MovieVideo";
 import {BehaviorSubject, catchError, map, Observable, of, throwError} from "rxjs";
@@ -19,25 +19,24 @@ import {MovieDto} from "../dto/movies/MovieDto";
 })
 export class MoviesService {
 
-  controller: string = 'Movies';
-  api: string = environment.apiUrl + this.controller;
+  private controller: string = 'Movies';
+  private api: string = environment.apiUrl + this.controller;
 
-  apiUserFavoriteMovies = environment.apiUrl + 'UserFavoriteMovies';
+  private apiUserFavoriteMovies = environment.apiUrl + 'UserFavoriteMovies';
 
-  cacheMovieVideo?: CacheMovieVideo;
+  private cacheMovieVideo?: CacheMovieVideo;
 
-  cacheIndexMovies: { name: string, movies: MovieDto[] }[] = [];
-  cacheIndexMoviesMaxLength = 10;
+  private cacheIndexMovies: { name: string, movies: MovieDto[] }[] = [];
+  private cacheIndexMoviesMaxLength = 10;
 
-  cacheSingleMovies: { name: string, movie: GetMovieShowDto }[] = [];
-  cacheSingleMoviesMaxLength = 10;
+  private cacheSingleMovies: { name: string, movie: GetMovieShowDto }[] = [];
+  private cacheSingleMoviesMaxLength = 10;
 
-  activeMovieVideo = new BehaviorSubject<MovieVideo | undefined>(undefined);
-  activeSeason?: MovieSeason;
-  activeEpisode?: MovieEpisode;
+  public activeSeason?: MovieSeason;
+  public activeEpisode?: MovieEpisode;
 
-
-  defaultLimit = 28;
+  public defaultLimit = 28;
+  public activeMovieVideo = new BehaviorSubject<MovieVideo | undefined>(undefined);
 
 
   constructor(private http: HttpClient,
