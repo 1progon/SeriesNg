@@ -1,35 +1,37 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {MovieDto} from "../../../dto/movies/MovieDto";
-import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { MoviesIndexListComponent } from '../include/movies-index-list/movies-index-list.component';
-import { MoviesIndexListHeadComponent } from '../include/movies-index-list-head/movies-index-list-head.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { NgIf } from '@angular/common';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import {PaginationComponent} from '../../../components/pagination/pagination.component';
+import {MoviesIndexListComponent} from '../include/movies-index-list/movies-index-list.component';
+import {MoviesIndexListHeadComponent} from '../include/movies-index-list-head/movies-index-list-head.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {isPlatformBrowser, NgIf} from '@angular/common';
+import {BreadcrumbComponent} from '../../../components/breadcrumb/breadcrumb.component';
+import {ContainerComponent} from '../../../components/container/container.component';
 
 @Component({
-    selector: 'app-movies-index',
-    templateUrl: './movies-index.component.html',
-    styleUrls: ['./movies-index.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
+  selector: 'app-movies-index',
+  templateUrl: './movies-index.component.html',
+  styleUrls: ['./movies-index.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class MoviesIndexComponent implements OnInit {
 
+  isBrowser = false;
 
   constructor(private service: MoviesService,
               private route: ActivatedRoute,
               private router: Router,
               private titleService: Title,
               private htmlS: HtmlHeadOptionsService) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID))
   }
 
   movies: MovieDto[] = [];
@@ -82,7 +84,9 @@ export class MoviesIndexComponent implements OnInit {
       next: queries => {
         this.searchQuery = queries['search'];
 
-        document.body.scrollIntoView();
+        if (this.isBrowser) {
+          document.body.scrollIntoView();
+        }
 
         let page = parseInt(queries['page']);
         this.page = isNaN(page) ? 1 : page;

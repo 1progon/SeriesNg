@@ -1,24 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {afterRender, Component, OnInit} from '@angular/core';
 import {RegisterFormDto} from "../../../dto/auth/RegisterFormDto";
 import {AuthService} from "../../../services/auth.service";
-import { Router, RouterLink } from "@angular/router";
-import { HttpErrorResponse } from "@angular/common/http";
-import { LoginWithSocialsComponent } from '../login-with-socials/login-with-socials.component';
-import { BtnLoaderComponent } from '../../../components/btn-loader/btn-loader.component';
-import { NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ContainerComponent } from '../../../components/container/container.component';
+import {Router, RouterLink} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
+import {LoginWithSocialsComponent} from '../login-with-socials/login-with-socials.component';
+import {BtnLoaderComponent} from '../../../components/btn-loader/btn-loader.component';
+import {NgIf} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {ContainerComponent} from '../../../components/container/container.component';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, FormsModule, NgIf, BtnLoaderComponent, RouterLink, LoginWithSocialsComponent]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, FormsModule, NgIf, BtnLoaderComponent, RouterLink, LoginWithSocialsComponent]
 })
 export class RegisterComponent implements OnInit {
   constructor(private service: AuthService,
               private router: Router) {
+    afterRender(() => document.body.scrollIntoView())
   }
 
   form: RegisterFormDto = <RegisterFormDto>{}
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    document.body.scrollIntoView();
+
   }
 
   submit() {

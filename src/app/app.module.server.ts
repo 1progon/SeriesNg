@@ -5,7 +5,6 @@ import {ServerModule} from '@angular/platform-server';
   imports: [
     ServerModule,
   ],
-  bootstrap: [],
 })
 export class AppServerModule {
 }

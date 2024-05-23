@@ -1,25 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActorsService} from "../../../services/actors.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
-import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from "@angular/router";
+import {ActivatedRoute, Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {Actor} from "../../../interfaces/actors/Actor";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {Title} from "@angular/platform-browser";
-import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {RNames} from "../../../enums/RoutesNames";
-import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { NgIf, NgFor } from '@angular/common';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import {PaginationComponent} from '../../../components/pagination/pagination.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {isPlatformBrowser, NgFor, NgIf} from '@angular/common';
+import {BreadcrumbComponent} from '../../../components/breadcrumb/breadcrumb.component';
+import {ContainerComponent} from '../../../components/container/container.component';
 
 @Component({
-    selector: 'app-actors-index',
-    templateUrl: './actors-index.component.html',
-    styleUrls: ['./actors-index.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, RouterLinkActive, RouterLink, NgFor, PaginationComponent]
+  selector: 'app-actors-index',
+  templateUrl: './actors-index.component.html',
+  styleUrls: ['./actors-index.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, RouterLinkActive, RouterLink, NgFor, PaginationComponent]
 })
 export class ActorsIndexComponent implements OnInit {
 
@@ -29,7 +29,10 @@ export class ActorsIndexComponent implements OnInit {
               private router: Router,
               private htmlS: HtmlHeadOptionsService,
               private titleS: Title) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   }
+
+  isBrowser = false;
 
   actors: Actor[] = [];
   loading: boolean = false;
@@ -81,7 +84,9 @@ export class ActorsIndexComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: queries => {
-        document.body.scrollIntoView();
+        if (this.isBrowser) {
+          document.body.scrollIntoView();
+        }
 
         let canonical = 'actors';
         let seoTitle = 'Все актёры дорам';

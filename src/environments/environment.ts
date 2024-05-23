@@ -3,12 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 let domain = 'https://localhost:5001';
+let apiDomain = domain;
+let fileServer = 'http://localhost:8080'
+
 
 export const environment = {
   production: false,
   domain,
-  apiUrl: domain + '/api/',
-  imagesPath: 'http://localhost:8080/images/',
+  apiDomain,
+  fileServer,
+  apiUrl: apiDomain + '/api/',
+  imagesPath: fileServer + '/images/',
 };
 
 /*

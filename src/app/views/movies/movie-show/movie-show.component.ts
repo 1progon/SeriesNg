@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
 import {Meta, SafeResourceUrl, Title} from "@angular/platform-browser";
-import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {MovieType} from "../../../enums/movies/MovieType";
@@ -12,19 +12,19 @@ import {ToastsService} from "../../../services/toasts.service";
 import {ToastType} from "../../../enums/ToastType";
 import {MovieLikeDislikeType} from "../../../enums/movies/MovieLikeDislikeType";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
-import { BtnLoaderComponent } from '../../../components/btn-loader/btn-loader.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
-import { ContainerComponent } from '../../../components/container/container.component';
-import { ImageModalComponent } from '../../../components/image-modal/image-modal.component';
-import { NgIf, NgFor } from '@angular/common';
+import {BtnLoaderComponent} from '../../../components/btn-loader/btn-loader.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {BreadcrumbComponent} from '../../../components/breadcrumb/breadcrumb.component';
+import {ContainerComponent} from '../../../components/container/container.component';
+import {ImageModalComponent} from '../../../components/image-modal/image-modal.component';
+import {isPlatformBrowser, NgFor, NgIf} from '@angular/common';
 
 @Component({
-    selector: 'app-movie-show',
-    templateUrl: './movie-show.component.html',
-    styleUrls: ['./movie-show.component.scss'],
-    standalone: true,
-    imports: [NgIf, ImageModalComponent, ContainerComponent, BreadcrumbComponent, LoaderComponent, NgFor, BtnLoaderComponent, RouterLink]
+  selector: 'app-movie-show',
+  templateUrl: './movie-show.component.html',
+  styleUrls: ['./movie-show.component.scss'],
+  standalone: true,
+  imports: [NgIf, ImageModalComponent, ContainerComponent, BreadcrumbComponent, LoaderComponent, NgFor, BtnLoaderComponent, RouterLink]
 })
 export class MovieShowComponent implements OnInit {
 
@@ -38,12 +38,16 @@ export class MovieShowComponent implements OnInit {
               private toastService: ToastsService,
               private htmlService: HtmlHeadOptionsService) {
 
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
     let partMovie: Movie = this.router.getCurrentNavigation()?.extras?.state?.['moviePart'];
     if (partMovie) {
       this.movie = partMovie;
     }
 
   }
+
+  isBrowser = false;
 
   imagesPath = environment.imagesPath;
 
@@ -112,8 +116,11 @@ export class MovieShowComponent implements OnInit {
         this.moviesService.getMovie(slug)
           .subscribe({
             next: data => {
-              // scroll to top
-              document.body.scrollIntoView();
+
+              if (this.isBrowser) {
+                // scroll to top
+                document.body.scrollIntoView();
+              }
 
               this.movie = data.movie;
               this.movie.anthology = data.anthology;
