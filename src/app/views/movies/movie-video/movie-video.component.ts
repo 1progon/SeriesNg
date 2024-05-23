@@ -1,17 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import { ActivatedRoute, Params, Router, RouterOutlet, RouterLink } from "@angular/router";
 import {MovieVideo} from "../../../interfaces/movies/MovieVideo";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {DomSanitizer} from "@angular/platform-browser";
 import {GetMovieVideoDto} from "../../../dto/movies/GetMovieVideoDto";
 import { HttpErrorResponse } from "@angular/common/http";
 import {TranslationType} from "../../../enums/movies/TranslationType";
+import { NgFor, NgIf } from '@angular/common';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-movie-video',
-  templateUrl: './movie-video.component.html',
-  styleUrls: ['./movie-video.component.scss']
+    selector: 'app-movie-video',
+    templateUrl: './movie-video.component.html',
+    styleUrls: ['./movie-video.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, BreadcrumbComponent, RouterOutlet, NgFor, RouterLink, NgIf]
 })
 export class MovieVideoComponent implements OnInit {
 

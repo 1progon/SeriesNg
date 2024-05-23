@@ -7,11 +7,20 @@ import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
 import {RNames} from "../../../enums/RoutesNames";
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { MoviesIndexListComponent } from '../../movies/include/movies-index-list/movies-index-list.component';
+import { MoviesIndexListHeadComponent } from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { NgIf } from '@angular/common';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-genre-show',
-  templateUrl: './genre-show.component.html',
-  styleUrls: ['./genre-show.component.scss']
+    selector: 'app-genre-show',
+    templateUrl: './genre-show.component.html',
+    styleUrls: ['./genre-show.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class GenreShowComponent implements OnInit {
   slug?: string;

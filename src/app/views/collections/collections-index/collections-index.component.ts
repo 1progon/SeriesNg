@@ -4,11 +4,18 @@ import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {environment} from "../../../../environments/environment";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import { RouterLink } from '@angular/router';
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { NgIf, NgFor } from '@angular/common';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-collections-index',
-  templateUrl: './collections-index.component.html',
-  styleUrls: ['./collections-index.component.scss']
+    selector: 'app-collections-index',
+    templateUrl: './collections-index.component.html',
+    styleUrls: ['./collections-index.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, NgFor, RouterLink]
 })
 export class CollectionsIndexComponent implements OnInit {
 

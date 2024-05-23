@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
 import {Meta, SafeResourceUrl, Title} from "@angular/platform-browser";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
@@ -12,11 +12,19 @@ import {ToastsService} from "../../../services/toasts.service";
 import {ToastType} from "../../../enums/ToastType";
 import {MovieLikeDislikeType} from "../../../enums/movies/MovieLikeDislikeType";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
+import { BtnLoaderComponent } from '../../../components/btn-loader/btn-loader.component';
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
+import { ImageModalComponent } from '../../../components/image-modal/image-modal.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-show',
-  templateUrl: './movie-show.component.html',
-  styleUrls: ['./movie-show.component.scss']
+    selector: 'app-movie-show',
+    templateUrl: './movie-show.component.html',
+    styleUrls: ['./movie-show.component.scss'],
+    standalone: true,
+    imports: [NgIf, ImageModalComponent, ContainerComponent, BreadcrumbComponent, LoaderComponent, NgFor, BtnLoaderComponent, RouterLink]
 })
 export class MovieShowComponent implements OnInit {
 

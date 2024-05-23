@@ -7,11 +7,20 @@ import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import {RNames} from "../../../enums/RoutesNames";
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { MoviesIndexListComponent } from '../../movies/include/movies-index-list/movies-index-list.component';
+import { MoviesIndexListHeadComponent } from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { NgIf } from '@angular/common';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-collection-show',
-  templateUrl: './collection-show.component.html',
-  styleUrls: ['./collection-show.component.scss']
+    selector: 'app-collection-show',
+    templateUrl: './collection-show.component.html',
+    styleUrls: ['./collection-show.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class CollectionShowComponent implements OnInit {
 

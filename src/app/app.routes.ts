@@ -1,21 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {MainLayoutComponent} from "./views/layouts/main/main-layout/main-layout.component";
-import {MoviesIndexComponent} from "./views/movies/movies-index/movies-index.component";
-import {MovieShowComponent} from "./views/movies/movie-show/movie-show.component";
-import {ActorsIndexComponent} from "./views/actors/actors-index/actors-index.component";
-import {ActorShowComponent} from "./views/actors/actor-show/actor-show.component";
-import {Error404Component} from "./views/errors/error404/error404.component";
+import {Routes} from "@angular/router";
+import {RNames} from "./enums/RoutesNames";
+import {accountGuard} from "./guards/account.guard";
 import {AccountLayoutComponent} from "./views/layouts/account/account-layout/account-layout.component";
-import {GenreShowComponent} from "./views/genres/genre-show/genre-show.component";
-import {CollectionShowComponent} from "./views/collections/collection-show/collection-show.component";
-import {MoviesIndexLayoutComponent} from "./views/movies/layout/movies-index-layout/movies-index-layout.component";
-import {CollectionsIndexComponent} from "./views/collections/collections-index/collections-index.component";
-import {MovieEpisodeComponent} from "./views/movies/movie-episode/movie-episode.component";
-import {MovieVideoComponent} from "./views/movies/movie-video/movie-video.component";
-import {LoginComponent} from "./views/auth/login/login.component";
-import {RegisterComponent} from "./views/auth/register/register.component";
 import {DashboardComponent} from "./views/account/dashboard/dashboard.component";
+import {
+  AccountMovieLibrariesComponent
+} from "./views/account/account-movie-libraries/account-movie-libraries.component";
 import {EditAccountComponent} from "./views/account/edit-account/edit-account.component";
 import {
   AccountFavoritesMoviesComponent
@@ -23,18 +13,27 @@ import {
 import {AccountWishWatchComponent} from "./views/account/account-wish-watch/account-wish-watch.component";
 import {AccountWatchingComponent} from "./views/account/account-watching/account-watching.component";
 import {AccountWatchedComponent} from "./views/account/account-watched/account-watched.component";
-import {
-  AccountMovieLibrariesComponent
-} from "./views/account/account-movie-libraries/account-movie-libraries.component";
+import {MainLayoutComponent} from "./views/layouts/main/main-layout/main-layout.component";
+import {MoviesIndexLayoutComponent} from "./views/movies/layout/movies-index-layout/movies-index-layout.component";
+import {MoviesIndexComponent} from "./views/movies/movies-index/movies-index.component";
+import {CollectionsIndexComponent} from "./views/collections/collections-index/collections-index.component";
+import {MovieShowComponent} from "./views/movies/movie-show/movie-show.component";
+import {MovieVideoComponent} from "./views/movies/movie-video/movie-video.component";
+import {MovieEpisodeComponent} from "./views/movies/movie-episode/movie-episode.component";
+import {GenresIndexComponent} from "./views/genres/genres-index/genres-index.component";
+import {GenreShowComponent} from "./views/genres/genre-show/genre-show.component";
+import {CollectionShowComponent} from "./views/collections/collection-show/collection-show.component";
+import {ActorsIndexComponent} from "./views/actors/actors-index/actors-index.component";
+import {ActorShowComponent} from "./views/actors/actor-show/actor-show.component";
+import {LoginComponent} from "./views/auth/login/login.component";
+import {RegisterComponent} from "./views/auth/register/register.component";
 import {ForgotPasswordComponent} from "./views/auth/forgot-password/forgot-password.component";
+import {AuthService} from "./services/auth.service";
 import {ErrorUnauthenticatedComponent} from "./views/errors/error-unauthentificated/error-unauthenticated.component";
 import {ErrorUnauthorizedComponent} from "./views/errors/error-unauthorized/error-unauthorized.component";
-import {AuthService} from "./services/auth.service";
-import {GenresIndexComponent} from "./views/genres/genres-index/genres-index.component";
-import {accountGuard} from "./guards/account.guard";
-import {RNames} from "./enums/RoutesNames";
+import {Error404Component} from "./views/errors/error404/error404.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: RNames.account,
     title: 'Аккаунт пользователя',
@@ -192,10 +191,3 @@ const routes: Routes = [
 
 
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {
-}

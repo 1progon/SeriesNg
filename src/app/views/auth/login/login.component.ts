@@ -1,13 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginFormDto} from "../../../dto/auth/LoginFormDto";
 import {AuthService} from "../../../services/auth.service";
-import {Router} from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
+import { LoginWithSocialsComponent } from '../login-with-socials/login-with-socials.component';
+import { BtnLoaderComponent } from '../../../components/btn-loader/btn-loader.component';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, FormsModule, NgIf, BtnLoaderComponent, RouterLink, LoginWithSocialsComponent]
 })
 export class LoginComponent implements OnInit {
 

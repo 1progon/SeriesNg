@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { FormsModule } from '@angular/forms';
+import { ContainerComponent } from '../../../../components/container/container.component';
 
 @Component({
-  selector: 'app-movies-index-layout',
-  templateUrl: './movies-index-layout.component.html',
-  styleUrls: ['./movies-index-layout.component.scss']
+    selector: 'app-movies-index-layout',
+    templateUrl: './movies-index-layout.component.html',
+    styleUrls: ['./movies-index-layout.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, FormsModule, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class MoviesIndexLayoutComponent implements OnInit {
 

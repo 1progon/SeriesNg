@@ -1,14 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {MoviesService} from "../../../services/movies.service";
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
-import {Router} from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import {Movie} from "../../../interfaces/movies/Movie";
 import {environment} from "../../../../environments/environment";
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-account-favorites-movies',
-  templateUrl: './account-favorites-movies.component.html',
-  styleUrls: ['./account-favorites-movies.component.scss']
+    selector: 'app-account-favorites-movies',
+    templateUrl: './account-favorites-movies.component.html',
+    styleUrls: ['./account-favorites-movies.component.scss'],
+    standalone: true,
+    imports: [NgFor, NgIf, LoaderComponent, RouterLink]
 })
 export class AccountFavoritesMoviesComponent implements OnInit {
 

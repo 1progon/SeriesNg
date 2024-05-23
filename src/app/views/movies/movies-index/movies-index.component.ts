@@ -7,11 +7,20 @@ import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {MoviesSelector} from "../../../enums/movies/MoviesSelector";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {MovieDto} from "../../../dto/movies/MovieDto";
+import { PaginationComponent } from '../../../components/pagination/pagination.component';
+import { MoviesIndexListComponent } from '../include/movies-index-list/movies-index-list.component';
+import { MoviesIndexListHeadComponent } from '../include/movies-index-list-head/movies-index-list-head.component';
+import { LoaderComponent } from '../../../components/loader/loader.component';
+import { NgIf } from '@angular/common';
+import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
-  selector: 'app-movies-index',
-  templateUrl: './movies-index.component.html',
-  styleUrls: ['./movies-index.component.scss']
+    selector: 'app-movies-index',
+    templateUrl: './movies-index.component.html',
+    styleUrls: ['./movies-index.component.scss'],
+    standalone: true,
+    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class MoviesIndexComponent implements OnInit {
 

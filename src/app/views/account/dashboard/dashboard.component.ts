@@ -3,9 +3,10 @@ import {AuthService} from "../../../services/auth.service";
 import {UserType} from "../../../enums/users/UserType";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    standalone: true
 })
 export class DashboardComponent implements OnInit {
 
