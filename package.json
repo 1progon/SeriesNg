@@ -8,10 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run series-ng:serve-ssr",
-    "serve:ssr": "node dist/series-ng/server/main.js",
-    "build:ssr": "ng build && ng run series-ng:server",
-    "prerender": "ng run series-ng:prerender"
+    "serve:ssr:series-ng": "node dist/series-ng/server/server.mjs"
   },
   "private": true,
   "dependencies": {
