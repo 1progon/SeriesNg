@@ -1,26 +1,28 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GenresService} from "../../../services/genres.service";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
-import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
 import {GenreShowDto} from "../../../dto/movies/GenreShowDto";
 import {RNames} from "../../../enums/RoutesNames";
-import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { MoviesIndexListComponent } from '../../movies/include/movies-index-list/movies-index-list.component';
-import { MoviesIndexListHeadComponent } from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { NgIf } from '@angular/common';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import {PaginationComponent} from '../../../components/pagination/pagination.component';
+import {MoviesIndexListComponent} from '../../movies/include/movies-index-list/movies-index-list.component';
+import {
+  MoviesIndexListHeadComponent
+} from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {isPlatformBrowser, NgIf} from '@angular/common';
+import {BreadcrumbComponent} from '../../../components/breadcrumb/breadcrumb.component';
+import {ContainerComponent} from '../../../components/container/container.component';
 
 @Component({
-    selector: 'app-genre-show',
-    templateUrl: './genre-show.component.html',
-    styleUrls: ['./genre-show.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
+  selector: 'app-genre-show',
+  templateUrl: './genre-show.component.html',
+  styleUrls: ['./genre-show.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class GenreShowComponent implements OnInit {
   slug?: string;
@@ -33,19 +35,24 @@ export class GenreShowComponent implements OnInit {
   limit = 28;
   crumbs?: Breadcrumb[];
 
+  isBrowser = false;
+
   constructor(private titleS: Title,
               private route: ActivatedRoute,
               private genreS: GenresService,
               private router: Router,
               private htmlS: HtmlHeadOptionsService) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   }
 
   ngOnInit(): void {
     this.route.queryParams
       .subscribe({
         next: query => {
-          // scroll to top
-          document.body.scrollIntoView();
+          if (this.isBrowser) {
+            // scroll to top
+            document.body.scrollIntoView();
+          }
 
           // get page number
           let number = parseInt(query['page']);

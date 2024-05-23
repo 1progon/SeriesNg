@@ -1,36 +1,41 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {CollectionsService} from "../../../services/collections.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Collection} from "../../../interfaces/movies/Collection";
 import {Breadcrumb} from "../../../interfaces/Breadcrumb";
 import {Title} from "@angular/platform-browser";
 import {HtmlHeadOptionsService} from "../../../services/html-head-options.service";
-import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 import {RNames} from "../../../enums/RoutesNames";
-import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { MoviesIndexListComponent } from '../../movies/include/movies-index-list/movies-index-list.component';
-import { MoviesIndexListHeadComponent } from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
-import { LoaderComponent } from '../../../components/loader/loader.component';
-import { NgIf } from '@angular/common';
-import { BreadcrumbComponent } from '../../../components/breadcrumb/breadcrumb.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import {PaginationComponent} from '../../../components/pagination/pagination.component';
+import {MoviesIndexListComponent} from '../../movies/include/movies-index-list/movies-index-list.component';
+import {
+  MoviesIndexListHeadComponent
+} from '../../movies/include/movies-index-list-head/movies-index-list-head.component';
+import {LoaderComponent} from '../../../components/loader/loader.component';
+import {isPlatformBrowser, NgIf} from '@angular/common';
+import {BreadcrumbComponent} from '../../../components/breadcrumb/breadcrumb.component';
+import {ContainerComponent} from '../../../components/container/container.component';
 
 @Component({
-    selector: 'app-collection-show',
-    templateUrl: './collection-show.component.html',
-    styleUrls: ['./collection-show.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
+  selector: 'app-collection-show',
+  templateUrl: './collection-show.component.html',
+  styleUrls: ['./collection-show.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, BreadcrumbComponent, NgIf, LoaderComponent, MoviesIndexListHeadComponent, MoviesIndexListComponent, PaginationComponent]
 })
 export class CollectionShowComponent implements OnInit {
+
 
   constructor(private service: CollectionsService,
               private route: ActivatedRoute,
               private titleS: Title,
               private router: Router,
               private htmlS: HtmlHeadOptionsService) {
+    this.isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   }
 
+  isBrowser: boolean = false;
   collection: Collection = <Collection>{
     name: ''
   };
@@ -47,7 +52,9 @@ export class CollectionShowComponent implements OnInit {
         let number = parseInt(query['page']);
         this.page = isNaN(number) ? 1 : number;
 
-        document.body.scrollIntoView();
+        if (this.isBrowser) {
+          document.body.scrollIntoView();
+        }
 
         this.route.params.subscribe({
           next: params => {

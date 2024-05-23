@@ -1,4 +1,4 @@
-import {afterNextRender, Component, OnInit} from '@angular/core';
+import {afterNextRender, afterRender, Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "../../../services/auth.service";
 import {Router, RouterLink} from "@angular/router";
@@ -26,9 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router) {
-    afterNextRender(() => {
-      document.body.scrollIntoView();
-    })
+    afterRender(() => document.body.scrollIntoView())
   }
 
   ngOnInit(): void {
